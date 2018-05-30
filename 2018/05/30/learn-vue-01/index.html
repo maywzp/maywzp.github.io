@@ -130,18 +130,18 @@
 
 
 
-<meta name="description" content="Maywzp的个人博客">
+<meta name="description" content="深入学习 Vue.js 第一步，学习 Object.defineProperty。Vue.js 的响应原理依赖于 Object.defineProperty，所以 Vue 不支持 IE8 及更低版本浏览器。Vue 通过设置对象的 setter/getter 方法，来监听数据的变化，通过 getter 进行依赖收集，而每个 setter 方法就是一个观察者，在数据变更时通知订阅者更新视图。">
 <meta name="keywords" content="vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="learn-vue-01">
 <meta property="og:url" content="https://maywzp.github.io/2018/05/30/learn-vue-01/index.html">
 <meta property="og:site_name" content="MayWzp">
-<meta property="og:description" content="Maywzp的个人博客">
+<meta property="og:description" content="深入学习 Vue.js 第一步，学习 Object.defineProperty。Vue.js 的响应原理依赖于 Object.defineProperty，所以 Vue 不支持 IE8 及更低版本浏览器。Vue 通过设置对象的 setter/getter 方法，来监听数据的变化，通过 getter 进行依赖收集，而每个 setter 方法就是一个观察者，在数据变更时通知订阅者更新视图。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-30T08:36:04.000Z">
+<meta property="og:updated_time" content="2018-05-30T15:05:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="learn-vue-01">
-<meta name="twitter:description" content="Maywzp的个人博客">
+<meta name="twitter:description" content="深入学习 Vue.js 第一步，学习 Object.defineProperty。Vue.js 的响应原理依赖于 Object.defineProperty，所以 Vue 不支持 IE8 及更低版本浏览器。Vue 通过设置对象的 setter/getter 方法，来监听数据的变化，通过 getter 进行依赖收集，而每个 setter 方法就是一个观察者，在数据变更时通知订阅者更新视图。">
 
 
 
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-30T16:36:04+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-30T23:05:59+08:00">
                 2018-05-30
               </time>
             
@@ -369,6 +369,10 @@
           
 
           
+              <div class="post-description">
+                  深入学习 Vue.js 第一步，学习 Object.defineProperty。Vue.js 的响应原理依赖于 Object.defineProperty，所以 Vue 不支持 IE8 及更低版本浏览器。Vue 通过设置对象的 setter/getter 方法，来监听数据的变化，通过 getter 进行依赖收集，而每个 setter 方法就是一个观察者，在数据变更时通知订阅者更新视图。
+              </div>
+          
 
         </div>
       </header>
@@ -383,7 +387,29 @@
       
 
       
-        
+        <h3><span id="了解-objectdefineproperty-api">了解 Object.defineProperty API</span></h3><p>首先，我们应该了解一下 <code>JS</code> 中的一个 <code>API</code>：</p>
+<p><a href="https://msdn.microsoft.com/zh-cn/library/dd548687(v=vs.94" target="_blank" rel="noopener">Object.defineProperty(object, propertyname, descriptor) </a>.aspx)</p>
+<p>该方法的作用：<strong>将属性添加到对象，或者修改现有属性的特性</strong></p>
+<p>通常情况下，我们添加一个属性在对象上会这样写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;</span><br><span class="line">obj.name = <span class="string">'jack'</span></span><br></pre></td></tr></table></figure>
+<p><code>Object.defineProperty</code> 也同样能做到：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用 Object.defineProperty 增加属性</span></span><br><span class="line"><span class="keyword">const</span> obj = &#123;&#125;</span><br><span class="line"><span class="keyword">let</span> name = <span class="string">'jack'</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">'name'</span>, &#123;</span><br><span class="line">  configurable: <span class="literal">true</span>, <span class="comment">// 该属性是否可修改，默认值：false</span></span><br><span class="line">  enumerable: <span class="literal">true</span>, <span class="comment">// 该属性是否能遍历，默认值：false</span></span><br><span class="line">  get() &#123;</span><br><span class="line">    <span class="keyword">return</span> name</span><br><span class="line">  &#125;,</span><br><span class="line">  set(newValue) &#123;</span><br><span class="line">    name = newValue</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这样做虽然增加了代码量，但却可以控制对象属性的读取值，执行上面代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">obj.name</span><br><span class="line"><span class="comment">// jack</span></span><br><span class="line"></span><br><span class="line">obj.name = <span class="string">'ross'</span></span><br><span class="line"><span class="comment">// ross</span></span><br></pre></td></tr></table></figure>
+<h3><span id="封装-defineproperty-函数">封装 defineProperty 函数</span></h3><p>对 <code>Object.defineProperty</code>进行封装，方便调用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// defineProperty 函数封装</span></span><br><span class="line"><span class="keyword">const</span> callback = &#123;</span><br><span class="line">  target: <span class="literal">null</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> defineProperty = <span class="function"><span class="keyword">function</span>(<span class="params">object, key, value, cb</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> array = []</span><br><span class="line">  <span class="built_in">Object</span>.defineProperty(object, key, &#123;</span><br><span class="line">    configurable: <span class="literal">true</span>,</span><br><span class="line">    enumerable: <span class="literal">true</span>,</span><br><span class="line">    get() &#123;</span><br><span class="line">      <span class="comment">// 依赖收集</span></span><br><span class="line">      <span class="keyword">if</span> (callback.target) &#123;</span><br><span class="line">        array.push(callback.target)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> value</span><br><span class="line">    &#125;,</span><br><span class="line">    set(newValue) &#123;</span><br><span class="line">      <span class="keyword">if</span> (newValue !== value) &#123;</span><br><span class="line">        <span class="comment">// 触发事件</span></span><br><span class="line">        array.forEach(<span class="function"><span class="params">func</span> =&gt;</span> func(newValue, value))</span><br><span class="line">      &#125;</span><br><span class="line">      value = newValue</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>defineProperty</code>函数简陋的实现了Vue里的响应式原理，即在<code>get</code>方法中收集依赖，在<code>set</code>方法中触发依赖，更新视图。</p>
+<p><code>defineProperty</code>函数的调用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;</span><br><span class="line">defineProperty(obj, <span class="string">'name'</span>, <span class="string">'jack'</span>)</span><br><span class="line"></span><br><span class="line">callback.target = <span class="function">(<span class="params">newValue, oldValue</span>) =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'第一个依赖函数，新值为：'</span> + newValue)</span><br><span class="line">obj.name</span><br><span class="line"><span class="comment">// jack</span></span><br><span class="line"></span><br><span class="line">callback.target = <span class="function">(<span class="params">newValue, oldValue</span>) =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'第二个依赖函数，新值为：'</span> + newValue)</span><br><span class="line">obj.name = <span class="string">'ross'</span></span><br><span class="line">obj.name</span><br><span class="line"><span class="comment">// 第一个依赖函数，新值为：ross</span></span><br><span class="line"><span class="comment">// ross</span></span><br><span class="line"></span><br><span class="line">obj.name = <span class="string">'titanic'</span></span><br><span class="line">obj.name</span><br><span class="line"><span class="comment">// 第一个依赖函数，新值为：titanic</span></span><br><span class="line"><span class="comment">// 第二个依赖函数，新值为：titanic</span></span><br><span class="line"><span class="comment">// titanic</span></span><br></pre></td></tr></table></figure>
+<p>添加的依赖函数，将在<code>Object.defineProperty</code>的<code>get</code>方法中被收集，所以在调用<code>obj.name</code>时会将新的依赖添加到依赖数组里，在调用<code>obj.name = xx</code> 时会触发依赖列表。</p>
+<h3><span id="vue-中将-data-变为可观察-observable-的">Vue 中将 data 变为可观察 (observable) 的</span></h3><p>下面的代码简单的说明了如何把 data 的属性转化为可观察的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> observable = <span class="function">(<span class="params">obj, cb</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">Object</span>.keys(obj).forEach(<span class="function"><span class="params">k</span> =&gt;</span> defineReactive(obj, k, obj[k], cb))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> defineReactive = <span class="function">(<span class="params">obj, key, val, cb</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">Object</span>.defineProperty(obj, key, &#123;</span><br><span class="line">    configurable: <span class="literal">true</span>,</span><br><span class="line">    enumerable: <span class="literal">true</span>,</span><br><span class="line">    get() &#123;</span><br><span class="line">      <span class="comment">// 依赖收集</span></span><br><span class="line">    &#125;,</span><br><span class="line">    set(newValue) &#123;</span><br><span class="line">      <span class="comment">// 通知订阅者触发视图更新</span></span><br><span class="line">      cb()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vue</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(ops) &#123;</span><br><span class="line">    <span class="keyword">this</span>._data = ops.data</span><br><span class="line">    observable(<span class="keyword">this</span>._data, ops.render)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    name: <span class="string">'jack'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'视图更新'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>此时要触发视图的更新（<code>set</code> 方法），需要使用<code>app._data.name</code>，但为了简便易懂，我们更希望使用 <code>app.name</code>这样的方式直接触发<code>set</code>对视图进行重绘，那么我们就需要用到代理。</p>
+<h3><span id="代理">代理</span></h3><p>代理函数，将 data 里的属性移植到 vue实例中去，采用 app.name 这种方式触发 set，而非 app._data.name</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_proxy</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> that = <span class="keyword">this</span></span><br><span class="line">  <span class="built_in">Object</span>.keys(data).forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(that, key, &#123;</span><br><span class="line">      configurable: <span class="literal">true</span>,</span><br><span class="line">      enumerable: <span class="literal">true</span>,</span><br><span class="line">      get: <span class="function"><span class="keyword">function</span> <span class="title">proxyGetter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> that._data[key]</span><br><span class="line">      &#125;,</span><br><span class="line">      set: <span class="function"><span class="keyword">function</span> <span class="title">proxySetter</span>(<span class="params">newValue</span>) </span>&#123;</span><br><span class="line">        that._data[key] = newValue</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 <code>class Vue</code> 的 <code>constructor</code>中使用<code>_proxy(ops.data)</code>，完成代理即可使用 <code>app.name</code> 触发 <code>set</code> 更新视图。</p>
+<p><a href="https://github.com/maywzp/LearnVue/blob/master/demo/learn-vue-01.js" target="_blank" rel="noopener">查看相关代码</a></p>
+
       
     </div>
     
@@ -493,8 +519,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -551,6 +586,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">了解 Object.defineProperty API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">封装 defineProperty 函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">Vue 中将 data 变为可观察 (observable) 的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">代理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
