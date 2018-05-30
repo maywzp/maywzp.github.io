@@ -138,7 +138,7 @@
 <meta property="og:site_name" content="MayWzp">
 <meta property="og:description" content="深入学习 Vue.js 第一步，学习 Object.defineProperty。Vue.js 的响应原理依赖于 Object.defineProperty，所以 Vue 不支持 IE8 及更低版本浏览器。Vue 通过设置对象的 setter/getter 方法，来监听数据的变化，通过 getter 进行依赖收集，而每个 setter 方法就是一个观察者，在数据变更时通知订阅者更新视图。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-30T15:05:59.000Z">
+<meta property="og:updated_time" content="2018-05-30T15:14:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="learn-vue-01">
 <meta name="twitter:description" content="深入学习 Vue.js 第一步，学习 Object.defineProperty。Vue.js 的响应原理依赖于 Object.defineProperty，所以 Vue 不支持 IE8 及更低版本浏览器。Vue 通过设置对象的 setter/getter 方法，来监听数据的变化，通过 getter 进行依赖收集，而每个 setter 方法就是一个观察者，在数据变更时通知订阅者更新视图。">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-30T23:05:59+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-30T23:14:32+08:00">
                 2018-05-30
               </time>
             
@@ -388,7 +388,7 @@
 
       
         <h3><span id="了解-objectdefineproperty-api">了解 Object.defineProperty API</span></h3><p>首先，我们应该了解一下 <code>JS</code> 中的一个 <code>API</code>：</p>
-<p><a href="https://msdn.microsoft.com/zh-cn/library/dd548687(v=vs.94" target="_blank" rel="noopener">Object.defineProperty(object, propertyname, descriptor) </a>.aspx)</p>
+<p><a href="https://msdn.microsoft.com/zh-cn/library/dd548687%28v=vs.94%29.aspx" target="_blank" rel="noopener">Object.defineProperty(object, propertyname, descriptor) </a></p>
 <p>该方法的作用：<strong>将属性添加到对象，或者修改现有属性的特性</strong></p>
 <p>通常情况下，我们添加一个属性在对象上会这样写：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;</span><br><span class="line">obj.name = <span class="string">'jack'</span></span><br></pre></td></tr></table></figure>
