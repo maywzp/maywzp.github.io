@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="canvas," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="HTML5  标签用于绘制图像">
+<meta name="keywords" content="canvas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="canvas参考手册">
+<meta property="og:url" content="https://maywzp.github.io/2016/12/08/canvas参考手册/index.html">
+<meta property="og:site_name" content="MayWzp">
+<meta property="og:description" content="HTML5  标签用于绘制图像">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://oizt3fjv8.bkt.clouddn.com/canvas_sc.jpg">
+<meta property="og:updated_time" content="2016-12-08T02:37:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="canvas参考手册">
+<meta name="twitter:description" content="HTML5  标签用于绘制图像">
+<meta name="twitter:image" content="http://oizt3fjv8.bkt.clouddn.com/canvas_sc.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://maywzp.github.io/2016/12/08/canvas参考手册/"/>
+
+
+
+
+
+  <title>canvas参考手册 | MayWzp</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MayWzp</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://maywzp.github.io/2016/12/08/canvas参考手册/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Maywzp">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MayWzp">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">canvas参考手册</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-08T10:37:49+08:00">
+                2016-12-08
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2016-12-08T10:37:49+08:00">
+                2016-12-08
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  HTML5 <canvas> 标签用于绘制图像
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+          
+          
+            <div class="post-gallery-row">
+              <a class="post-gallery-img fancybox"
+                 href="http://oizt3fjv8.bkt.clouddn.com/canvas_sc.jpg" rel="gallery_cjhsuwl55002uy1xtmkwek0zg"
+                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
+                <img src="http://oizt3fjv8.bkt.clouddn.com/canvas_sc.jpg" itemprop="contentUrl"/>
+              </a>
+            
+          
+
+          
+          </div>
+        </div>
+      
+
+      
+        <h2><span id="绘制图像的方法">绘制图像的方法</span></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ctx.fill()      填充</span><br><span class="line">ctx.stroke()    绘制边框</span><br></pre></td></tr></table></figure>
+<h2><span id="绘制图像的样式">绘制图像的样式</span></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ctx.fillStyle     填充的样式</span><br><span class="line">ctx.strokeStyle   边框的样式</span><br><span class="line">ctx.lineWidth     边框的宽度</span><br></pre></td></tr></table></figure>
+<h2><span id="绘制矩形">绘制矩形</span></h2><p>x:矩形起点横坐标<br>y:矩形起点纵坐标<br>width:矩形长度<br>height:矩形高度<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ctx.fillRect(x,y,width,height)     矩形填充</span><br><span class="line">ctx.strokeRect(x,y,width,height)   矩形边框</span><br><span class="line">ctx.clearRect(x,y,width,height)    矩形清除区域</span><br></pre></td></tr></table></figure></p>
+<h2><span id="绘制圆形">绘制圆形</span></h2><p>x:圆心的x坐标<br>y:圆心的y坐标<br>radius:半径<br>startAngle:开始角度<br>endAngle:结束角度<br>anticlockwise:是否逆时针（true）为逆时针，(false)为顺时针<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.arc(x,y,radius,startAngle,endAngle,anticlockwise)</span><br></pre></td></tr></table></figure></p>
+<h3><span id="旋转角度">旋转角度</span></h3><p><img src="http://pic002.cnblogs.com/images/2012/407398/2012080217203994.png" alt=""></p>
+<h2><span id="绘制线条">绘制线条</span></h2><p>x:x坐标<br>y:y坐标<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ctx.moveTo(x,y)    起点</span><br><span class="line">ctx.lineTo(x,y)    终点</span><br></pre></td></tr></table></figure></p>
+<h2><span id="绘制贝塞尔曲线">绘制贝塞尔曲线</span></h2><p>cp1x:第一个控制点x坐标<br>cp1y:第一个控制点y坐标<br>cp2x:第二个控制点x坐标<br>cp2y:第二个控制点y坐标<br>x:终点x坐标<br>y:终点y坐标<br>注：第二点为拐点<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x,y)</span><br></pre></td></tr></table></figure></p>
+<h2><span id="绘制二次样条曲线">绘制二次样条曲线</span></h2><p>qcpx:二次样条曲线控制点x坐标<br>qcpy:二次样条曲线控制点y坐标<br>qx:二次样条曲线终点x坐标<br>qy:二次样条曲线终点y坐标<br>注：起点为上一个贝塞尔曲线的终点<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.quadraticCurveTo(qcpx,qcpy,qx,qy)</span><br></pre></td></tr></table></figure></p>
+<h2><span id="渐变">渐变</span></h2><p>xstart:渐变开始点x坐标<br>ystart:渐变开始点y坐标<br>radiusStart:发散开始圆的半径<br>xEnd:渐变结束点x坐标<br>yEnd:渐变结束点y坐标<br>radiusEnd:发散结束圆的半径</p>
+<p>offset:设定的颜色离渐变结束点的偏移量(0~1)<br>color:绘制时要使用的颜色<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gr = ctx.createLinearGradient(xStart,yStart,xEnd,yEnd)</span><br><span class="line"><span class="keyword">var</span> gr = ctx.createRadialGradient(xStart,yStart,radiusStart,xEnd,yEnd,radiusEnd)</span><br><span class="line">gr.addColorStop(offset,color)</span><br></pre></td></tr></table></figure></p>
+<h2><span id="发散渐变偏移量图非同心圆">发散渐变偏移量图(非同心圆)</span></h2><p><img src="http://pic002.cnblogs.com/images/2012/407398/2012080314164328.png" alt=""></p>
+<h2><span id="变形">变形</span></h2><h3><span id="平移">平移</span></h3><p>x:坐标原点向x轴方向平移x<br>y:坐标原点向y轴方向平移y</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.translate(x,y)</span><br></pre></td></tr></table></figure>
+<h3><span id="缩放">缩放</span></h3><p>x:x坐标轴按x比例缩放<br>y:y坐标轴按y比例缩放<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.scale(x,y)</span><br></pre></td></tr></table></figure></p>
+<h3><span id="旋转">旋转</span></h3><p>angle:坐标轴旋转x角度（角度变化模型和画圆的模型一样）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.rotate(angle)</span><br></pre></td></tr></table></figure></p>
+<h2><span id="图形组合">图形组合</span></h2><p>两个图形相互叠加<br>type取值：<br>  source-over（默认值）:在原有图形上绘制新图形<br>  destination-over:在原有图形下绘制新图形<br>  source-in:显示原有图形和新图形的交集，新图形在上，所以颜色为新图形的颜色<br>  destination-in:显示原有图形和新图形的交集，原有图形在上，所以颜色为原有图形的颜色<br>  source-out:只显示新图形非交集部分<br>  destination-out:只显示原有图形非交集部分<br>  source-atop:显示原有图形和交集部分，新图形在上，所以交集部分的颜色为新图形的颜色<br>  destination-atop:显示新图形和交集部分，新图形在下，所以交集部分的颜色为原有图形的颜色<br>  lighter:原有图形和新图形都显示，交集部分做颜色叠加<br>  xor:重叠飞部分不现实<br>  copy:只显示新图形<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.globalCompositeOperation = type</span><br></pre></td></tr></table></figure></p>
+<p>type取值图：<br><img src="http://pic002.cnblogs.com/images/2012/407398/2012080317515321.png" alt=""></p>
+<h2><span id="阴影">阴影</span></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ctx.shadowOffsetX    阴影的横向位移量（默认值为<span class="number">0</span>）</span><br><span class="line">ctx.shadowOffsetY    阴影的纵向位移量（默认值为<span class="number">0</span>）</span><br><span class="line">ctx.shadowColor      阴影的颜色</span><br><span class="line">ctx.shadowBlur       阴影的模糊范围（值越大越模糊）</span><br></pre></td></tr></table></figure>
+<h2><span id="绘制图像">绘制图像</span></h2><h3><span id="绘图">绘图</span></h3><p>image:Image对象<br>x:绘制图像的x坐标<br>y:绘制图像的y坐标<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">context.drawImage(image,x,y)</span><br></pre></td></tr></table></figure></p>
+<p>image:Image对象<br>x:绘制图像的x坐标<br>y:绘制图像的y坐标<br>w:绘制图像的宽度<br>h:绘制图像的高度<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">context.drawImage(image,x,y,w,h)</span><br></pre></td></tr></table></figure></p>
+<p>选取图像的一部分矩形区域进行绘制<br>image:Image对象<br>sx：图像上的x坐标<br>sy：图像上的y坐标<br>sw：矩形区域的宽度<br>sh：矩形区域的高度<br>dx：画在canvas的x坐标<br>dy：画在canvas的y坐标<br>dw：画出来的宽度<br>dh：画出来的高度<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.drawImage(image,sx,sy,sw,sh,dx,dy,dw,dh)</span><br></pre></td></tr></table></figure></p>
+<p>先裁取图像区域，在画在画布上<br><img src="http://pic002.cnblogs.com/images/2012/407398/2012080410231479.png" alt=""></p>
+<h3><span id="平铺">平铺</span></h3><p>type取值:<br>no-repeat:不平铺<br>repeat-x:横方向平铺<br>repeat-y:纵方向平铺<br>repeat:全方向平铺<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.createPattern(image,type)</span><br></pre></td></tr></table></figure></p>
+<h3><span id="裁剪">裁剪</span></h3><p>只绘制封闭路径区域内的图像，不绘制路径外部图像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.clip()</span><br></pre></td></tr></table></figure></p>
+<h2><span id="绘制文字">绘制文字</span></h2><p>text:要绘制的文字<br>x:文字起点的x坐标轴<br>y:文字起点的y坐标轴<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ctx.fillText(text,x,y)          填充文字</span><br><span class="line">ctx.strokeText(text,x,y)        绘制文字轮廓</span><br><span class="line">ctx.font                        设置字体样式</span><br><span class="line">ctx.textAlign                   水平对齐方式:start、end、right、center</span><br><span class="line">ctx.textBaseline                垂直对齐方式:top、hanging、middle、alphabetic、ideographic、bottom</span><br><span class="line">ctx.measureText(text)           计算字体长度(px)</span><br></pre></td></tr></table></figure></p>
+<h2><span id="保存和恢复状态">保存和恢复状态</span></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ctx.save()        保存</span><br><span class="line">ctx.restore()     恢复</span><br></pre></td></tr></table></figure>
+<h2><span id="保存文件">保存文件</span></h2><p>Mime：<br>PNG图像： image/png<br>GIF图形： image/gif<br>JPEG图形：image/jpeg<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">canvas.toDataURL(MIME)</span><br></pre></td></tr></table></figure></p>
+<!-- ## 基本属性
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fillStyle         填充样式</span><br><span class="line">strokeStyle       线条样式</span><br><span class="line">shadowColor       阴影的颜色</span><br><span class="line">shadowBlur        阴影的模糊程度</span><br><span class="line">shadowOffsetX     阴影的水平偏移量</span><br><span class="line">shadowOffsetY     阴影的垂直偏移量</span><br></pre></td></tr></table></figure>
+<h2 id="基本方法"><a href="#基本方法" class="headerlink" title="基本方法"></a>基本方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">createLinearGradient()         创建线性渐变</span><br><span class="line">createPattern()                重复元素</span><br><span class="line">creatRadialGradient()          创建环形渐变</span><br><span class="line">addColorStop()                 渐变对象停止的颜色和位置</span><br></pre></td></tr></table></figure>
+<h2 id="线条样式"><a href="#线条样式" class="headerlink" title="线条样式"></a>线条样式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lineCap       线条结束端点的样式</span><br><span class="line">lineJoin      线条相交点的样式</span><br><span class="line">lineWidth     线条粗细</span><br><span class="line">lineLimit     最大斜接长度</span><br></pre></td></tr></table></figure>
+<h2 id="矩形"><a href="#矩形" class="headerlink" title="矩形"></a>矩形</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rect()          创建矩形</span><br><span class="line">fillRect()      矩形填充</span><br><span class="line">strokeRect()    矩形绘制</span><br><span class="line">clearRect()     清除矩形区域</span><br></pre></td></tr></table></figure>
+<h2 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">fill()                填充当前绘图</span><br><span class="line">stroke()              绘制已定义的路线</span><br><span class="line">beginPath()           起始一条路线</span><br><span class="line">moveTo()              把路径移动到指定点</span><br><span class="line">closePath()           重当前点回到起始点</span><br><span class="line">lineTo()              添加一个新点并创建线条</span><br><span class="line">clip()                从原始画布剪切任意形状和尺寸的区域</span><br><span class="line">quadraticCurveTo()    创建二次贝塞尔曲线</span><br><span class="line">bezierCurveTo()       创建三次贝塞尔曲线</span><br><span class="line">arc()                 创建弧线</span><br><span class="line">arcTo()               创建两切线之间的弧/曲线。</span><br><span class="line">isPointInPath()       如果指定的点位于当前路径中，则返回 true，否则返回 false。</span><br></pre></td></tr></table></figure>
+<h2 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scale()           缩放</span><br><span class="line">rotate()          旋转</span><br><span class="line">translate()       重新映射画布上的 (0,0) 位置</span><br><span class="line">transform()       替换绘图的当前转换矩阵</span><br><span class="line">setTransform()    将当前转换重置为单位矩阵,然后运行 transform()</span><br></pre></td></tr></table></figure>
+<h2 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h2><h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">font            字体属性</span><br><span class="line">textAlign       对齐方式</span><br><span class="line">textBaseline    文本基线</span><br></pre></td></tr></table></figure>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fillText()      在画布上绘制&quot;被填充的&quot;文本</span><br><span class="line">strokeText()    在画布上绘制文本（无填充）</span><br><span class="line">measureText()   返回包含指定文本宽度的对象</span><br></pre></td></tr></table></figure>
+<h2 id="图像绘制"><a href="#图像绘制" class="headerlink" title="图像绘制"></a>图像绘制</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drawImage()      向画布上绘制图像、画布或视频</span><br></pre></td></tr></table></figure>
+<h2 id="像素操作"><a href="#像素操作" class="headerlink" title="像素操作"></a>像素操作</h2><h3 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">width        返回 ImageData 对象的宽度</span><br><span class="line">height       返回 ImageData 对象的高度</span><br><span class="line">data         返回 ImageData 对象的数据</span><br></pre></td></tr></table></figure>
+<h3 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">createImageData()  创建ImageData对象</span><br><span class="line">getImageData()     返回 ImageData 对象</span><br><span class="line">putImageData()     把图像数据放回画布上</span><br></pre></td></tr></table></figure>
+<h2 id="合成"><a href="#合成" class="headerlink" title="合成"></a>合成</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">globalAlpha                绘图的当前 alpha 或透明值</span><br><span class="line">globalCompositeOperation   新图像如何绘制到已有的图像上</span><br></pre></td></tr></table></figure>
+<h2 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h2><p><code>save()           保存当前状态
+restore()        返回之前保存状态
+createEvent()
+getContext()
+toDataURL()</code> –&gt;</p>
+-->
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Maywzp
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://maywzp.github.io/2016/12/08/canvas参考手册/" title="canvas参考手册">https://maywzp.github.io/2016/12/08/canvas参考手册/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/canvas/" rel="tag"># canvas</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/02/node环境配置/" rel="next" title="node环境配置">
+                <i class="fa fa-chevron-left"></i> node环境配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/09/canvas实例/" rel="prev" title="canvas实例">
+                canvas实例 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Maywzp" />
+            
+              <p class="site-author-name" itemprop="name">Maywzp</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">绘制图像的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">绘制图像的样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">绘制矩形</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">绘制圆形</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.1.</span> <span class="nav-text">旋转角度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">绘制线条</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">绘制贝塞尔曲线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">绘制二次样条曲线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">渐变</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">9.</span> <span class="nav-text">发散渐变偏移量图(非同心圆)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">10.</span> <span class="nav-text">变形</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">10.1.</span> <span class="nav-text">平移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">10.2.</span> <span class="nav-text">缩放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">10.3.</span> <span class="nav-text">旋转</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">11.</span> <span class="nav-text">图形组合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">12.</span> <span class="nav-text">阴影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">13.</span> <span class="nav-text">绘制图像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">13.1.</span> <span class="nav-text">绘图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">13.2.</span> <span class="nav-text">平铺</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">13.3.</span> <span class="nav-text">裁剪</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">14.</span> <span class="nav-text">绘制文字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">15.</span> <span class="nav-text">保存和恢复状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">16.</span> <span class="nav-text">保存文件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maywzp</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.3"></script>
+
+
+  
+
+
+</body>
+</html>
