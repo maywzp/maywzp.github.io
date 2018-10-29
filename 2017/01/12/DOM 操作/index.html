@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javascript操作手册," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="DOM 操作总结。">
+<meta name="keywords" content="javascript操作手册">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOM 操作">
+<meta property="og:url" content="https://maywzp.github.io/2017/01/12/DOM 操作/index.html">
+<meta property="og:site_name" content="MayWzp">
+<meta property="og:description" content="DOM 操作总结。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-19T08:37:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DOM 操作">
+<meta name="twitter:description" content="DOM 操作总结。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://maywzp.github.io/2017/01/12/DOM 操作/"/>
+
+
+
+
+
+  <title>DOM 操作 | MayWzp</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MayWzp</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://maywzp.github.io/2017/01/12/DOM 操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Maywzp">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MayWzp">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">DOM 操作</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-12T11:05:15+08:00">
+                2017-01-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-19T16:37:00+08:00">
+                2018-10-19
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  DOM 操作总结。
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>DOM 节点分类：</p>
+<p>文档节点、元素节点、文本节点、属性节点、注释节点</p>
+<p>后面的操作基于此 DOM</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span> <span class="attr">name</span>=<span class="string">"container"</span> <span class="attr">style</span>=<span class="string">"color: #444;font-size: 16px;"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>item<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>item<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item special"</span>&gt;</span>item special<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">  var items = document.querySelectorAll('.item')</span></span><br><span class="line"><span class="undefined">  var container = document.querySelector('.container')</span></span><br><span class="line"><span class="undefined">    </span></span><br><span class="line"><span class="xml">  var insertStr = '<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item insert"</span>&gt;</span>item<span class="tag">&lt;/<span class="name">div</span>&gt;</span>'</span></span><br><span class="line"><span class="undefined">  var insertEle = document.createElement('div')</span></span><br><span class="line"><span class="undefined">  insertEle.innerText = 'item insert'</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="yuan-su-jie-dian-cao-zuo"><a href="#元素节点操作" class="headerlink" title="元素节点操作"></a>元素节点操作</h3><h4 id="issamenode-shi-fou-shi-tong-yi-ge-jie-dian"><a href="#isSameNode（是否是同一个节点）" class="headerlink" title="isSameNode（是否是同一个节点）"></a>isSameNode（是否是同一个节点）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">items[<span class="number">0</span>].isSameNode(items[<span class="number">0</span>]) <span class="comment">// true</span></span><br><span class="line">items[<span class="number">0</span>].isSameNode(items[<span class="number">1</span>]) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<h4 id="isequalnode-liang-ge-jie-dian-shi-fou-xiang-deng"><a href="#isEqualNode（两个节点是否相等）" class="headerlink" title="isEqualNode（两个节点是否相等）"></a>isEqualNode（两个节点是否相等）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">与属性顺序无关</span><br><span class="line">items[<span class="number">0</span>].isEqualNode(items[<span class="number">1</span>]) <span class="comment">// true</span></span><br><span class="line">items[<span class="number">0</span>].isEqualNode(items[<span class="number">2</span>]) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<h4 id="comparedocumentposition-bi-jiao-liang-ge-jie-dian-xiang-dui-wei-zhi"><a href="#compareDocumentPosition（比较两个节点相对位置）" class="headerlink" title="compareDocumentPosition（比较两个节点相对位置）"></a>compareDocumentPosition（比较两个节点相对位置）</h4><p>返回值：</p>
+<p>1：没有关系，两个节点不属于同一个文档。 </p>
+<p>2：第一节点（P1）位于第二个节点（P2）后。</p>
+<p>4：第一节点（P1）定位在第二节点（P2）前。</p>
+<p>8：第一节点（P1）位于第二节点（P2）内。 </p>
+<p>16：第二节点（P2）位于第一节点（P1）内。 </p>
+<p>32：没有关系，或是两个节点是同一元素的两个属性。</p>
+<p>返回值可组合，比如：20 = 16 + 4</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">container.compareDocumentPosition(items[<span class="number">0</span>]) <span class="comment">// 20</span></span><br><span class="line">items[<span class="number">0</span>].compareDocumentPosition(items[<span class="number">1</span>]) <span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
+<h4 id="innerhtml-huo-qu-she-zhi-hou-dai-html"><a href="#innerHTML（获取-设置后代-HTML）" class="headerlink" title="innerHTML（获取/设置后代 HTML）"></a>innerHTML（获取/设置后代 HTML）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">container.innerHTML <span class="comment">// 获取</span></span><br><span class="line">container.innerHTML = insertStr <span class="comment">// 设置</span></span><br></pre></td></tr></table></figure>
+<h4 id="replacechild-jie-dian-ti-huan"><a href="#replaceChild（节点替换）" class="headerlink" title="replaceChild（节点替换）"></a>replaceChild（节点替换）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">container.replaceChild(items[<span class="number">2</span>], items[<span class="number">0</span>]) <span class="comment">// items[2] 替换 items[0]</span></span><br></pre></td></tr></table></figure>
+<h4 id="removechild-yi-chu-jie-dian"><a href="#removeChild（移除节点）" class="headerlink" title="removeChild（移除节点）"></a>removeChild（移除节点）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">container.removeChild(items[<span class="number">2</span>]) <span class="comment">// 移除 items[2]</span></span><br></pre></td></tr></table></figure>
+<h4 id="appendchild-tian-jia-jie-dian-dao-mo-wei"><a href="#appendChild（添加节点到末尾）" class="headerlink" title="appendChild（添加节点到末尾）"></a>appendChild（添加节点到末尾）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">container.appendChild(insertEle) <span class="comment">// 添加 insertEle 节点到 container 节点末尾</span></span><br></pre></td></tr></table></figure>
+<h4 id="insertbefore-zai-zhi-ding-jie-dian-qian-cha-ru-xin-jie-dian"><a href="#insertBefore（在指定节点前插入新节点）" class="headerlink" title="insertBefore（在指定节点前插入新节点）"></a>insertBefore（在指定节点前插入新节点）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">container.insertBefore(insertEle, items[<span class="number">1</span>]) <span class="comment">// 添加 insertEle 节点到 items[1] 节点之前</span></span><br></pre></td></tr></table></figure>
+<h4 id="clonenode-ke-long-zhi-ding-jie-dian"><a href="#cloneNode（克隆指定节点）" class="headerlink" title="cloneNode（克隆指定节点）"></a>cloneNode（克隆指定节点）</h4><p>如果不指定<code>true</code>参数，只是克隆当前节点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cloneEle = items[<span class="number">2</span>].cloneNode(<span class="literal">true</span>) <span class="comment">// 复制 items[2] 节点</span></span><br><span class="line">container.appendChild(cloneEle)</span><br></pre></td></tr></table></figure>
+<h4 id="createelement-chuang-jian-yuan-su-jie-dian"><a href="#createElement（创建元素节点）" class="headerlink" title="createElement（创建元素节点）"></a>createElement（创建元素节点）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> createEle = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>) <span class="comment">// 创建元素节点</span></span><br><span class="line"><span class="keyword">var</span> createTxt = <span class="built_in">document</span>.createTextNode(<span class="string">'item create'</span>) <span class="comment">// 创建文本节点</span></span><br><span class="line">createEle.appendChild(createTxt)</span><br><span class="line">container.appendChild(createEle)</span><br></pre></td></tr></table></figure>
+<h4 id="createtextnode-chuang-jian-wen-ben-jie-dian"><a href="#createTextNode（创建文本节点）" class="headerlink" title="createTextNode（创建文本节点）"></a>createTextNode（创建文本节点）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> createTxt = <span class="built_in">document</span>.createTextNode(<span class="string">'item create'</span>) <span class="comment">// 创建文本节点</span></span><br><span class="line">container.appendChild(createTxt)</span><br></pre></td></tr></table></figure>
+<h3 id="yuan-su-jie-dian-cha-xun"><a href="#元素节点查询" class="headerlink" title="元素节点查询"></a>元素节点查询</h3><p>下面👇原生的方法会将换行符也当作文本子节点处理，也包括注释节点，调用前<strong>需清除空格和注释</strong></p>
+<h4 id="childnodes-fan-hui-zi-jie-dian-de-ji-he"><a href="#childNodes（返回子节点的集合）" class="headerlink" title="childNodes（返回子节点的集合）"></a>childNodes（返回子节点的集合）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> children = container.childNodes</span><br><span class="line">children.length <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<h4 id="firstchild-di-yi-ge-zi-jie-dian"><a href="#firstChild（第一个子节点）" class="headerlink" title="firstChild（第一个子节点）"></a>firstChild（第一个子节点）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> first = chontainer.firstChild</span><br><span class="line">first.innerText <span class="comment">// 'item'</span></span><br></pre></td></tr></table></figure>
+<h4 id="lastchild-zui-hou-yi-ge-zi-jie-dian"><a href="#lastChild（最后一个子节点）" class="headerlink" title="lastChild（最后一个子节点）"></a>lastChild（最后一个子节点）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> last = container.lastChild</span><br><span class="line">last.innerText <span class="comment">// 'item special'</span></span><br></pre></td></tr></table></figure>
+<h4 id="nextsibling-xia-yi-ge-xiong-di-jie-dian"><a href="#nextSibling（下一个兄弟节点）" class="headerlink" title="nextSibling（下一个兄弟节点）"></a>nextSibling（下一个兄弟节点）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> next = items[<span class="number">0</span>].nextSibling</span><br><span class="line">next.innerText <span class="comment">// 'item'</span></span><br></pre></td></tr></table></figure>
+<h4 id="previoussibling-shang-yi-ge-xiong-di-jie-dian"><a href="#previousSibling（上一个兄弟节点）" class="headerlink" title="previousSibling（上一个兄弟节点）"></a>previousSibling（上一个兄弟节点）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> prev = items[<span class="number">1</span>].previousSibling</span><br><span class="line">prev.innerText <span class="comment">// 'item'</span></span><br></pre></td></tr></table></figure>
+<h4 id="parentnode-fu-jie-dian"><a href="#parentNode（父节点）" class="headerlink" title="parentNode（父节点）"></a>parentNode（父节点）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> parent = items[<span class="number">0</span>].parentNode</span><br><span class="line">parent <span class="comment">// 返回 container 节点</span></span><br></pre></td></tr></table></figure>
+<h4 id="shi-ji-tui-jian-shi-yong"><a href="#实际推荐使用" class="headerlink" title="实际推荐使用"></a>实际推荐使用</h4><p>上述方法对应的另一个版本，只返回元素节点，推荐使用，其对应关系如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">children 			   -&gt; 	childNode</span><br><span class="line">firstElementChild 	   -&gt; 	firstChild</span><br><span class="line">lastElementChild 	   -&gt; 	lastChild</span><br><span class="line">previousElementSibling -&gt; 	previousSibling</span><br><span class="line">nextElementSibling 	   -&gt;   nextSibling</span><br><span class="line">parentElement 		   -&gt;   parentNode</span><br></pre></td></tr></table></figure>
+<h3 id="shu-xing-jie-dian-cao-zuo"><a href="#属性节点操作" class="headerlink" title="属性节点操作"></a>属性节点操作</h3><h4 id="attributes-fan-hui-suo-you-shu-xing-jie-dian"><a href="#attributes（返回所有属性节点）" class="headerlink" title="attributes（返回所有属性节点）"></a>attributes（返回所有属性节点）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> attr = container.attributes</span><br><span class="line">attr.class.value <span class="comment">// 'container'</span></span><br></pre></td></tr></table></figure>
+<h4 id="getattribute-huo-qu-zhi-ding-shu-xing-zhi"><a href="#getAttribute（获取指定属性值）" class="headerlink" title="getAttribute（获取指定属性值）"></a>getAttribute（获取指定属性值）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">container.getAttribute(<span class="string">'class'</span>) <span class="comment">// 'container'</span></span><br></pre></td></tr></table></figure>
+<h4 id="getattributenode-huo-qu-zhi-ding-shu-xing-jie-dian"><a href="#getAttributeNode（获取指定属性节点）" class="headerlink" title="getAttributeNode（获取指定属性节点）"></a>getAttributeNode（获取指定属性节点）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> attrNode = container.getAttributeNode(<span class="string">'name'</span>)</span><br><span class="line">attrNode.value <span class="comment">// 'container</span></span><br></pre></td></tr></table></figure>
+<h4 id="hasattribute-shi-fou-ju-you-zhi-ding-shu-xing"><a href="#hasAttribute（是否具有指定属性）" class="headerlink" title="hasAttribute（是否具有指定属性）"></a>hasAttribute（是否具有指定属性）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">container.hasAttribute(<span class="string">'name'</span>) <span class="comment">// true</span></span><br><span class="line">container.hasAttribute(<span class="string">'id'</span>) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<h4 id="hasattributes-shi-fou-zhi-shao-han-you-yi-ge-shu-xing"><a href="#hasAttributes（是否至少含有一个属性）" class="headerlink" title="hasAttributes（是否至少含有一个属性）"></a>hasAttributes（是否至少含有一个属性）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">container.hasAttributes() <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h4 id="removeattribute-yi-chu-zhi-ding-shu-xing"><a href="#removeAttribute（移除指定属性）" class="headerlink" title="removeAttribute（移除指定属性）"></a>removeAttribute（移除指定属性）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">container.removeAttribute(<span class="string">'name'</span>) <span class="comment">// 移除 name 属性</span></span><br></pre></td></tr></table></figure>
+<h4 id="removeattributenode-yi-chu-zhi-ding-shu-xing-jie-dian"><a href="#removeAttributeNode（移除指定属性节点）" class="headerlink" title="removeAttributeNode（移除指定属性节点）"></a>removeAttributeNode（移除指定属性节点）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> attrNode = container.getAttributeNode(<span class="string">'name'</span>)</span><br><span class="line">container.removeAttributeNode(attrNode) <span class="comment">// 移除 name 属性节点</span></span><br></pre></td></tr></table></figure>
+<h4 id="setattribute-tian-jia-shu-xing"><a href="#setAttribute（添加属性）" class="headerlink" title="setAttribute（添加属性）"></a>setAttribute（添加属性）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如果属性已存在，则更新相应的属性</span><br><span class="line">container.setAttribute(<span class="string">'id'</span>, <span class="string">'container'</span>) <span class="comment">// 设置 属性 id=container</span></span><br></pre></td></tr></table></figure>
+<h4 id="setattributenode-tian-jia-shu-xing-jie-dian"><a href="#setAttributeNode（添加属性节点）" class="headerlink" title="setAttributeNode（添加属性节点）"></a>setAttributeNode（添加属性节点）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> classNode = items[<span class="number">2</span>].getAttributeNode(<span class="string">'class'</span>)</span><br><span class="line">items[<span class="number">0</span>].setAttributeNode(classNode.cloneNode(<span class="literal">true</span>)) <span class="comment">// items[0] 与 items[2] 的 class 相同了</span></span><br></pre></td></tr></table></figure>
+<h3 id="yuan-su-jie-dian-yang-shi"><a href="#元素节点样式" class="headerlink" title="元素节点样式"></a>元素节点样式</h3><h4 id="style-huo-qu-she-zhi-dang-qian-yuan-su-nei-qian-yang-shi"><a href="#style（获取-设置当前元素内嵌样式）" class="headerlink" title="style（获取/设置当前元素内嵌样式）"></a>style（获取/设置当前元素内嵌样式）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">container.style.fontSize <span class="comment">// '16px' 获取</span></span><br><span class="line"></span><br><span class="line">container.style.fontSize = <span class="string">'20px'</span> <span class="comment">// 设置</span></span><br><span class="line"></span><br><span class="line">container.style.setProperty(<span class="string">'font-size'</span>, <span class="string">'20px'</span>) <span class="comment">// 使用 setProperty 设置</span></span><br><span class="line"></span><br><span class="line">container.style.removeProperty(<span class="string">'font-size'</span>) <span class="comment">// 移除某个样式</span></span><br></pre></td></tr></table></figure>
+<h4 id="classname-huo-qu-she-zhi-jie-dian-yang-shi-lei-ming"><a href="#className（获取-设置节点样式类名）" class="headerlink" title="className（获取/设置节点样式类名）"></a>className（获取/设置节点样式类名）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">items[<span class="number">2</span>].className <span class="comment">// 'item special'  获取</span></span><br><span class="line"></span><br><span class="line">items[<span class="number">2</span>].className = <span class="string">'item'</span> <span class="comment">// 设置</span></span><br></pre></td></tr></table></figure>
+<h4 id="classlist-guan-li-jie-dian-yang-shi-lei"><a href="#classList（管理节点样式类）" class="headerlink" title="classList（管理节点样式类）"></a>classList（管理节点样式类）</h4><p>推荐使用 <code>classList</code> 而非 <code>className</code> 管理样式类</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">contains.classList.contains(<span class="string">'container'</span>) <span class="comment">// 是否具有指定类</span></span><br><span class="line"></span><br><span class="line">container.classList.add(<span class="string">'custom-class-1'</span>, <span class="string">'custom-class-2'</span>) <span class="comment">// 添加类</span></span><br><span class="line"></span><br><span class="line">container.classList.remove(<span class="string">'custom-class-1'</span>, <span class="string">'custom-class-2'</span>) <span class="comment">// 移除类</span></span><br><span class="line"></span><br><span class="line">container.classList.replace(<span class="string">'container'</span>, <span class="string">'custom-container'</span>) <span class="comment">// 类名替换</span></span><br><span class="line"></span><br><span class="line">container.classList.toggle(<span class="string">'toggle'</span>) <span class="comment">// 切换类</span></span><br><span class="line">container.classList.toggle(<span class="string">'toggle'</span>， <span class="literal">true</span>)   <span class="comment">// 添加类</span></span><br><span class="line">container.classList.toggle(<span class="string">'toggle'</span>， <span class="literal">false</span>)  <span class="comment">// 移除类</span></span><br></pre></td></tr></table></figure>
+<p>getComputedStyle（获取元素所有样式）</p>
+<p>包括：类 和 内嵌样式。只读</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> computedStyle = <span class="built_in">window</span>.getComputedStyle(container)</span><br><span class="line">computedStyle.fontSize <span class="comment">// '16px'</span></span><br></pre></td></tr></table></figure>
+<h3 id="yuan-su-jie-dian-shu-xing"><a href="#元素节点属性" class="headerlink" title="元素节点属性"></a>元素节点属性</h3><h4 id="contenteditable-huo-qu-she-zhi-shi-fou-ke-bian-ji"><a href="#contentEditable（获取-设置是否可编辑）" class="headerlink" title="contentEditable（获取/设置是否可编辑）"></a>contentEditable（获取/设置是否可编辑）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">container.contentEditable <span class="comment">// 'inherit' 获取</span></span><br><span class="line"></span><br><span class="line">container.contentEditable = <span class="literal">true</span> <span class="comment">// 设置</span></span><br></pre></td></tr></table></figure>
+<h4 id="iscontenteditable-pan-duan-shi-fou-ke-bian-ji"><a href="#isContentEditable（判断是否可编辑）" class="headerlink" title="isContentEditable（判断是否可编辑）"></a>isContentEditable（判断是否可编辑）</h4><p>与 <code>contentEditable</code> 不同的是，该属性只返回 <code>true</code> 或者 <code>false</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">container.isContentEditable <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<h4 id="tostring-fan-hui-jie-dian-zi-fu-chuan"><a href="#toString（返回节点字符串）" class="headerlink" title="toString（返回节点字符串）"></a>toString（返回节点字符串）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">container.toString() <span class="comment">// '[object HTMLDivElement]'</span></span><br><span class="line">container.getAttributeNode(<span class="string">'name'</span>).toString() <span class="comment">// '[object Attr]'</span></span><br><span class="line">container.nextSibling.toString() <span class="comment">// '[object Text]'</span></span><br></pre></td></tr></table></figure>
+<h4 id="id-huo-qu-she-zhi-jie-dian-id"><a href="#id（获取-设置节点id）" class="headerlink" title="id（获取/设置节点id）"></a>id（获取/设置节点id）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">container.id = <span class="string">'container'</span> <span class="comment">// 设置</span></span><br><span class="line"></span><br><span class="line">container.id <span class="comment">// 'container' 获取</span></span><br></pre></td></tr></table></figure>
+<h4 id="title-huo-qu-she-zhi-jie-dian-title"><a href="#title（获取-设置节点title）" class="headerlink" title="title（获取/设置节点title）"></a>title（获取/设置节点title）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">container.title = <span class="string">'容器'</span> <span class="comment">// 设置</span></span><br><span class="line"></span><br><span class="line">container.title <span class="comment">// '容器' 获取</span></span><br></pre></td></tr></table></figure>
+<h4 id="dataset-huo-qu-she-zhi-data-kai-tou-de-shu-xing"><a href="#dataset（获取-设置-data-开头的属性）" class="headerlink" title="dataset（获取/设置 data- 开头的属性）"></a>dataset（获取/设置 data- 开头的属性）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">container.dataset.userName = <span class="string">'may'</span> <span class="comment">// 设置  data-user-name = 'may'</span></span><br><span class="line"></span><br><span class="line">container.dataset.userName <span class="comment">// 'may'  获取 data-user-name</span></span><br></pre></td></tr></table></figure>
+<h4 id="nodename-dang-qian-yuan-su-jie-dian-biao-qian-ming"><a href="#nodeName（当前元素节点标签名）" class="headerlink" title="nodeName（当前元素节点标签名）"></a>nodeName（当前元素节点标签名）</h4><p>返回的标签名都是大写的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">container.nodeName <span class="comment">// 'DIV'</span></span><br></pre></td></tr></table></figure>
+<h4 id="nodetype-jie-dian-lei-xing"><a href="#nodeType（节点类型）" class="headerlink" title="nodeType（节点类型）"></a>nodeType（节点类型）</h4><p>常见值：</p>
+<p>1：元素节点</p>
+<p>2：属性节点</p>
+<p>3：文本节点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">container.nodeType <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<h4 id="nodevalue-huo-qu-she-zhi-wen-ben-jie-dian-zhi"><a href="#nodeValue（获取-设置文本节点值）" class="headerlink" title="nodeValue（获取/设置文本节点值）"></a>nodeValue（获取/设置文本节点值）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">container.nextSibling.nodeValue = <span class="string">'next'</span> <span class="comment">// 设置</span></span><br><span class="line"></span><br><span class="line">container.nextSibling.nodeValue <span class="comment">// 'next' 获取</span></span><br></pre></td></tr></table></figure>
+<h4 id="tagname-dang-qian-jie-dian-de-biao-qian-ming"><a href="#tagName（当前节点的标签名）" class="headerlink" title="tagName（当前节点的标签名）"></a>tagName（当前节点的标签名）</h4><p>在 XML 文档中，会保留标签的原始大小写；在 HTML 文档中，以大写形式返回，与<code>nodeName</code>返回值一致。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">container.tagName <span class="comment">// 'DIV'</span></span><br></pre></td></tr></table></figure>
+<h4 id="tabindex-shi-yong-tab-jian-hong-fa-jiao-dian-du-qu-shun-xu"><a href="#tabIndex（使用tab键触发焦点读取顺序）" class="headerlink" title="tabIndex（使用tab键触发焦点读取顺序）"></a>tabIndex（使用tab键触发焦点读取顺序）</h4><p>可读可写</p>
+<p> 支持 tabIndex 的元素：<code>a</code> <code>area</code> <code>button</code> <code>input</code> <code>object</code> <code>select</code> <code>textarea</code></p>
+<h4 id="textcontent-fan-hui-dang-qian-jie-dian-ji-qi-hou-dai-de-wen-ben-nei-rong"><a href="#textContent（返回当前节点及其后代的文本内容）" class="headerlink" title="textContent（返回当前节点及其后代的文本内容）"></a>textContent（返回当前节点及其后代的文本内容）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">container.textContent <span class="comment">// 'item item item special'</span></span><br></pre></td></tr></table></figure>
+<h3 id="jie-dian-wei-zhi"><a href="#节点位置" class="headerlink" title="节点位置"></a>节点位置</h3><h4 id="element-getboundingclientrect"><a href="#Element-getBoundingClientRect" class="headerlink" title="Element.getBoundingClientRect()"></a>Element.getBoundingClientRect()</h4><p>返回元素的大小以及相对于<strong>浏览器可视窗口</strong>的位置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> rect = container.getBoundingClientRect()</span><br><span class="line">rect <span class="comment">// &#123;x: 8, y: 8, width: 812, height: 66, top: 8, bottom: 74, left: 8, right: 820&#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="element-scrollheight-dang-qian-yuan-su-nei-rong-gao-du"><a href="#Element-scrollHeight（当前元素内容高度）" class="headerlink" title="Element.scrollHeight（当前元素内容高度）"></a>Element.scrollHeight（当前元素内容高度）</h4><p>包含溢出不可见的部分</p>
+<h4 id="element-scrollwidth-dang-qian-yuan-su-nei-rong-kuan-du"><a href="#Element-scrollWidth（当前元素内容宽度）" class="headerlink" title="Element.scrollWidth（当前元素内容宽度）"></a>Element.scrollWidth（当前元素内容宽度）</h4><p>包含溢出不可见的部分</p>
+<h4 id="element-scrollleft-dang-qian-yuan-su-de-zuo-ce-bu-fen-bu-ke-jian-nei-rong-de-chang-du"><a href="#Element-scrollLeft（当前元素的左侧部分不可见内容的长度）" class="headerlink" title="Element.scrollLeft（当前元素的左侧部分不可见内容的长度）"></a>Element.scrollLeft（当前元素的左侧部分不可见内容的长度）</h4><p>元素内容左边缘到可见区域左边</p>
+<h4 id="element-scrolltop-dang-qian-yuan-su-de-shang-mian-bu-fen-bu-ke-jian-nei-rong-de-gao-du"><a href="#Element-scrollTop（当前元素的上面部分不可见内容的高度）" class="headerlink" title="Element.scrollTop（当前元素的上面部分不可见内容的高度）"></a>Element.scrollTop（当前元素的上面部分不可见内容的高度）</h4><p>即元素内容顶部到可见区域顶部的距</p>
+<h4 id="element-clientheight-nei-bu-gao-du"><a href="#Element-clientHeight（内部高度）" class="headerlink" title="Element.clientHeight（内部高度）"></a>Element.clientHeight（内部高度）</h4><p>内部高度 = 内容高度 + 内边距 </p>
+<p>不包含 滚动条、边框、外边距 值返回整数，如果是小数会四舍五入</p>
+<h4 id="element-clientwidth-nei-bu-kuan-du"><a href="#Element-clientWidth（内部宽度）" class="headerlink" title="Element.clientWidth（内部宽度）"></a>Element.clientWidth（内部宽度）</h4><p>内部宽度 = 内容宽度 + 内边距 </p>
+<p>不包含 滚动条、边框、外边距 值返回整数，如果是小数会四舍五入</p>
+<h4 id="element-offsetheight-wai-bu-gao-du"><a href="#Element-offsetHeight（外部高度）" class="headerlink" title="Element.offsetHeight（外部高度）"></a>Element.offsetHeight（外部高度）</h4><p>外部高度 = 内容高度 + 内边距 + 滚动条 + 边框 </p>
+<p>不包括 外边距 值返回整数，如果是小数会四舍五入</p>
+<h4 id="element-offsetwidth-wai-bu-kuan-du"><a href="#Element-offsetWidth（外部宽度）" class="headerlink" title="Element.offsetWidth（外部宽度）"></a>Element.offsetWidth（外部宽度）</h4><p>外部宽度 = 内容宽度 + 内边距 + 滚动条 + 边框 </p>
+<p>不包括 外边距 值返回整数，如果是小数会四舍五入</p>
+<h4 id="element-offsettop-zu-xian-yuan-su-ding-bu-de-ju-chi"><a href="#Element-offsetTop（祖先元素顶部的距离）" class="headerlink" title="Element.offsetTop（祖先元素顶部的距离）"></a>Element.offsetTop（祖先元素顶部的距离）</h4><p>此时的祖先元素是指 层级最近、包含定位样式 的祖先元素</p>
+<h4 id="element-offsetleft-zu-xian-yuan-su-zuo-bian-de-ju-chi"><a href="#Element-offsetLeft（祖先元素左边的距离）" class="headerlink" title="Element.offsetLeft（祖先元素左边的距离）"></a>Element.offsetLeft（祖先元素左边的距离）</h4><p>此时的祖先元素是指 层级最近、包含定位样式 的祖先元素</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Maywzp
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://maywzp.github.io/2017/01/12/DOM 操作/" title="DOM 操作">https://maywzp.github.io/2017/01/12/DOM 操作/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript操作手册/" rel="tag"># javascript操作手册</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/11/BOM对象/" rel="next" title="JavaScript BOM对象">
+                <i class="fa fa-chevron-left"></i> JavaScript BOM对象
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/18/js深入了解/" rel="prev" title="JS深入学习">
+                JS深入学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Maywzp" />
+            
+              <p class="site-author-name" itemprop="name">Maywzp</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#yuan-su-jie-dian-cao-zuo"><span class="nav-number">1.</span> <span class="nav-text">元素节点操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#issamenode-shi-fou-shi-tong-yi-ge-jie-dian"><span class="nav-number">1.1.</span> <span class="nav-text">isSameNode（是否是同一个节点）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#isequalnode-liang-ge-jie-dian-shi-fou-xiang-deng"><span class="nav-number">1.2.</span> <span class="nav-text">isEqualNode（两个节点是否相等）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#comparedocumentposition-bi-jiao-liang-ge-jie-dian-xiang-dui-wei-zhi"><span class="nav-number">1.3.</span> <span class="nav-text">compareDocumentPosition（比较两个节点相对位置）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#innerhtml-huo-qu-she-zhi-hou-dai-html"><span class="nav-number">1.4.</span> <span class="nav-text">innerHTML（获取/设置后代 HTML）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#replacechild-jie-dian-ti-huan"><span class="nav-number">1.5.</span> <span class="nav-text">replaceChild（节点替换）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#removechild-yi-chu-jie-dian"><span class="nav-number">1.6.</span> <span class="nav-text">removeChild（移除节点）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#appendchild-tian-jia-jie-dian-dao-mo-wei"><span class="nav-number">1.7.</span> <span class="nav-text">appendChild（添加节点到末尾）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#insertbefore-zai-zhi-ding-jie-dian-qian-cha-ru-xin-jie-dian"><span class="nav-number">1.8.</span> <span class="nav-text">insertBefore（在指定节点前插入新节点）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#clonenode-ke-long-zhi-ding-jie-dian"><span class="nav-number">1.9.</span> <span class="nav-text">cloneNode（克隆指定节点）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#createelement-chuang-jian-yuan-su-jie-dian"><span class="nav-number">1.10.</span> <span class="nav-text">createElement（创建元素节点）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#createtextnode-chuang-jian-wen-ben-jie-dian"><span class="nav-number">1.11.</span> <span class="nav-text">createTextNode（创建文本节点）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yuan-su-jie-dian-cha-xun"><span class="nav-number">2.</span> <span class="nav-text">元素节点查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#childnodes-fan-hui-zi-jie-dian-de-ji-he"><span class="nav-number">2.1.</span> <span class="nav-text">childNodes（返回子节点的集合）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#firstchild-di-yi-ge-zi-jie-dian"><span class="nav-number">2.2.</span> <span class="nav-text">firstChild（第一个子节点）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lastchild-zui-hou-yi-ge-zi-jie-dian"><span class="nav-number">2.3.</span> <span class="nav-text">lastChild（最后一个子节点）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nextsibling-xia-yi-ge-xiong-di-jie-dian"><span class="nav-number">2.4.</span> <span class="nav-text">nextSibling（下一个兄弟节点）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#previoussibling-shang-yi-ge-xiong-di-jie-dian"><span class="nav-number">2.5.</span> <span class="nav-text">previousSibling（上一个兄弟节点）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#parentnode-fu-jie-dian"><span class="nav-number">2.6.</span> <span class="nav-text">parentNode（父节点）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#shi-ji-tui-jian-shi-yong"><span class="nav-number">2.7.</span> <span class="nav-text">实际推荐使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shu-xing-jie-dian-cao-zuo"><span class="nav-number">3.</span> <span class="nav-text">属性节点操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#attributes-fan-hui-suo-you-shu-xing-jie-dian"><span class="nav-number">3.1.</span> <span class="nav-text">attributes（返回所有属性节点）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getattribute-huo-qu-zhi-ding-shu-xing-zhi"><span class="nav-number">3.2.</span> <span class="nav-text">getAttribute（获取指定属性值）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getattributenode-huo-qu-zhi-ding-shu-xing-jie-dian"><span class="nav-number">3.3.</span> <span class="nav-text">getAttributeNode（获取指定属性节点）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hasattribute-shi-fou-ju-you-zhi-ding-shu-xing"><span class="nav-number">3.4.</span> <span class="nav-text">hasAttribute（是否具有指定属性）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hasattributes-shi-fou-zhi-shao-han-you-yi-ge-shu-xing"><span class="nav-number">3.5.</span> <span class="nav-text">hasAttributes（是否至少含有一个属性）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#removeattribute-yi-chu-zhi-ding-shu-xing"><span class="nav-number">3.6.</span> <span class="nav-text">removeAttribute（移除指定属性）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#removeattributenode-yi-chu-zhi-ding-shu-xing-jie-dian"><span class="nav-number">3.7.</span> <span class="nav-text">removeAttributeNode（移除指定属性节点）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setattribute-tian-jia-shu-xing"><span class="nav-number">3.8.</span> <span class="nav-text">setAttribute（添加属性）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setattributenode-tian-jia-shu-xing-jie-dian"><span class="nav-number">3.9.</span> <span class="nav-text">setAttributeNode（添加属性节点）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yuan-su-jie-dian-yang-shi"><span class="nav-number">4.</span> <span class="nav-text">元素节点样式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#style-huo-qu-she-zhi-dang-qian-yuan-su-nei-qian-yang-shi"><span class="nav-number">4.1.</span> <span class="nav-text">style（获取/设置当前元素内嵌样式）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#classname-huo-qu-she-zhi-jie-dian-yang-shi-lei-ming"><span class="nav-number">4.2.</span> <span class="nav-text">className（获取/设置节点样式类名）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#classlist-guan-li-jie-dian-yang-shi-lei"><span class="nav-number">4.3.</span> <span class="nav-text">classList（管理节点样式类）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yuan-su-jie-dian-shu-xing"><span class="nav-number">5.</span> <span class="nav-text">元素节点属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#contenteditable-huo-qu-she-zhi-shi-fou-ke-bian-ji"><span class="nav-number">5.1.</span> <span class="nav-text">contentEditable（获取/设置是否可编辑）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iscontenteditable-pan-duan-shi-fou-ke-bian-ji"><span class="nav-number">5.2.</span> <span class="nav-text">isContentEditable（判断是否可编辑）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tostring-fan-hui-jie-dian-zi-fu-chuan"><span class="nav-number">5.3.</span> <span class="nav-text">toString（返回节点字符串）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#id-huo-qu-she-zhi-jie-dian-id"><span class="nav-number">5.4.</span> <span class="nav-text">id（获取/设置节点id）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#title-huo-qu-she-zhi-jie-dian-title"><span class="nav-number">5.5.</span> <span class="nav-text">title（获取/设置节点title）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dataset-huo-qu-she-zhi-data-kai-tou-de-shu-xing"><span class="nav-number">5.6.</span> <span class="nav-text">dataset（获取/设置 data- 开头的属性）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nodename-dang-qian-yuan-su-jie-dian-biao-qian-ming"><span class="nav-number">5.7.</span> <span class="nav-text">nodeName（当前元素节点标签名）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nodetype-jie-dian-lei-xing"><span class="nav-number">5.8.</span> <span class="nav-text">nodeType（节点类型）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nodevalue-huo-qu-she-zhi-wen-ben-jie-dian-zhi"><span class="nav-number">5.9.</span> <span class="nav-text">nodeValue（获取/设置文本节点值）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tagname-dang-qian-jie-dian-de-biao-qian-ming"><span class="nav-number">5.10.</span> <span class="nav-text">tagName（当前节点的标签名）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tabindex-shi-yong-tab-jian-hong-fa-jiao-dian-du-qu-shun-xu"><span class="nav-number">5.11.</span> <span class="nav-text">tabIndex（使用tab键触发焦点读取顺序）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#textcontent-fan-hui-dang-qian-jie-dian-ji-qi-hou-dai-de-wen-ben-nei-rong"><span class="nav-number">5.12.</span> <span class="nav-text">textContent（返回当前节点及其后代的文本内容）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jie-dian-wei-zhi"><span class="nav-number">6.</span> <span class="nav-text">节点位置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#element-getboundingclientrect"><span class="nav-number">6.1.</span> <span class="nav-text">Element.getBoundingClientRect()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#element-scrollheight-dang-qian-yuan-su-nei-rong-gao-du"><span class="nav-number">6.2.</span> <span class="nav-text">Element.scrollHeight（当前元素内容高度）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#element-scrollwidth-dang-qian-yuan-su-nei-rong-kuan-du"><span class="nav-number">6.3.</span> <span class="nav-text">Element.scrollWidth（当前元素内容宽度）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#element-scrollleft-dang-qian-yuan-su-de-zuo-ce-bu-fen-bu-ke-jian-nei-rong-de-chang-du"><span class="nav-number">6.4.</span> <span class="nav-text">Element.scrollLeft（当前元素的左侧部分不可见内容的长度）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#element-scrolltop-dang-qian-yuan-su-de-shang-mian-bu-fen-bu-ke-jian-nei-rong-de-gao-du"><span class="nav-number">6.5.</span> <span class="nav-text">Element.scrollTop（当前元素的上面部分不可见内容的高度）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#element-clientheight-nei-bu-gao-du"><span class="nav-number">6.6.</span> <span class="nav-text">Element.clientHeight（内部高度）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#element-clientwidth-nei-bu-kuan-du"><span class="nav-number">6.7.</span> <span class="nav-text">Element.clientWidth（内部宽度）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#element-offsetheight-wai-bu-gao-du"><span class="nav-number">6.8.</span> <span class="nav-text">Element.offsetHeight（外部高度）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#element-offsetwidth-wai-bu-kuan-du"><span class="nav-number">6.9.</span> <span class="nav-text">Element.offsetWidth（外部宽度）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#element-offsettop-zu-xian-yuan-su-ding-bu-de-ju-chi"><span class="nav-number">6.10.</span> <span class="nav-text">Element.offsetTop（祖先元素顶部的距离）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#element-offsetleft-zu-xian-yuan-su-zuo-bian-de-ju-chi"><span class="nav-number">6.11.</span> <span class="nav-text">Element.offsetLeft（祖先元素左边的距离）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maywzp</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.3"></script>
+
+
+  
+
+
+</body>
+</html>

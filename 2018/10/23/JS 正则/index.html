@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javascript操作手册," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="正则以下方法使用下面数据 12var str = &apos;The Quick Brown Fox Jumps Over The Lazy Dog&apos;var reg = /quick\s(brown).+?(jumps)/ig 方法exec查找匹配，返回一个数组（详细匹配信息），未匹配返回 null 1reg.exec(str)	// =&amp;gt; [&amp;apos;Quick Brown Fox Jumps&amp;a">
+<meta name="keywords" content="javascript操作手册">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 正则">
+<meta property="og:url" content="https://maywzp.github.io/2018/10/23/JS 正则/index.html">
+<meta property="og:site_name" content="MayWzp">
+<meta property="og:description" content="正则以下方法使用下面数据 12var str = &apos;The Quick Brown Fox Jumps Over The Lazy Dog&apos;var reg = /quick\s(brown).+?(jumps)/ig 方法exec查找匹配，返回一个数组（详细匹配信息），未匹配返回 null 1reg.exec(str)	// =&amp;gt; [&amp;apos;Quick Brown Fox Jumps&amp;a">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-23T04:13:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS 正则">
+<meta name="twitter:description" content="正则以下方法使用下面数据 12var str = &apos;The Quick Brown Fox Jumps Over The Lazy Dog&apos;var reg = /quick\s(brown).+?(jumps)/ig 方法exec查找匹配，返回一个数组（详细匹配信息），未匹配返回 null 1reg.exec(str)	// =&amp;gt; [&amp;apos;Quick Brown Fox Jumps&amp;a">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://maywzp.github.io/2018/10/23/JS 正则/"/>
+
+
+
+
+
+  <title>JS 正则 | MayWzp</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MayWzp</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://maywzp.github.io/2018/10/23/JS 正则/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Maywzp">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MayWzp">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JS 正则</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-23T12:13:22+08:00">
+                2018-10-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-23T12:13:22+08:00">
+                2018-10-23
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="zheng-ze"><a href="#正则" class="headerlink" title="正则"></a>正则</h3><p>以下方法使用下面数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'The Quick Brown Fox Jumps Over The Lazy Dog'</span></span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/quick\s(brown).+?(jumps)/ig</span></span><br></pre></td></tr></table></figure>
+<h4 id="fang-fa"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><h5 id="exec"><a href="#exec" class="headerlink" title="exec"></a>exec</h5><p>查找匹配，返回一个数组（详细匹配信息），未匹配返回 null</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg.exec(str)	// =&gt; [&apos;Quick Brown Fox Jumps&apos;, &apos;Brown&apos;, &apos;Jumps&apos; ...]</span><br></pre></td></tr></table></figure>
+<h5 id="test"><a href="#test" class="headerlink" title="test"></a>test</h5><p>测试是否匹配，返回 true 或者 false</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg.test(str)	<span class="comment">// =&gt; true</span></span><br></pre></td></tr></table></figure>
+<h5 id="match"><a href="#match" class="headerlink" title="match"></a>match</h5><p>查找匹配，返回一个数组，未匹配返回 null</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.match(reg) <span class="comment">// =&gt; ['Quick Brown Fox Jumps']</span></span><br></pre></td></tr></table></figure>
+<h5 id="search"><a href="#search" class="headerlink" title="search"></a>search</h5><p>测试匹配，返回匹配到的位置索引，失败返回 -1</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.search(reg) <span class="comment">// =&gt; 4</span></span><br></pre></td></tr></table></figure>
+<h5 id="replace"><a href="#replace" class="headerlink" title="replace"></a>replace</h5><p>替换匹配</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.replace(reg, <span class="string">'a'</span>) <span class="comment">// =&gt; 'The a Over The Lazy Dog'</span></span><br></pre></td></tr></table></figure>
+<h5 id="split"><a href="#split" class="headerlink" title="split"></a>split</h5><p>分割字符串，返回 数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.split(reg)	<span class="comment">// =&gt;  ["The ", "Brown", "Jumps", " Over The Lazy Dog"]</span></span><br></pre></td></tr></table></figure>
+<p>以下正则为全局匹配</p>
+<h4 id="te-shu-fu-fu-hao"><a href="#特殊符-符号" class="headerlink" title="特殊符 - 符号"></a>特殊符 - 符号</h4><h5 id=""><a href="#" class="headerlink" title="\"></a>\</h5><p>非特殊字符换化为特殊字符；特殊字符转化为字面量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">单独的 b 表示字母 b，/b 就转化为特殊字符了</span><br><span class="line">* 表示 <span class="number">0</span> 个或多个，\* 就匹配 * 字符</span><br></pre></td></tr></table></figure>
+<h5 id=""><a href="#-1" class="headerlink" title="^"></a>^</h5><p>配置输入的开始</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^A/ 并不会匹配 <span class="string">"an A"</span> 中的 A，但会匹配 <span class="string">"An E"</span> 中的 A</span><br></pre></td></tr></table></figure>
+<h5 id=""><a href="#-2" class="headerlink" title="$"></a>$</h5><p>配置输入的结束</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/t$/ 不会匹配 <span class="string">"eater"</span> 中的 t，但会匹配 <span class="string">"eat"</span> 中的 t</span><br></pre></td></tr></table></figure>
+<h5 id=""><a href="#-3" class="headerlink" title="*"></a>*</h5><p>匹配前一个表达式 0 次或多次，等价于 {0,}</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bo*<span class="regexp">/ 会匹配 "booed" 中的 'boo' 和 'bird' 中的 'b'</span></span><br></pre></td></tr></table></figure>
+<h5 id=""><a href="#-4" class="headerlink" title="+"></a>+</h5><p>匹配前一个表达式 1 次或者多次，等价于{1,}</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/a+<span class="regexp">/ 会匹配 "candy" 中的 'a'，"caaaat" 中的 'aaaa'</span></span><br></pre></td></tr></table></figure>
+<h5 id=""><a href="#-5" class="headerlink" title="?"></a>?</h5><p>匹配前一个表达式 0 次或者 1 次，等价于 {0, 1}</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/e?el?<span class="regexp">/ 会匹配 "angle" 中 'le', "sole" 中的 'e'</span></span><br></pre></td></tr></table></figure>
+<h5 id=""><a href="#-6" class="headerlink" title="."></a>.</h5><p>匹配除换行符之外的任何单个字符</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/.n/ 将会匹配 <span class="string">"nay, an apple is on the tree"</span> 中的 <span class="string">'an'</span> 和 <span class="string">'on'</span>，但是不会匹配 <span class="string">'nay'</span></span><br></pre></td></tr></table></figure>
+<h4 id="te-shu-fu-zi-fu"><a href="#特殊符-字符" class="headerlink" title="特殊符 - 字符"></a>特殊符 - 字符</h4><h5 id="b"><a href="#b" class="headerlink" title="\b"></a>\b</h5><p>匹配一个词的边界（一个词的边界就是一个词不被另外一个词跟随的位置或者不是另一个词汇字符前边的位置）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/\bm/ 匹配 <span class="string">"moon"</span> 中得 <span class="string">'m'</span></span><br><span class="line"></span><br><span class="line">/oo\b/ 并不匹配 <span class="string">"moon"</span> 中得 <span class="string">'oo'</span>，因为 <span class="string">'oo'</span> 被一个词汇字符 <span class="string">'n'</span> 紧跟着。</span><br><span class="line"></span><br><span class="line">/oon\b/ 匹配 <span class="string">"moon"</span> 中得 <span class="string">'oon'</span>，因为 <span class="string">'oon'</span> 是这个字符串的结束部分。这样他没有被一个词汇字符紧跟着。</span><br></pre></td></tr></table></figure>
+<h5 id="b"><a href="#B" class="headerlink" title="\B"></a>\B</h5><p>匹配一个非单词边界 (一个字符串的开始和结尾都被认为是非单词)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/\B../ 匹配 <span class="string">"noonday"</span> 中得 <span class="string">'oo'</span>, 而 /y\B./ 匹配 <span class="string">"possibly yesterday"</span> 中得 <span class="string">'ye'</span></span><br></pre></td></tr></table></figure>
+<h5 id="d"><a href="#d" class="headerlink" title="\d"></a>\d</h5><p>匹配一个数字，等价于 [0-9]</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\d 匹配 <span class="string">"B2 read"</span> 中的 <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h5 id="d"><a href="#D" class="headerlink" title="\D"></a>\D</h5><p>匹配一个非数字，等价于 <code>[^0-9]</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/\D/ 匹配 <span class="string">"B2 read"</span> 中的 B r e a d</span><br></pre></td></tr></table></figure>
+<h5 id="s"><a href="#s" class="headerlink" title="\s"></a>\s</h5><p>匹配一个空白字符，包括空格、制表符、换行符和换页符</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/\s\w*<span class="regexp">/ 匹配 "foo bar" 中的 'bar'</span></span><br></pre></td></tr></table></figure>
+<h5 id="s"><a href="#S" class="headerlink" title="\S"></a>\S</h5><p>匹配一个非空白字符</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/\S\w/ 匹配 <span class="string">"foo bar"</span> 中的 <span class="string">'foo'</span> 和 <span class="string">'bar'</span></span><br></pre></td></tr></table></figure>
+<h5 id="w"><a href="#w" class="headerlink" title="\w"></a>\w</h5><p>匹配一个单字符：字母、数字和下划线，等价于 [A-Za-z0-9_]</p>
+<h5 id="w"><a href="#W" class="headerlink" title="\W"></a>\W</h5><p>匹配一个非单字符：字母、数字和下划线，等价于<code>[^A-Za-z0-9_]</code></p>
+<h4 id="te-shu-zi-fu-yun-suan-fu"><a href="#特殊字符-运算符" class="headerlink" title="特殊字符 - 运算符"></a>特殊字符 - 运算符</h4><h5 id="n"><a href="#n" class="headerlink" title="{n}"></a>{n}</h5><p>n是一个正整数，匹配了前面一个字符刚好发生了n次</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/a&#123;<span class="number">2</span>&#125;/ 不会匹配“candy”中的<span class="string">'a'</span>,但是会匹配“caandy”中所有的a，以及“caaandy”中的前两个<span class="string">'a'</span>。</span><br></pre></td></tr></table></figure>
+<h5 id="n-m"><a href="#n-m" class="headerlink" title="{n, m}"></a>{n, m}</h5><p>n 和 m 都是整数。匹配前面的字符至少n次，最多m次。如果 n 或者 m 的值是0， 这个值被忽略</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/a&#123;<span class="number">1</span>,<span class="number">3</span>&#125;/ 并不匹配“cndy”中的任意字符，匹配“candy”中得a，匹配“caandy”中的前两个a，也匹配“caaaaaaandy”中的前三个a。注意，当匹配”caaaaaaandy“时，匹配的值是“aaa”，即使原始的字符串中有更多的a</span><br></pre></td></tr></table></figure>
+<h5 id="x"><a href="#x" class="headerlink" title="(x)"></a>(x)</h5><p>匹配 ‘x’ 并且记住匹配项 (<em>捕获括号</em>)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">模式/(foo) (bar) \<span class="number">1</span> \<span class="number">2</span>/中的 <span class="string">'(foo)'</span> 和 <span class="string">'(bar)'</span> 匹配并记住字符串 <span class="string">"foo bar foo bar"</span> 中前两个单词。模式中的 \<span class="number">1</span> 和 \<span class="number">2</span> 匹配字符串的后两个单词。注意 \<span class="number">1</span>、\<span class="number">2</span>、\n 是用在正则表达式的匹配环节。在正则表达式的替换环节，则要使用像 $<span class="number">1</span>、$<span class="number">2</span>、$n 这样的语法，例如，<span class="string">'bar foo'</span>.replace( <span class="regexp">/(...) (...)/</span>, <span class="string">'$2 $1'</span> )</span><br></pre></td></tr></table></figure>
+<h5 id="x"><a href="#x-1" class="headerlink" title="(?:x)"></a>(?:x)</h5><p>匹配 ‘x’ 但是不记住匹配项 (<em>非捕获括号</em>)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/(?:foo)&#123;<span class="number">1</span>,<span class="number">2</span>&#125;/。如果表达式是 /foo&#123;<span class="number">1</span>,<span class="number">2</span>&#125;/，&#123;<span class="number">1</span>,<span class="number">2</span>&#125;将只对 ‘foo’ 的最后一个字符 ’o‘ 生效。如果使用非捕获括号，则&#123;<span class="number">1</span>,<span class="number">2</span>&#125;会匹配整个 ‘foo’ 单词</span><br></pre></td></tr></table></figure>
+<h5 id="x-y"><a href="#x-y" class="headerlink" title="x(?=y)"></a>x(?=y)</h5><p>匹配 ‘x’ 仅仅当 ‘x’ 后面跟着 ‘y’ (<em>正向肯定查找</em>)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/Jack(?=Sprat)/ 会匹配到 <span class="string">'Jack'</span> 仅仅当它后面跟着 <span class="string">'Sprat'</span></span><br><span class="line">/Jack(?=Sprat|Frost)/ 匹配 ‘Jack’ 仅仅当它后面跟着 <span class="string">'Sprat'</span> 或者是 ‘Frost’</span><br></pre></td></tr></table></figure>
+<h5 id="x-y"><a href="#x-y-1" class="headerlink" title="x(?!y)"></a>x(?!y)</h5><p>匹配 ‘x’ 仅仅当 ‘x’ 后面不跟着 ‘y’ (<em>正向否定查找</em>)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/\d+(?!\.)/匹配一个数字仅仅当这个数字后面没有跟小数点的时候。正则表达式/\d+(?!\.)/.exec(<span class="string">"3.141"</span>)匹配‘<span class="number">141</span>’但是不是‘<span class="number">3.141</span>’</span><br></pre></td></tr></table></figure>
+<h5 id="x-y"><a href="#x-y-2" class="headerlink" title="x|y"></a>x|y</h5><p>匹配 x 或者 y</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/green|red/ 匹配“green apple”中的‘green’和“red apple”中的‘red’</span><br></pre></td></tr></table></figure>
+<h5 id="x-y-z"><a href="#x-y-z" class="headerlink" title="[x,y,z]"></a>[x,y,z]</h5><p>一个字符集合。匹配方括号的中任意字符。可以使用破折号（-）来指定一个字符范围。对于点（.）和星号（*）这样的特殊符号在一个字符集中没有特殊的意义</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[abcd] 和[a-d]是一样的。他们都匹配<span class="string">"brisket"</span>中得‘b’,也都匹配“city”中的‘c’。/[a-z.]+<span class="regexp">/ 和/</span>[\w.]+<span class="regexp">/都匹配“test.i.ng”中得所有字符</span></span><br></pre></td></tr></table></figure>
+<h5 id="x-y-z"><a href="#x-y-z-1" class="headerlink" title="[^x,y,z]"></a>[^x,y,z]</h5><p>一个反向字符集</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[^abc] 和 [^a-c] 是一样的。他们匹配<span class="string">"brisket"</span>中得‘r’，也匹配“chop”中的‘h’</span><br></pre></td></tr></table></figure>
+<h4 id="ping-heng-zu"><a href="#平衡组" class="headerlink" title="平衡组"></a>平衡组</h4><h5 id="group"><a href="#’group’" class="headerlink" title="(?’group’)"></a>(?’group’)</h5><p>把捕获的内容命名为 group，并压入堆栈。</p>
+<h5 id="group"><a href="#’-group’" class="headerlink" title="(?’-group’)"></a>(?’-group’)</h5><p>把推栈上弹出最后入栈名为 group 的捕获内容，如果推栈本来为空，则本分组的匹配失败</p>
+<h5 id="group-yes-no"><a href="#group-yes-no" class="headerlink" title="(?(group)yes|no)"></a>(?(group)yes|no)</h5><p>如果推栈上存在名为 group 的捕获内容，则进行 yes 部分的匹配，否则进行 no 部分的匹配</p>
+<h5 id=""><a href="#-7" class="headerlink" title="(?!)"></a>(?!)</h5><p> 零宽负向先行断言，由于没有后缀表达式，试图匹配总是失败</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/&lt;[^&lt;&gt;]*(((?'Open'&lt;)[^&lt;&gt;]*)+((?'-Open'&gt;)[^&lt;&gt;]*)+)*(?(Open)(?!))&gt;/</span></span><br><span class="line"><span class="keyword">var</span> regHtml = <span class="regexp">/&lt;div[^&gt;]*&gt;[^&lt;&gt;]*(((?'Open'&lt;div[^&gt;]*&gt;)[^&lt;&gt;]*)+((?'-Open'&lt;\/div&gt;)[^&lt;&gt;]*)+)*(?(Open)(?!))&lt;\/div&gt;./</span></span><br></pre></td></tr></table></figure>
+<h4 id="yun-yong"><a href="#运用" class="headerlink" title="运用"></a>运用</h4><h5 id="shi-yong-gua-hao-de-zi-zi-fu-chuan-pi-pei"><a href="#使用括号的子字符串匹配" class="headerlink" title="使用括号的子字符串匹配"></a>使用括号的子字符串匹配</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> re = <span class="regexp">/(\w+)\s(\w+)/</span></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">"John Smith"</span></span><br><span class="line"><span class="keyword">var</span> newstr = str.replace(re, <span class="string">"$2, $1"</span>)</span><br><span class="line"><span class="built_in">console</span>.log(newstr)	<span class="comment">// =&gt; 'Smith, John'</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Maywzp
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://maywzp.github.io/2018/10/23/JS 正则/" title="JS 正则">https://maywzp.github.io/2018/10/23/JS 正则/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript操作手册/" rel="tag"># javascript操作手册</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/17/JS Map/" rel="next" title="JS Map">
+                <i class="fa fa-chevron-left"></i> JS Map
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Maywzp" />
+            
+              <p class="site-author-name" itemprop="name">Maywzp</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#zheng-ze"><span class="nav-number">1.</span> <span class="nav-text">正则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fang-fa"><span class="nav-number">1.1.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#exec"><span class="nav-number">1.1.1.</span> <span class="nav-text">exec</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#test"><span class="nav-number">1.1.2.</span> <span class="nav-text">test</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#match"><span class="nav-number">1.1.3.</span> <span class="nav-text">match</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#search"><span class="nav-number">1.1.4.</span> <span class="nav-text">search</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#replace"><span class="nav-number">1.1.5.</span> <span class="nav-text">replace</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#split"><span class="nav-number">1.1.6.</span> <span class="nav-text">split</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#te-shu-fu-fu-hao"><span class="nav-number">1.2.</span> <span class="nav-text">特殊符 - 符号</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#"><span class="nav-number">1.2.1.</span> <span class="nav-text">\</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#"><span class="nav-number">1.2.2.</span> <span class="nav-text">^</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#"><span class="nav-number">1.2.3.</span> <span class="nav-text">$</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#"><span class="nav-number">1.2.4.</span> <span class="nav-text">*</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#"><span class="nav-number">1.2.5.</span> <span class="nav-text">+</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#"><span class="nav-number">1.2.6.</span> <span class="nav-text">?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#"><span class="nav-number">1.2.7.</span> <span class="nav-text">.</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#te-shu-fu-zi-fu"><span class="nav-number">1.3.</span> <span class="nav-text">特殊符 - 字符</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#b"><span class="nav-number">1.3.1.</span> <span class="nav-text">\b</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#b"><span class="nav-number">1.3.2.</span> <span class="nav-text">\B</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#d"><span class="nav-number">1.3.3.</span> <span class="nav-text">\d</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#d"><span class="nav-number">1.3.4.</span> <span class="nav-text">\D</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#s"><span class="nav-number">1.3.5.</span> <span class="nav-text">\s</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#s"><span class="nav-number">1.3.6.</span> <span class="nav-text">\S</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#w"><span class="nav-number">1.3.7.</span> <span class="nav-text">\w</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#w"><span class="nav-number">1.3.8.</span> <span class="nav-text">\W</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#te-shu-zi-fu-yun-suan-fu"><span class="nav-number">1.4.</span> <span class="nav-text">特殊字符 - 运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#n"><span class="nav-number">1.4.1.</span> <span class="nav-text">{n}</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#n-m"><span class="nav-number">1.4.2.</span> <span class="nav-text">{n, m}</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#x"><span class="nav-number">1.4.3.</span> <span class="nav-text">(x)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#x"><span class="nav-number">1.4.4.</span> <span class="nav-text">(?:x)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#x-y"><span class="nav-number">1.4.5.</span> <span class="nav-text">x(?=y)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#x-y"><span class="nav-number">1.4.6.</span> <span class="nav-text">x(?!y)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#x-y"><span class="nav-number">1.4.7.</span> <span class="nav-text">x|y</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#x-y-z"><span class="nav-number">1.4.8.</span> <span class="nav-text">[x,y,z]</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#x-y-z"><span class="nav-number">1.4.9.</span> <span class="nav-text">[^x,y,z]</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ping-heng-zu"><span class="nav-number">1.5.</span> <span class="nav-text">平衡组</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#group"><span class="nav-number">1.5.1.</span> <span class="nav-text">(?’group’)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#group"><span class="nav-number">1.5.2.</span> <span class="nav-text">(?’-group’)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#group-yes-no"><span class="nav-number">1.5.3.</span> <span class="nav-text">(?(group)yes|no)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#"><span class="nav-number">1.5.4.</span> <span class="nav-text">(?!)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#yun-yong"><span class="nav-number">1.6.</span> <span class="nav-text">运用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#shi-yong-gua-hao-de-zi-zi-fu-chuan-pi-pei"><span class="nav-number">1.6.1.</span> <span class="nav-text">使用括号的子字符串匹配</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maywzp</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.3"></script>
+
+
+  
+
+
+</body>
+</html>

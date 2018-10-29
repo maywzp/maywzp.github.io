@@ -392,7 +392,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://oizt3fjv8.bkt.clouddn.com/css_no7.jpg" rel="gallery_cjhu09g24000uqdxtu3ozpvdu"
+                 href="http://oizt3fjv8.bkt.clouddn.com/css_no7.jpg" rel="gallery_cjnl7tosr001dwnxtqjf8g02s"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://oizt3fjv8.bkt.clouddn.com/css_no7.jpg" itemprop="contentUrl"/>
               </a>
@@ -405,7 +405,7 @@
       
 
       
-        <h1><span id="flex布局">flex布局</span></h1><p><strong>注：设为Flex布局以后，子元素的float、clear和vertical-align属性将失效。水平为主轴，垂直为交叉轴</strong><br>下面6个属性用于父元素上：</p>
+        <h1 id="flex-bu-ju"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h1><p><strong>注：设为Flex布局以后，子元素的float、clear和vertical-align属性将失效。水平为主轴，垂直为交叉轴</strong><br>下面6个属性用于父元素上：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">flex-direction 项目的排列方向：</span><br><span class="line">        row（默认值）：   主轴为水平方向，起点在左端。</span><br><span class="line">        row-reverse：    主轴为水平方向，起点在右端。</span><br><span class="line">        column：         主轴为垂直方向，起点在上沿。</span><br><span class="line">        column-reverse： 主轴为垂直方向，起点在下沿.</span><br><span class="line"></span><br><span class="line">flex-wrap 换行：</span><br><span class="line">        nowrap（默认）：   不换行。</span><br><span class="line">        wrap：            换行，第一行在上方。</span><br><span class="line">        wrap-reverse：    换行，第一行在下方。</span><br><span class="line"></span><br><span class="line">justify-content 主轴对齐方式：</span><br><span class="line">        flex-start（默认值）：左对齐</span><br><span class="line">        flex-end：           右对齐</span><br><span class="line">        center：             居中</span><br><span class="line">        space-between：      两端对齐，项目之间的间隔都相等。</span><br><span class="line">        space-around：       每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。</span><br><span class="line"></span><br><span class="line">align-items 交叉轴对齐方式：</span><br><span class="line">        flex-start：   交叉轴的起点对齐。</span><br><span class="line">        flex-end：     交叉轴的终点对齐。</span><br><span class="line">        center：       交叉轴的中点对齐。</span><br><span class="line">        baseline:      项目的第一行文字的基线对齐。</span><br><span class="line">        stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。</span><br><span class="line"></span><br><span class="line">align-content 多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用,值：</span><br><span class="line">        flex-start：   与交叉轴的起点对齐。</span><br><span class="line">        flex-end：     与交叉轴的终点对齐。</span><br><span class="line">        center：       与交叉轴的中点对齐。</span><br><span class="line">        space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</span><br><span class="line">        space-around： 每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</span><br><span class="line">        stretch（默认值）：轴线占满整个交叉轴。</span><br><span class="line"></span><br><span class="line">flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。</span><br></pre></td></tr></table></figure>
 <p>以下6个属性设置在子元素上：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">order         在项目的排列顺序。数值越小，排列越靠前，默认为0。</span><br><span class="line">flex-grow     项目的放大比例，默认为0，即如果存在剩余空间，也不放大。</span><br><span class="line">              如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</span><br><span class="line">flex-shrink   项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。</span><br><span class="line">              如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。</span><br><span class="line">flex-basis    可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间。</span><br><span class="line">align-self    允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，值与align-items相同。</span><br><span class="line"></span><br><span class="line">flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。</span><br></pre></td></tr></table></figure>
@@ -552,7 +552,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -600,7 +600,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">flex布局</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#flex-bu-ju"><span class="nav-number">1.</span> <span class="nav-text">flex布局</span></a></li></ol></div>
             
 
           </div>

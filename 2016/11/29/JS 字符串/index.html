@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javascript操作手册," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Javascript String操作总结">
+<meta name="keywords" content="javascript操作手册">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 字符串">
+<meta property="og:url" content="https://maywzp.github.io/2016/11/29/JS 字符串/index.html">
+<meta property="og:site_name" content="MayWzp">
+<meta property="og:description" content="Javascript String操作总结">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-12T09:35:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS 字符串">
+<meta name="twitter:description" content="Javascript String操作总结">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://maywzp.github.io/2016/11/29/JS 字符串/"/>
+
+
+
+
+
+  <title>JS 字符串 | MayWzp</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MayWzp</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://maywzp.github.io/2016/11/29/JS 字符串/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Maywzp">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MayWzp">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JS 字符串</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-29T10:47:28+08:00">
+                2016-11-29
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-12T17:35:00+08:00">
+                2018-10-12
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  Javascript String操作总结
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="unicode-bian-ma-zhi"><a href="#Unicode编码值" class="headerlink" title="Unicode编码值"></a>Unicode编码值</h4><p>汉字：[0x4e00,0x9fa5]（或十进制[19968,40869]）</p>
+<p>数字：[0x30,0x39]（或十进制[48, 57]）</p>
+<p>大写字母：[0x41,0x5a]（或十进制[65, 90]）</p>
+<p>小写字母：[0x61,0x7a]（或十进制[97, 122]）</p>
+<h4 id="fromcharcode-gen-ju-unicode-zhi-chuang-jian-zi-fu-chuan"><a href="#fromCharCode（根据Unicode值创建字符串）" class="headerlink" title="fromCharCode（根据Unicode值创建字符串）"></a>fromCharCode（根据Unicode值创建字符串）</h4><p>最大支持16位的数字 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="built_in">String</span>.fromCharCode(<span class="number">65</span>,<span class="number">66</span>,<span class="number">67</span>) <span class="comment">// str: ABC</span></span><br></pre></td></tr></table></figure>
+<h4 id="fromcodepoint-gen-ju-unicode-zhi-chuang-jian-zi-fu-chuan"><a href="#fromCodePoint（根据Unicode值创建字符串）" class="headerlink" title="fromCodePoint（根据Unicode值创建字符串）"></a>fromCodePoint（根据Unicode值创建字符串）</h4><p>最大支持21位的数字 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="built_in">String</span>.fromCodePoint(<span class="number">65</span>,<span class="number">66</span>,<span class="number">67</span>) <span class="comment">// str: ABC</span></span><br></pre></td></tr></table></figure>
+<h4 id="charat-fan-hui-zhi-ding-wei-zhi-zi-fu"><a href="#charAt（返回指定位置字符）" class="headerlink" title="charAt（返回指定位置字符）"></a>charAt（返回指定位置字符）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'No safe wading in an unknown water'</span></span><br><span class="line">str.charAt(<span class="number">0</span>)  <span class="comment">// N</span></span><br></pre></td></tr></table></figure>
+<h4 id="charcodeat-fan-hui-zhi-ding-wei-zhi-zi-fu-de-unicode-ma"><a href="#charCodeAt（返回指定位置字符的Unicode码）" class="headerlink" title="charCodeAt（返回指定位置字符的Unicode码）"></a>charCodeAt（返回指定位置字符的Unicode码）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'No safe wading in an unknown water'</span></span><br><span class="line">str. charCodeAt(<span class="number">0</span>)  <span class="comment">// 78</span></span><br></pre></td></tr></table></figure>
+<h4 id="codepointat-fan-hui-zhi-ding-wei-zhi-zi-fu-de-unicode-ma"><a href="#codePointAt（返回指定位置字符的Unicode码）" class="headerlink" title="codePointAt（返回指定位置字符的Unicode码）"></a>codePointAt（返回指定位置字符的Unicode码）</h4><p>更加精准</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'No safe wading in an unknown water'</span></span><br><span class="line">str. codePointAt(<span class="number">0</span>)  <span class="comment">// 78</span></span><br></pre></td></tr></table></figure>
+<h4 id="split-fen-ge-fu-zhi-ding-chang-du-zi-fu-chuan-zhuan-shu-zu"><a href="#split-分隔符-指定长度-（字符串转数组）" class="headerlink" title="split(分隔符, 指定长度)（字符串转数组）"></a>split(分隔符, 指定长度)（字符串转数组）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'firstname'</span></span><br><span class="line">str.split(<span class="string">''</span>, <span class="number">4</span>)  <span class="comment">// ['f', 'i', 's', 't']</span></span><br></pre></td></tr></table></figure>
+<h4 id="slice-start-end-ti-qu-zi-fu"><a href="#slice-start-end-（提取字符）" class="headerlink" title="slice(start, end)（提取字符）"></a>slice(start, end)（提取字符）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'firstname'</span></span><br><span class="line">str.slice(<span class="number">0</span>, <span class="number">6</span>)  <span class="comment">// 'firstn'</span></span><br></pre></td></tr></table></figure>
+<h4 id="substr-start-length-ti-qu-zi-fu"><a href="#substr-start-length-（提取字符）" class="headerlink" title="substr(start, length)（提取字符）"></a>substr(start, length)（提取字符）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'firstname'</span></span><br><span class="line">str.substr(<span class="number">0</span>, <span class="number">4</span>)  <span class="comment">// 'firs'</span></span><br></pre></td></tr></table></figure>
+<h4 id="substring-start-end-ti-qu-zi-fu-bu-neng-shi-yong-fu-shu"><a href="#substring-start-end-（提取字符-不能使用负数）" class="headerlink" title="substring(start, end)（提取字符:不能使用负数）"></a>substring(start, end)（提取字符:不能使用负数）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'firstname'</span></span><br><span class="line">str.substring(<span class="number">0</span>, <span class="number">4</span>)  <span class="comment">// 'firs'</span></span><br></pre></td></tr></table></figure>
+<h4 id="tolowercase-zhuan-huan-wei-xiao-xie"><a href="#toLowerCase（转换为小写）" class="headerlink" title="toLowerCase（转换为小写）"></a>toLowerCase（转换为小写）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'FsGd'</span></span><br><span class="line">str.toLowerCase() <span class="comment">// 'fsgd'</span></span><br></pre></td></tr></table></figure>
+<h4 id="touppercase-zhuan-huan-wei-da-xie"><a href="#toUpperCase-（转换为大写）" class="headerlink" title="toUpperCase （转换为大写）"></a>toUpperCase （转换为大写）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'FsGd'</span></span><br><span class="line">str.toUpperCase() <span class="comment">// 'FSGD'</span></span><br></pre></td></tr></table></figure>
+<h4 id="startswith-shi-fou-yi-zhi-ding-zhi-kai-tou"><a href="#startsWith（是否以指定值开头）" class="headerlink" title="startsWith（是否以指定值开头）"></a>startsWith（是否以指定值开头）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'No safe wading in an unknown water'</span></span><br><span class="line"></span><br><span class="line">str.startsWith(<span class="string">'No'</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h4 id="endswith-shi-fou-yi-zhi-ding-zhi-jie-wei"><a href="#endsWith（是否以指定值结尾）" class="headerlink" title="endsWith（是否以指定值结尾）"></a>endsWith（是否以指定值结尾）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'No safe wading in an unknown water'</span></span><br><span class="line"></span><br><span class="line">str.endsWith(<span class="string">'water'</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h4 id="includes-shi-fou-bao-han-zhi-ding-zhi"><a href="#includes（是否包含指定值）" class="headerlink" title="includes（是否包含指定值）"></a>includes（是否包含指定值）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'No safe wading in an unknown water'</span></span><br><span class="line"></span><br><span class="line">str.includes(<span class="string">'in'</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h4 id="indexof-fan-hui-di-yi-ci-chu-xian-zhi-ding-zhi-de-suo-yin"><a href="#indexOf（返回第一次出现指定值的索引）" class="headerlink" title="indexOf（返回第一次出现指定值的索引）"></a>indexOf（返回第一次出现指定值的索引）</h4><p>如未找到该值，返回 -1</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'No safe wading in an unknown water'</span></span><br><span class="line"></span><br><span class="line">str.indexOf(<span class="string">'in'</span>) <span class="comment">// 11</span></span><br></pre></td></tr></table></figure>
+<h4 id="lastindexof-fan-hui-zui-hou-chu-xian-zhi-ding-zhi-de-suo-yin"><a href="#lastIndexOf（返回最后出现指定值的索引）" class="headerlink" title="lastIndexOf（返回最后出现指定值的索引）"></a>lastIndexOf（返回最后出现指定值的索引）</h4><p>如未找到该值，返回 -1</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'No safe wading in an unknown water'</span></span><br><span class="line"></span><br><span class="line">str.lastIndexOf(<span class="string">'in'</span>) <span class="comment">// 15</span></span><br></pre></td></tr></table></figure>
+<h4 id="repeat-chong-fu-zi-fu-chuan-ci-shu"><a href="#repeat（重复字符串次数）" class="headerlink" title="repeat（重复字符串次数）"></a>repeat（重复字符串次数）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'may'</span></span><br><span class="line"></span><br><span class="line">str.repeat(<span class="number">3</span>) <span class="comment">// 'maymaymay'</span></span><br></pre></td></tr></table></figure>
+<h4 id="trim-fan-hui-qu-chu-qian-hou-kong-ge-hou-de-zi-fu-chuan"><a href="#trim（返回去除前后空格后的字符串）" class="headerlink" title="trim（返回去除前后空格后的字符串）"></a>trim（返回去除前后空格后的字符串）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">' hellow world '</span></span><br><span class="line">str.trim() <span class="comment">// hellow world</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Maywzp
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://maywzp.github.io/2016/11/29/JS 字符串/" title="JS 字符串">https://maywzp.github.io/2016/11/29/JS 字符串/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript操作手册/" rel="tag"># javascript操作手册</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/24/JS 数组/" rel="next" title="JS 数组">
+                <i class="fa fa-chevron-left"></i> JS 数组
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/02/node环境配置/" rel="prev" title="node环境配置">
+                node环境配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Maywzp" />
+            
+              <p class="site-author-name" itemprop="name">Maywzp</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#unicode-bian-ma-zhi"><span class="nav-number">1.</span> <span class="nav-text">Unicode编码值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fromcharcode-gen-ju-unicode-zhi-chuang-jian-zi-fu-chuan"><span class="nav-number">2.</span> <span class="nav-text">fromCharCode（根据Unicode值创建字符串）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fromcodepoint-gen-ju-unicode-zhi-chuang-jian-zi-fu-chuan"><span class="nav-number">3.</span> <span class="nav-text">fromCodePoint（根据Unicode值创建字符串）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#charat-fan-hui-zhi-ding-wei-zhi-zi-fu"><span class="nav-number">4.</span> <span class="nav-text">charAt（返回指定位置字符）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#charcodeat-fan-hui-zhi-ding-wei-zhi-zi-fu-de-unicode-ma"><span class="nav-number">5.</span> <span class="nav-text">charCodeAt（返回指定位置字符的Unicode码）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#codepointat-fan-hui-zhi-ding-wei-zhi-zi-fu-de-unicode-ma"><span class="nav-number">6.</span> <span class="nav-text">codePointAt（返回指定位置字符的Unicode码）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#split-fen-ge-fu-zhi-ding-chang-du-zi-fu-chuan-zhuan-shu-zu"><span class="nav-number">7.</span> <span class="nav-text">split(分隔符, 指定长度)（字符串转数组）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#slice-start-end-ti-qu-zi-fu"><span class="nav-number">8.</span> <span class="nav-text">slice(start, end)（提取字符）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#substr-start-length-ti-qu-zi-fu"><span class="nav-number">9.</span> <span class="nav-text">substr(start, length)（提取字符）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#substring-start-end-ti-qu-zi-fu-bu-neng-shi-yong-fu-shu"><span class="nav-number">10.</span> <span class="nav-text">substring(start, end)（提取字符:不能使用负数）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tolowercase-zhuan-huan-wei-xiao-xie"><span class="nav-number">11.</span> <span class="nav-text">toLowerCase（转换为小写）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#touppercase-zhuan-huan-wei-da-xie"><span class="nav-number">12.</span> <span class="nav-text">toUpperCase （转换为大写）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#startswith-shi-fou-yi-zhi-ding-zhi-kai-tou"><span class="nav-number">13.</span> <span class="nav-text">startsWith（是否以指定值开头）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#endswith-shi-fou-yi-zhi-ding-zhi-jie-wei"><span class="nav-number">14.</span> <span class="nav-text">endsWith（是否以指定值结尾）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#includes-shi-fou-bao-han-zhi-ding-zhi"><span class="nav-number">15.</span> <span class="nav-text">includes（是否包含指定值）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#indexof-fan-hui-di-yi-ci-chu-xian-zhi-ding-zhi-de-suo-yin"><span class="nav-number">16.</span> <span class="nav-text">indexOf（返回第一次出现指定值的索引）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lastindexof-fan-hui-zui-hou-chu-xian-zhi-ding-zhi-de-suo-yin"><span class="nav-number">17.</span> <span class="nav-text">lastIndexOf（返回最后出现指定值的索引）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#repeat-chong-fu-zi-fu-chuan-ci-shu"><span class="nav-number">18.</span> <span class="nav-text">repeat（重复字符串次数）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#trim-fan-hui-qu-chu-qian-hou-kong-ge-hou-de-zi-fu-chuan"><span class="nav-number">19.</span> <span class="nav-text">trim（返回去除前后空格后的字符串）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maywzp</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.3"></script>
+
+
+  
+
+
+</body>
+</html>

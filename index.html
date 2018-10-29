@@ -303,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://maywzp.github.io/2018/05/31/learn-vue-03/">
+    <link itemprop="mainEntityOfPage" href="https://maywzp.github.io/2018/10/23/JS 正则/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Maywzp">
@@ -322,7 +322,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/31/learn-vue-03/" itemprop="url">learn-vue-03</a></h2>
+                <a class="post-title-link" href="/2018/10/23/JS 正则/" itemprop="url">JS 正则</a></h2>
         
 
         <div class="post-meta">
@@ -334,8 +334,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-31T17:21:41+08:00">
-                2018-05-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-23T12:13:22+08:00">
+                2018-10-23
               </time>
             
 
@@ -350,8 +350,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-06-01T11:26:57+08:00">
-                2018-06-01
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-23T12:13:22+08:00">
+                2018-10-23
               </time>
             
           </span>
@@ -385,10 +385,208 @@
 
       
         
-          <div class="post-content">深入学习Vue.js第三步，实现Watcher类。订阅者，当依赖收集的时候会addSub到subs中，在修改data中数据的时候会触发dep对象的notify，通知所有Watcher对象去修改对应视图。</div>
+          
+            <h3 id="zheng-ze"><a href="#正则" class="headerlink" title="正则"></a>正则</h3><p>以下方法使用下面数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'The Quick Brown Fox Jumps Over The Lazy Dog'</span></span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/quick\s(brown).+?(jumps)/ig</span></span><br></pre></td></tr></table></figure>
+<h4 id="fang-fa"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><h5 id="exec"><a href="#exec" class="headerlink" title="exec"></a>exec</h5><p>查找匹配，返回一个数组（详细匹配信息），未匹配返回 null</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg.exec(str)	// =&gt; [&apos;Quick Brown Fox Jumps&apos;, &apos;Brown&apos;, &apos;Jumps&apos; ...]</span><br></pre></td></tr></table></figure>
+<h5 id="test"><a href="#test" class="headerlink" title="test"></a>test</h5><p>测试是否匹配，返回 true 或者 false</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg.test(str)	<span class="comment">// =&gt; true</span></span><br></pre></td></tr></table></figure>
+<h5 id="match"><a href="#match" class="headerlink" title="match"></a>match</h5><p>查找匹配，返回一个数组，未匹配返回 null</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.match(reg) <span class="comment">// =&gt; ['Quick Brown Fox Jumps']</span></span><br></pre></td></tr></table></figure>
+<h5 id="search"><a href="#search" class="headerlink" title="search"></a>search</h5><p>测试匹配，返回匹配到的位置索引，失败返回 -1</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.search(reg) <span class="comment">// =&gt; 4</span></span><br></pre></td></tr></table></figure>
+<h5 id="replace"><a href="#replace" class="headerlink" title="replace"></a>replace</h5><p>替换匹配</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.replace(reg, <span class="string">'a'</span>) <span class="comment">// =&gt; 'The a Over The Lazy Dog'</span></span><br></pre></td></tr></table></figure>
+<h5 id="split"><a href="#split" class="headerlink" title="split"></a>split</h5><p>分割字符串，返回 数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.split(reg)	<span class="comment">// =&gt;  ["The ", "Brown", "Jumps", " Over The Lazy Dog"]</span></span><br></pre></td></tr></table></figure>
+<p>以下正则为全局匹配</p>
+<h4 id="te-shu-fu-fu-hao"><a href="#特殊符-符号" class="headerlink" title="特殊符 - 符号"></a>特殊符 - 符号</h4><h5 id=""><a href="#" class="headerlink" title="\"></a>\</h5><p>非特殊字符换化为特殊字符；特殊字符转化为字面量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">单独的 b 表示字母 b，/b 就转化为特殊字符了</span><br><span class="line">* 表示 <span class="number">0</span> 个或多个，\* 就匹配 * 字符</span><br></pre></td></tr></table></figure>
+<h5 id=""><a href="#-1" class="headerlink" title="^"></a>^</h5><p>配置输入的开始</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^A/ 并不会匹配 <span class="string">"an A"</span> 中的 A，但会匹配 <span class="string">"An E"</span> 中的 A</span><br></pre></td></tr></table></figure>
+<h5 id=""><a href="#-2" class="headerlink" title="$"></a>$</h5><p>配置输入的结束</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/t$/ 不会匹配 <span class="string">"eater"</span> 中的 t，但会匹配 <span class="string">"eat"</span> 中的 t</span><br></pre></td></tr></table></figure>
+<h5 id=""><a href="#-3" class="headerlink" title="*"></a>*</h5><p>匹配前一个表达式 0 次或多次，等价于 {0,}</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bo*<span class="regexp">/ 会匹配 "booed" 中的 'boo' 和 'bird' 中的 'b'</span></span><br></pre></td></tr></table></figure>
+<h5 id=""><a href="#-4" class="headerlink" title="+"></a>+</h5><p>匹配前一个表达式 1 次或者多次，等价于{1,}</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/a+<span class="regexp">/ 会匹配 "candy" 中的 'a'，"caaaat" 中的 'aaaa'</span></span><br></pre></td></tr></table></figure>
+<h5 id=""><a href="#-5" class="headerlink" title="?"></a>?</h5><p>匹配前一个表达式 0 次或者 1 次，等价于 {0, 1}</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/e?el?<span class="regexp">/ 会匹配 "angle" 中 'le', "sole" 中的 'e'</span></span><br></pre></td></tr></table></figure>
+<h5 id=""><a href="#-6" class="headerlink" title="."></a>.</h5><p>匹配除换行符之外的任何单个字符</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/.n/ 将会匹配 <span class="string">"nay, an apple is on the tree"</span> 中的 <span class="string">'an'</span> 和 <span class="string">'on'</span>，但是不会匹配 <span class="string">'nay'</span></span><br></pre></td></tr></table></figure>
+<h4 id="te-shu-fu-zi-fu"><a href="#特殊符-字符" class="headerlink" title="特殊符 - 字符"></a>特殊符 - 字符</h4><h5 id="b"><a href="#b" class="headerlink" title="\b"></a>\b</h5><p>匹配一个词的边界（一个词的边界就是一个词不被另外一个词跟随的位置或者不是另一个词汇字符前边的位置）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/\bm/ 匹配 <span class="string">"moon"</span> 中得 <span class="string">'m'</span></span><br><span class="line"></span><br><span class="line">/oo\b/ 并不匹配 <span class="string">"moon"</span> 中得 <span class="string">'oo'</span>，因为 <span class="string">'oo'</span> 被一个词汇字符 <span class="string">'n'</span> 紧跟着。</span><br><span class="line"></span><br><span class="line">/oon\b/ 匹配 <span class="string">"moon"</span> 中得 <span class="string">'oon'</span>，因为 <span class="string">'oon'</span> 是这个字符串的结束部分。这样他没有被一个词汇字符紧跟着。</span><br></pre></td></tr></table></figure>
+<h5 id="b"><a href="#B" class="headerlink" title="\B"></a>\B</h5><p>匹配一个非单词边界 (一个字符串的开始和结尾都被认为是非单词)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/\B../ 匹配 <span class="string">"noonday"</span> 中得 <span class="string">'oo'</span>, 而 /y\B./ 匹配 <span class="string">"possibly yesterday"</span> 中得 <span class="string">'ye'</span></span><br></pre></td></tr></table></figure>
+<h5 id="d"><a href="#d" class="headerlink" title="\d"></a>\d</h5><p>匹配一个数字，等价于 [0-9]</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\d 匹配 <span class="string">"B2 read"</span> 中的 <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h5 id="d"><a href="#D" class="headerlink" title="\D"></a>\D</h5><p>匹配一个非数字，等价于 <code>[^0-9]</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/\D/ 匹配 <span class="string">"B2 read"</span> 中的 B r e a d</span><br></pre></td></tr></table></figure>
+<h5 id="s"><a href="#s" class="headerlink" title="\s"></a>\s</h5><p>匹配一个空白字符，包括空格、制表符、换行符和换页符</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/\s\w*<span class="regexp">/ 匹配 "foo bar" 中的 'bar'</span></span><br></pre></td></tr></table></figure>
+<h5 id="s"><a href="#S" class="headerlink" title="\S"></a>\S</h5><p>匹配一个非空白字符</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/\S\w/ 匹配 <span class="string">"foo bar"</span> 中的 <span class="string">'foo'</span> 和 <span class="string">'bar'</span></span><br></pre></td></tr></table></figure>
+<h5 id="w"><a href="#w" class="headerlink" title="\w"></a>\w</h5><p>匹配一个单字符：字母、数字和下划线，等价于 [A-Za-z0-9_]</p>
+<h5 id="w"><a href="#W" class="headerlink" title="\W"></a>\W</h5><p>匹配一个非单字符：字母、数字和下划线，等价于<code>[^A-Za-z0-9_]</code></p>
+<h4 id="te-shu-zi-fu-yun-suan-fu"><a href="#特殊字符-运算符" class="headerlink" title="特殊字符 - 运算符"></a>特殊字符 - 运算符</h4><h5 id="n"><a href="#n" class="headerlink" title="{n}"></a>{n}</h5><p>n是一个正整数，匹配了前面一个字符刚好发生了n次</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/a&#123;<span class="number">2</span>&#125;/ 不会匹配“candy”中的<span class="string">'a'</span>,但是会匹配“caandy”中所有的a，以及“caaandy”中的前两个<span class="string">'a'</span>。</span><br></pre></td></tr></table></figure>
+<h5 id="n-m"><a href="#n-m" class="headerlink" title="{n, m}"></a>{n, m}</h5><p>n 和 m 都是整数。匹配前面的字符至少n次，最多m次。如果 n 或者 m 的值是0， 这个值被忽略</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/a&#123;<span class="number">1</span>,<span class="number">3</span>&#125;/ 并不匹配“cndy”中的任意字符，匹配“candy”中得a，匹配“caandy”中的前两个a，也匹配“caaaaaaandy”中的前三个a。注意，当匹配”caaaaaaandy“时，匹配的值是“aaa”，即使原始的字符串中有更多的a</span><br></pre></td></tr></table></figure>
+<h5 id="x"><a href="#x" class="headerlink" title="(x)"></a>(x)</h5><p>匹配 ‘x’ 并且记住匹配项 (<em>捕获括号</em>)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">模式/(foo) (bar) \<span class="number">1</span> \<span class="number">2</span>/中的 <span class="string">'(foo)'</span> 和 <span class="string">'(bar)'</span> 匹配并记住字符串 <span class="string">"foo bar foo bar"</span> 中前两个单词。模式中的 \<span class="number">1</span> 和 \<span class="number">2</span> 匹配字符串的后两个单词。注意 \<span class="number">1</span>、\<span class="number">2</span>、\n 是用在正则表达式的匹配环节。在正则表达式的替换环节，则要使用像 $<span class="number">1</span>、$<span class="number">2</span>、$n 这样的语法，例如，<span class="string">'bar foo'</span>.replace( <span class="regexp">/(...) (...)/</span>, <span class="string">'$2 $1'</span> )</span><br></pre></td></tr></table></figure>
+<h5 id="x"><a href="#x-1" class="headerlink" title="(?:x)"></a>(?:x)</h5><p>匹配 ‘x’ 但是不记住匹配项 (<em>非捕获括号</em>)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/(?:foo)&#123;<span class="number">1</span>,<span class="number">2</span>&#125;/。如果表达式是 /foo&#123;<span class="number">1</span>,<span class="number">2</span>&#125;/，&#123;<span class="number">1</span>,<span class="number">2</span>&#125;将只对 ‘foo’ 的最后一个字符 ’o‘ 生效。如果使用非捕获括号，则&#123;<span class="number">1</span>,<span class="number">2</span>&#125;会匹配整个 ‘foo’ 单词</span><br></pre></td></tr></table></figure>
+<h5 id="x-y"><a href="#x-y" class="headerlink" title="x(?=y)"></a>x(?=y)</h5><p>匹配 ‘x’ 仅仅当 ‘x’ 后面跟着 ‘y’ (<em>正向肯定查找</em>)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/Jack(?=Sprat)/ 会匹配到 <span class="string">'Jack'</span> 仅仅当它后面跟着 <span class="string">'Sprat'</span></span><br><span class="line">/Jack(?=Sprat|Frost)/ 匹配 ‘Jack’ 仅仅当它后面跟着 <span class="string">'Sprat'</span> 或者是 ‘Frost’</span><br></pre></td></tr></table></figure>
+<h5 id="x-y"><a href="#x-y-1" class="headerlink" title="x(?!y)"></a>x(?!y)</h5><p>匹配 ‘x’ 仅仅当 ‘x’ 后面不跟着 ‘y’ (<em>正向否定查找</em>)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/\d+(?!\.)/匹配一个数字仅仅当这个数字后面没有跟小数点的时候。正则表达式/\d+(?!\.)/.exec(<span class="string">"3.141"</span>)匹配‘<span class="number">141</span>’但是不是‘<span class="number">3.141</span>’</span><br></pre></td></tr></table></figure>
+<h5 id="x-y"><a href="#x-y-2" class="headerlink" title="x|y"></a>x|y</h5><p>匹配 x 或者 y</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/green|red/ 匹配“green apple”中的‘green’和“red apple”中的‘red’</span><br></pre></td></tr></table></figure>
+<h5 id="x-y-z"><a href="#x-y-z" class="headerlink" title="[x,y,z]"></a>[x,y,z]</h5><p>一个字符集合。匹配方括号的中任意字符。可以使用破折号（-）来指定一个字符范围。对于点（.）和星号（*）这样的特殊符号在一个字符集中没有特殊的意义</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[abcd] 和[a-d]是一样的。他们都匹配<span class="string">"brisket"</span>中得‘b’,也都匹配“city”中的‘c’。/[a-z.]+<span class="regexp">/ 和/</span>[\w.]+<span class="regexp">/都匹配“test.i.ng”中得所有字符</span></span><br></pre></td></tr></table></figure>
+<h5 id="x-y-z"><a href="#x-y-z-1" class="headerlink" title="[^x,y,z]"></a>[^x,y,z]</h5><p>一个反向字符集</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[^abc] 和 [^a-c] 是一样的。他们匹配<span class="string">"brisket"</span>中得‘r’，也匹配“chop”中的‘h’</span><br></pre></td></tr></table></figure>
+<h4 id="ping-heng-zu"><a href="#平衡组" class="headerlink" title="平衡组"></a>平衡组</h4><h5 id="group"><a href="#’group’" class="headerlink" title="(?’group’)"></a>(?’group’)</h5><p>把捕获的内容命名为 group，并压入堆栈。</p>
+<h5 id="group"><a href="#’-group’" class="headerlink" title="(?’-group’)"></a>(?’-group’)</h5><p>把推栈上弹出最后入栈名为 group 的捕获内容，如果推栈本来为空，则本分组的匹配失败</p>
+<h5 id="group-yes-no"><a href="#group-yes-no" class="headerlink" title="(?(group)yes|no)"></a>(?(group)yes|no)</h5><p>如果推栈上存在名为 group 的捕获内容，则进行 yes 部分的匹配，否则进行 no 部分的匹配</p>
+<h5 id=""><a href="#-7" class="headerlink" title="(?!)"></a>(?!)</h5><p> 零宽负向先行断言，由于没有后缀表达式，试图匹配总是失败</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/&lt;[^&lt;&gt;]*(((?'Open'&lt;)[^&lt;&gt;]*)+((?'-Open'&gt;)[^&lt;&gt;]*)+)*(?(Open)(?!))&gt;/</span></span><br><span class="line"><span class="keyword">var</span> regHtml = <span class="regexp">/&lt;div[^&gt;]*&gt;[^&lt;&gt;]*(((?'Open'&lt;div[^&gt;]*&gt;)[^&lt;&gt;]*)+((?'-Open'&lt;\/div&gt;)[^&lt;&gt;]*)+)*(?(Open)(?!))&lt;\/div&gt;./</span></span><br></pre></td></tr></table></figure>
+<h4 id="yun-yong"><a href="#运用" class="headerlink" title="运用"></a>运用</h4><h5 id="shi-yong-gua-hao-de-zi-zi-fu-chuan-pi-pei"><a href="#使用括号的子字符串匹配" class="headerlink" title="使用括号的子字符串匹配"></a>使用括号的子字符串匹配</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> re = <span class="regexp">/(\w+)\s(\w+)/</span></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">"John Smith"</span></span><br><span class="line"><span class="keyword">var</span> newstr = str.replace(re, <span class="string">"$2, $1"</span>)</span><br><span class="line"><span class="built_in">console</span>.log(newstr)	<span class="comment">// =&gt; 'Smith, John'</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://maywzp.github.io/2018/10/17/JS Map/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Maywzp">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MayWzp">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/17/JS Map/" itemprop="url">JS Map</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-17T19:00:00+08:00">
+                2018-10-17
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-17T19:00:00+08:00">
+                2018-10-17
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <div class="post-content">Javascript Map操作总结</div>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/31/learn-vue-03/">
+            <a class="btn" href="/2018/10/17/JS Map/">
               阅读全文 &raquo;
             </a>
           </div>
@@ -439,7 +637,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://maywzp.github.io/2018/05/31/learn-vue-02/">
+    <link itemprop="mainEntityOfPage" href="https://maywzp.github.io/2018/10/17/JS Set/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Maywzp">
@@ -458,7 +656,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/31/learn-vue-02/" itemprop="url">learn-vue-02</a></h2>
+                <a class="post-title-link" href="/2018/10/17/JS Set/" itemprop="url">JS Set</a></h2>
         
 
         <div class="post-meta">
@@ -470,8 +668,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-31T11:53:01+08:00">
-                2018-05-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-17T19:00:00+08:00">
+                2018-10-17
               </time>
             
 
@@ -486,8 +684,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-31T12:28:27+08:00">
-                2018-05-31
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-17T19:00:00+08:00">
+                2018-10-17
               </time>
             
           </span>
@@ -521,10 +719,10 @@
 
       
         
-          <div class="post-content">深入学习Vue.js第二步，实现可维护依赖收集类Dep。当对data上的对象进行修改值的时候会触发它的setter，那么取值的时候自然就会触发getter事件，所以我们只要在最开始进行一次render，那么所有被渲染所依赖的data中的数据就会被getter收集到Dep的subs中去。在对data中的数据进行修改的时候setter只会触发Dep的subs的函数。</div>
+          <div class="post-content">Javascript Set操作总结</div>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/31/learn-vue-02/">
+            <a class="btn" href="/2018/10/17/JS Set/">
               阅读全文 &raquo;
             </a>
           </div>
@@ -575,7 +773,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://maywzp.github.io/2018/05/30/learn-vue-01/">
+    <link itemprop="mainEntityOfPage" href="https://maywzp.github.io/2018/10/16/JS Date/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Maywzp">
@@ -594,7 +792,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/30/learn-vue-01/" itemprop="url">learn-vue-01</a></h2>
+                <a class="post-title-link" href="/2018/10/16/JS Date/" itemprop="url">JS Date</a></h2>
         
 
         <div class="post-meta">
@@ -606,8 +804,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-30T16:35:51+08:00">
-                2018-05-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-16T16:09:00+08:00">
+                2018-10-16
               </time>
             
 
@@ -622,8 +820,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-31T10:59:42+08:00">
-                2018-05-31
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-16T16:09:00+08:00">
+                2018-10-16
               </time>
             
           </span>
@@ -657,10 +855,10 @@
 
       
         
-          <div class="post-content">深入学习 Vue.js 第一步，学习 Object.defineProperty。Vue.js 的响应原理依赖于 Object.defineProperty，所以 Vue 不支持 IE8 及更低版本浏览器。Vue 通过设置对象的 setter/getter 方法，来监听数据的变化，通过 getter 进行依赖收集，而每个 setter 方法就是一个观察者，在数据变更时通知订阅者更新视图。</div>
+          <div class="post-content">Javascript Date对象操作总结</div>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/30/learn-vue-01/">
+            <a class="btn" href="/2018/10/16/JS Date/">
               阅读全文 &raquo;
             </a>
           </div>
@@ -711,7 +909,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://maywzp.github.io/2017/05/26/message api/">
+    <link itemprop="mainEntityOfPage" href="https://maywzp.github.io/2018/10/16/JS Math/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Maywzp">
@@ -730,7 +928,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/05/26/message api/" itemprop="url">Message API</a></h2>
+                <a class="post-title-link" href="/2018/10/16/JS Math/" itemprop="url">JS Math</a></h2>
         
 
         <div class="post-meta">
@@ -742,8 +940,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-26T10:47:28+08:00">
-                2017-05-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-16T10:21:00+08:00">
+                2018-10-16
               </time>
             
 
@@ -758,8 +956,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-05-26T10:47:28+08:00">
-                2017-05-26
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-16T10:21:00+08:00">
+                2018-10-16
               </time>
             
           </span>
@@ -790,29 +988,13 @@
 
       
       
-        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-          
-          
-            <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox"
-                 href="http://oizt3fjv8.bkt.clouddn.com/message_api.jpg" rel="gallery_cjhu09g2x001fqdxtqzjdzgrm"
-                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="http://oizt3fjv8.bkt.clouddn.com/message_api.jpg" itemprop="contentUrl"/>
-              </a>
-            
-          
-
-          
-          </div>
-        </div>
-      
 
       
         
-          <div class="post-content">Web Workers 为 Web 前端网页上的脚本提供了一种能在后台进程中运行的方法。一旦它被创建，Web Workers 就可以通过 postMessage 向任务池发送任务请求，执行完之后再通过 postMessage 返回消息给创建者指定的事件处理程序 ( 通过 onmessage 进行捕获 )。</div>
+          <div class="post-content">Javascript Math对象操作总结</div>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/05/26/message api/">
+            <a class="btn" href="/2018/10/16/JS Math/">
               阅读全文 &raquo;
             </a>
           </div>
@@ -863,7 +1045,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://maywzp.github.io/2017/02/16/初探https协议/">
+    <link itemprop="mainEntityOfPage" href="https://maywzp.github.io/2018/10/13/JS Number/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Maywzp">
@@ -882,7 +1064,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/02/16/初探https协议/" itemprop="url">初探https协议</a></h2>
+                <a class="post-title-link" href="/2018/10/13/JS Number/" itemprop="url">JS Number</a></h2>
         
 
         <div class="post-meta">
@@ -894,8 +1076,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-16T17:13:33+08:00">
-                2017-02-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-13T08:45:00+08:00">
+                2018-10-13
               </time>
             
 
@@ -910,8 +1092,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-02-16T17:13:33+08:00">
-                2017-02-16
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-13T08:45:00+08:00">
+                2018-10-13
               </time>
             
           </span>
@@ -942,181 +1124,13 @@
 
       
       
-        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-          
-          
-            <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox"
-                 href="http://oizt3fjv8.bkt.clouddn.com/https.jpg" rel="gallery_cjhu09g4d0028qdxt3fh0d1wl"
-                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="http://oizt3fjv8.bkt.clouddn.com/https.jpg" itemprop="contentUrl"/>
-              </a>
-            
-          
-
-          
-          </div>
-        </div>
-      
 
       
         
-          <div class="post-content">HTTPS（全称：Hyper Text Transfer Protocol over Secure Socket Layer），是以安全为目标的HTTP通道，简单讲是HTTP的安全版。即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL。</div>
+          <div class="post-content">Javascript Number操作总结</div>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/02/16/初探https协议/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://maywzp.github.io/2017/02/15/wireshark抓包工具的使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Maywzp">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MayWzp">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/02/15/wireshark抓包工具的使用/" itemprop="url">wireshark抓包工具的使用</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-15T15:20:18+08:00">
-                2017-02-15
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2017-02-15T15:20:18+08:00">
-                2017-02-15
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-          
-          
-            <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox"
-                 href="http://oizt3fjv8.bkt.clouddn.com/wireshark.jpg" rel="gallery_cjhu09g4h002dqdxtbzywgjl5"
-                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="http://oizt3fjv8.bkt.clouddn.com/wireshark.jpg" itemprop="contentUrl"/>
-              </a>
-            
-          
-
-          
-          </div>
-        </div>
-      
-
-      
-        
-          <div class="post-content">wireshark是非常流行的网络封包分析软件，功能十分强大。可以截取各种网络封包，显示网络封包的详细信息。</div>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/02/15/wireshark抓包工具的使用/">
+            <a class="btn" href="/2018/10/13/JS Number/">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1158,7 +1172,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1210,7 +1224,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

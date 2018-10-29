@@ -389,14 +389,14 @@
       
         <p>在上一篇中简单的实现了Vue 响应式的依赖收集和触发，详情点击 <a href="https://maywzp.github.io/2018/05/30/learn-vue-01/">learn-vue-01</a></p>
 <p>但我们只是将依赖放在一个数组里面，虽然好理解但却不好维护，本节我们来实现一个可维护依赖的类。</p>
-<h3><span id="确定功能">确定功能</span></h3><p><strong>类的属性：</strong></p>
+<h3 id="que-ding-gong-neng"><a href="#确定功能" class="headerlink" title="确定功能"></a>确定功能</h3><p><strong>类的属性：</strong></p>
 <p>target: 函数，存放需要添加的依赖</p>
 <p><strong>实例的属性及方法：</strong></p>
 <p>subs：Array，存放依赖</p>
 <p>addSub：Function，添加依赖</p>
 <p>removeSub：Function，删除依赖</p>
 <p>notify：Function，执行依赖</p>
-<h3><span id="实现">实现</span></h3><p>封装 <code>Dep</code>类，进行依赖维护。</p>
+<h3 id="shi-xian"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>封装 <code>Dep</code>类，进行依赖维护。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dep</span> </span>&#123;</span><br><span class="line">  <span class="comment">// static target = null</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.subs = []</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  addSubs(sub) &#123;</span><br><span class="line">    <span class="keyword">this</span>.subs.push(sub)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  removeSubs(sub) &#123;</span><br><span class="line">    <span class="keyword">const</span> index = <span class="keyword">this</span>.subs.indexOf(sub)</span><br><span class="line">    <span class="keyword">if</span> (index &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.subs.splice(index, <span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  notify(newVal, oldVal) &#123;</span><br><span class="line">    <span class="keyword">this</span>.subs.forEach(<span class="function"><span class="params">func</span> =&gt;</span> func(newVal, oldVal))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Dep.target = <span class="literal">null</span></span><br></pre></td></tr></table></figure>
 <p>对上篇中的 <code>defineReactive</code>进行改进：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> defineReactive = <span class="function"><span class="keyword">function</span> (<span class="params">obj, key, val</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> dep = <span class="keyword">new</span> Dep()</span><br><span class="line">  <span class="built_in">Object</span>.defineProperty(obj, key, &#123;</span><br><span class="line">    configurable: <span class="literal">true</span>,</span><br><span class="line">    enumerable: <span class="literal">true</span>,</span><br><span class="line">    get() &#123;</span><br><span class="line">      <span class="keyword">if</span> (Dep.target) &#123;</span><br><span class="line">        dep.addSubs(Dep.target)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> val</span><br><span class="line">    &#125;,</span><br><span class="line">    set(newVal) &#123;</span><br><span class="line">      <span class="keyword">if</span> (newVal !== val) &#123;</span><br><span class="line">        dep.notify(newVal, val)</span><br><span class="line">      &#125;</span><br><span class="line">      val = newVal</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -552,7 +552,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -600,7 +600,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">确定功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#que-ding-gong-neng"><span class="nav-number">1.</span> <span class="nav-text">确定功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shi-xian"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a></li></ol></div>
             
 
           </div>

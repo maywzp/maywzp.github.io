@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javascript操作手册," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Javascript Array对象操作总结">
+<meta name="keywords" content="javascript操作手册">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 数组">
+<meta property="og:url" content="https://maywzp.github.io/2016/11/24/JS 数组/index.html">
+<meta property="og:site_name" content="MayWzp">
+<meta property="og:description" content="Javascript Array对象操作总结">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-12T04:20:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS 数组">
+<meta name="twitter:description" content="Javascript Array对象操作总结">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://maywzp.github.io/2016/11/24/JS 数组/"/>
+
+
+
+
+
+  <title>JS 数组 | MayWzp</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MayWzp</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://maywzp.github.io/2016/11/24/JS 数组/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Maywzp">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MayWzp">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JS 数组</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-24T16:38:42+08:00">
+                2016-11-24
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-12T12:20:00+08:00">
+                2018-10-12
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  Javascript Array对象操作总结
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!-- ### JS 数组操作 -->
+<p>注：</p>
+<ol>
+<li>标记星号是会改变原数组的操作 </li>
+<li>元素操作索引从 0 开始</li>
+<li>包含起始位置和结束位置的操作，结束位置都不包含在内，是<strong>前闭后开区间</strong></li>
+</ol>
+<h4 id="concat-lian-jie-shu-zu"><a href="#concat（连接数组）" class="headerlink" title="concat（连接数组）"></a>concat（连接数组）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组连接数组</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="string">'a'</span>, <span class="string">'b'</span>].concat([<span class="string">'c'</span>, <span class="string">'d'</span>])   <span class="comment">// arr: ['a', 'b', 'c', 'd']</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 数组连接多个数组</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="string">'a'</span>, <span class="string">'b'</span>].concat([<span class="string">'c'</span>], [<span class="string">'d'</span>]) <span class="comment">// arr: ['a', 'b', 'c', 'd']</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 数组连接字符串</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="string">'a'</span>, <span class="string">'b'</span>].concat(<span class="string">'c'</span>, <span class="string">'d'</span>)  	  <span class="comment">// arr: ['a', 'b', 'c', 'd']</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 数组连接字符串和数组</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="string">'a'</span>, <span class="string">'b'</span>].concat([<span class="string">'c'</span>], <span class="string">'d'</span>)   <span class="comment">// arr: ['a', 'b', 'c', 'd']</span></span><br></pre></td></tr></table></figure>
+<h4 id="join-shu-zu-zhuan-wei-zi-fu-chuan"><a href="#join（数组转为字符串）" class="headerlink" title="join（数组转为字符串）"></a>join（数组转为字符串）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="string">'a'</span>, <span class="string">'b'</span>]</span><br><span class="line"><span class="keyword">var</span> arr3 = arr1.join(<span class="string">''</span>)  <span class="comment">// arr3: 'ab'</span></span><br></pre></td></tr></table></figure>
+<h4 id="pop-shan-chu-zui-hou-yi-ge-yuan-su"><a href="#pop（删除最后一个元素）" class="headerlink" title="*pop（删除最后一个元素）"></a>*pop（删除最后一个元素）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="string">'a'</span>, <span class="string">'b'</span>]</span><br><span class="line">arr1.pop() <span class="comment">// arr1: ['a']</span></span><br></pre></td></tr></table></figure>
+<h4 id="shift-shan-chu-di-yi-ge-yuan-su"><a href="#shift（删除第一个元素）" class="headerlink" title="*shift（删除第一个元素）"></a>*shift（删除第一个元素）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="string">'a'</span>, <span class="string">'b'</span>]</span><br><span class="line">arr1.shift() <span class="comment">// arr1: ['b']</span></span><br></pre></td></tr></table></figure>
+<h4 id="push-mo-wei-tian-jia-yuan-su"><a href="#push（末尾添加元素）" class="headerlink" title="*push（末尾添加元素）"></a>*push（末尾添加元素）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="string">'a'</span>, <span class="string">'b'</span>]</span><br><span class="line">arr1.push(<span class="string">'c'</span>) <span class="comment">// arr1: ['a', 'b', 'c']</span></span><br></pre></td></tr></table></figure>
+<h4 id="unshift-shou-bu-tian-jia-yuan-su"><a href="#unshift（首部添加元素）" class="headerlink" title="*unshift（首部添加元素）"></a>*unshift（首部添加元素）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="string">'a'</span>, <span class="string">'b'</span>]</span><br><span class="line">arr1.unshift(<span class="string">'r'</span>) <span class="comment">// arr1: ['r', 'a', 'b']</span></span><br></pre></td></tr></table></figure>
+<h4 id="reverse-shu-zu-yuan-su-dian-dao"><a href="#reverse（数组元素颠倒）" class="headerlink" title="*reverse（数组元素颠倒）"></a>*reverse（数组元素颠倒）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="string">'a'</span>, <span class="string">'b'</span>]</span><br><span class="line">arr1.reverse()  <span class="comment">// arr1: ['b', 'a']</span></span><br></pre></td></tr></table></figure>
+<h4 id="slice-start-end-qian-kao-bei-yuan-su"><a href="#slice-start-end-（浅拷贝元素）" class="headerlink" title="slice(start, end) （浅拷贝元素）"></a>slice(start, end) （浅拷贝元素）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br><span class="line"><span class="keyword">var</span> arr3 = arr1.slice(<span class="number">1</span>, <span class="number">2</span>) <span class="comment">// arr3: ['b']</span></span><br></pre></td></tr></table></figure>
+<h4 id="splice-ti-huan-shan-chu-yuan-su"><a href="#splice-（替换、删除元素）" class="headerlink" title="*splice （替换、删除元素）"></a>*splice （替换、删除元素）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="string">'a'</span>, <span class="string">'b'</span>]</span><br><span class="line">指定开始删除元素的位置： arr1.splice(<span class="number">0</span>) <span class="comment">// arr1: []</span></span><br><span class="line">删除指定位置并且指定个数的元素： arr1.splice(<span class="number">0</span>, <span class="number">1</span>) <span class="comment">// arr1: ['b']</span></span><br><span class="line">替换指定位置指定个数的元素： arr1.splice(<span class="number">0</span>, <span class="number">1</span>, <span class="string">'i'</span>) <span class="comment">// arr1: ['i'，'b']</span></span><br></pre></td></tr></table></figure>
+<h4 id="sort-pai-xu"><a href="#sort（排序）" class="headerlink" title="*sort（排序）"></a>*sort（排序）</h4><p>a - b &lt; 0，a 排在 b 前面</p>
+<p>a - b = 0，a, b 相对位置不变</p>
+<p>a - b &gt; 0，b 排在 a 前面</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对象数组依照对象的某一个值升序排序</span></span><br><span class="line"><span class="keyword">var</span> arr4 = [&#123;<span class="attr">name</span>: <span class="string">'wzp'</span>, <span class="attr">age</span>: <span class="number">23</span>&#125;,&#123;<span class="attr">name</span>: <span class="string">'wu'</span>, <span class="attr">age</span>: <span class="number">12</span>&#125;,&#123;<span class="attr">name</span>: <span class="string">'yi'</span>, <span class="attr">age</span>: <span class="number">35</span>&#125;]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数字类型比较</span></span><br><span class="line">arr4.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a.age - b.age)</span><br><span class="line"><span class="comment">// arr4: [&#123;name: 'wu', age: 12&#125;,&#123;name: 'wzp', age: 23&#125;,&#123;name: 'yi', age: 35&#125;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 字符串类型比较</span></span><br><span class="line">arr4.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">  a = a.name.toUpperCase(a)</span><br><span class="line">  b = b.name.toUpperCase(b)</span><br><span class="line">  <span class="keyword">if</span> (a &lt; b) <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (a &gt; b) <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// arr4: [&#123;name: 'wu', age: 12&#125;,&#123;name: 'wzp', age: 23&#125;,&#123;name: 'yi', age: 35&#125;]</span></span><br></pre></td></tr></table></figure>
+<h4 id="foreach-bian-li"><a href="#forEach（遍历）" class="headerlink" title="*forEach（遍历）"></a>*forEach（遍历）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr4 = [&#123;<span class="attr">name</span>: <span class="string">'wzp'</span>, <span class="attr">age</span>: <span class="number">23</span>&#125;,&#123;<span class="attr">name</span>: <span class="string">'wu'</span>, <span class="attr">age</span>: <span class="number">12</span>&#125;,&#123;<span class="attr">name</span>: <span class="string">'yi'</span>, <span class="attr">age</span>: <span class="number">35</span>&#125;]</span><br><span class="line">arr4.forEach(<span class="function">(<span class="params">i, idx, arr</span>) =&gt;</span> &#123;</span><br><span class="line">  i.name = i.name + idx</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// arr4 = [&#123;name: 'wzp0', age: 23&#125;,&#123;name: 'wu1', age: 12&#125;,&#123;name: 'yi2', age: 35&#125;]</span></span><br></pre></td></tr></table></figure>
+<h4 id="map-ying-she"><a href="#map（映射）" class="headerlink" title="map（映射）"></a>map（映射）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr4 = [&#123;<span class="attr">name</span>: <span class="string">'wzp'</span>, <span class="attr">age</span>: <span class="number">23</span>&#125;,&#123;<span class="attr">name</span>: <span class="string">'wu'</span>, <span class="attr">age</span>: <span class="number">12</span>&#125;,&#123;<span class="attr">name</span>: <span class="string">'yi'</span>, <span class="attr">age</span>: <span class="number">35</span>&#125;]</span><br><span class="line"><span class="keyword">var</span> arr5 = arr4.map(<span class="function">(<span class="params">i, idx, arr</span>) =&gt;</span> i.name)</span><br><span class="line"><span class="comment">//arr5: ["wzp", "wu", "yi"]</span></span><br></pre></td></tr></table></figure>
+<h4 id="filter-guo-lu"><a href="#filter（过滤）" class="headerlink" title="filter（过滤）"></a>filter（过滤）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr4 = [&#123;<span class="attr">name</span>: <span class="string">'wzp'</span>, <span class="attr">age</span>: <span class="number">23</span>&#125;,&#123;<span class="attr">name</span>: <span class="string">'wu'</span>, <span class="attr">age</span>: <span class="number">12</span>&#125;,&#123;<span class="attr">name</span>: <span class="string">'yi'</span>, <span class="attr">age</span>: <span class="number">35</span>&#125;]</span><br><span class="line"><span class="keyword">var</span> arr5 = arr4.filter(<span class="function">(<span class="params">i, idx, arr</span>) =&gt;</span> i.name === <span class="string">'wzp'</span>)</span><br><span class="line"><span class="comment">// arr5: [&#123;name: 'wzp', age: 23&#125;]</span></span><br></pre></td></tr></table></figure>
+<h4 id="some-shi-fou-bao-han"><a href="#some（是否包含）" class="headerlink" title="some（是否包含）"></a>some（是否包含）</h4><p>返回true或false</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr4 = [&#123;<span class="attr">name</span>: <span class="string">'wzp'</span>, <span class="attr">age</span>: <span class="number">23</span>&#125;,&#123;<span class="attr">name</span>: <span class="string">'wu'</span>, <span class="attr">age</span>: <span class="number">12</span>&#125;,&#123;<span class="attr">name</span>: <span class="string">'yi'</span>, <span class="attr">age</span>: <span class="number">35</span>&#125;]</span><br><span class="line"><span class="keyword">var</span> flag = arr4.some(<span class="function">(<span class="params">i, idx, arr</span>) =&gt;</span> i.age &gt; <span class="number">30</span>)</span><br><span class="line"><span class="comment">// flag: true</span></span><br></pre></td></tr></table></figure>
+<h4 id="every-quan-bu-tong-guo"><a href="#every（全部通过）" class="headerlink" title="every（全部通过）"></a>every（全部通过）</h4><p>返回true或false</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr4 = [&#123;<span class="attr">name</span>: <span class="string">'wzp'</span>, <span class="attr">age</span>: <span class="number">23</span>&#125;,&#123;<span class="attr">name</span>: <span class="string">'wu'</span>, <span class="attr">age</span>: <span class="number">12</span>&#125;,&#123;<span class="attr">name</span>: <span class="string">'yi'</span>, <span class="attr">age</span>: <span class="number">35</span>&#125;]</span><br><span class="line"><span class="keyword">var</span> flag = arr4.every(<span class="function">(<span class="params">i, idx, arr</span>) =&gt;</span> i.age &gt; <span class="number">30</span>)</span><br><span class="line"><span class="comment">// flag: false</span></span><br></pre></td></tr></table></figure>
+<h4 id="find-fan-hui-di-yi-ge-pi-pei-yuan-su"><a href="#find（返回第一个匹配元素）" class="headerlink" title="find（返回第一个匹配元素）"></a>find（返回第一个匹配元素）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr4 = [&#123;<span class="attr">name</span>: <span class="string">'wzp'</span>, <span class="attr">age</span>: <span class="number">23</span>&#125;,&#123;<span class="attr">name</span>: <span class="string">'wu'</span>, <span class="attr">age</span>: <span class="number">12</span>&#125;,&#123;<span class="attr">name</span>: <span class="string">'yi'</span>, <span class="attr">age</span>: <span class="number">35</span>&#125;]</span><br><span class="line"><span class="keyword">var</span> hit = arr4.find(<span class="function">(<span class="params">i, idx, arr</span>) =&gt;</span> i.age &gt; <span class="number">30</span>)</span><br><span class="line"><span class="comment">// hit: &#123;name: 'yi', age: 35&#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="findindex-fan-hui-di-yi-ge-pi-pei-yuan-su-de-suo-yin"><a href="#findIndex（返回第一个匹配元素的索引）" class="headerlink" title="findIndex（返回第一个匹配元素的索引）"></a>findIndex（返回第一个匹配元素的索引）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr4 = [&#123;<span class="attr">name</span>: <span class="string">'wzp'</span>, <span class="attr">age</span>: <span class="number">23</span>&#125;,&#123;<span class="attr">name</span>: <span class="string">'wu'</span>, <span class="attr">age</span>: <span class="number">12</span>&#125;,&#123;<span class="attr">name</span>: <span class="string">'yi'</span>, <span class="attr">age</span>: <span class="number">35</span>&#125;]</span><br><span class="line"><span class="keyword">var</span> hitIndex = arr4.findIndex(<span class="function">(<span class="params">i, idx, arr</span>) =&gt;</span> i.age &gt; <span class="number">30</span>)</span><br><span class="line"><span class="comment">// hitIndex: 2</span></span><br></pre></td></tr></table></figure>
+<h4 id="indexof-str-start-cong-kai-tou-cha-zhao-yuan-su"><a href="#indexOf-‘str’-start-（从开头查找元素）" class="headerlink" title="indexOf(‘str’, start)（从开头查找元素）"></a>indexOf(‘str’, start)（从开头查找元素）</h4><p>返回第一个匹配元素索引或 -1</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="string">'a'</span>, <span class="string">'b'</span>]</span><br><span class="line"><span class="keyword">var</span> index = arr1.indexOf(<span class="string">'b'</span>) <span class="comment">// index: 1</span></span><br></pre></td></tr></table></figure>
+<h4 id="lastindexof-str-start-cong-mo-wei-cha-zhao-yuan-su"><a href="#lastIndexOf-‘str’-start-（从末尾查找元素）" class="headerlink" title="lastIndexOf(‘str’, start) （从末尾查找元素）"></a>lastIndexOf(‘str’, start) （从末尾查找元素）</h4><p>返回最后一个匹配元素索引或 -1</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="string">'a'</span>, <span class="string">'b'</span>]</span><br><span class="line"><span class="keyword">var</span> index = arr1.lastIndexOf(<span class="string">'b'</span>) <span class="comment">// index: 1</span></span><br></pre></td></tr></table></figure>
+<h4 id="includes-shi-fou-bao-han-yuan-su"><a href="#includes（是否包含元素）" class="headerlink" title="includes（是否包含元素）"></a>includes（是否包含元素）</h4><p>参数：searchElement 要查找的元素，fromIndex 从该索引出开始查找</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="string">'as'</span>, <span class="string">'b'</span>]</span><br><span class="line">arr1.includes(<span class="string">'a'</span>, <span class="number">0</span>) <span class="comment">// false</span></span><br><span class="line">arr1.includes(<span class="string">'as'</span>, <span class="number">0</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h4 id="reduce-lei-jia-qi"><a href="#reduce（累加器）" class="headerlink" title="reduce（累加器）"></a>reduce（累加器）</h4><p>回调函数包含四个参数：acc 累加器，cur 当前值，idx 当前元素索引，arr 原数组</p>
+<p><strong>最好给累加器一个初始值。</strong></p>
+<p>如果不给初始值，acc 默认值为数组第一个元素，cur 从数组第二个元素开始，idx 从 1 开始。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 普通数组</span></span><br><span class="line"><span class="keyword">var</span> arr3 = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">2</span>]</span><br><span class="line"><span class="keyword">var</span> sum = arr3.reduce(<span class="function">(<span class="params">cur, next, idx, arr</span>) =&gt;</span> cur + next) <span class="comment">// sum: 16</span></span><br><span class="line"><span class="keyword">var</span> sum = arr3.reduce(<span class="function">(<span class="params">acc, cur, idx, arr</span>) =&gt;</span> acc + cur, <span class="number">0</span>) <span class="comment">// sum: 16</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 对象数组</span></span><br><span class="line"><span class="keyword">var</span> arr4 = [&#123;<span class="attr">name</span>: <span class="string">'wzp'</span>, <span class="attr">age</span>: <span class="number">23</span>&#125;,&#123;<span class="attr">name</span>: <span class="string">'wu'</span>, <span class="attr">age</span>: <span class="number">12</span>&#125;,&#123;<span class="attr">name</span>: <span class="string">'yi'</span>, <span class="attr">age</span>: <span class="number">35</span>&#125;]</span><br><span class="line"><span class="keyword">var</span> totalAge = arr4.reduce(<span class="function">(<span class="params">acc, cur</span>) =&gt;</span> acc + cur.age, <span class="number">0</span>) <span class="comment">// totalAge: 70</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 二维数组转化为一位数组</span></span><br><span class="line"><span class="keyword">var</span> arr5 = [[<span class="number">1</span>, <span class="number">3</span>], [<span class="number">5</span>, <span class="number">7</span>], [<span class="number">8</span>, <span class="number">9</span>]]</span><br><span class="line"><span class="keyword">var</span> flatten = arr5.reduce(<span class="function">(<span class="params">flat, next</span>) =&gt;</span> flat.concat(next), [])</span><br><span class="line"><span class="comment">// flatten: [1, 3, 5, 7, 8, 9]</span></span><br></pre></td></tr></table></figure>
+<h4 id="reduceright-lei-jia-qi-cong-you-dao-zuo"><a href="#reduceRight-累加器，从右到左" class="headerlink" title="reduceRight (累加器，从右到左)"></a>reduceRight (累加器，从右到左)</h4><p>参数同 <code>reduce</code> 方法</p>
+<h4 id="isarray-shi-fou-shi-shu-zu"><a href="#isArray（是否是数组）" class="headerlink" title="isArray（是否是数组）"></a>isArray（是否是数组）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line"><span class="keyword">var</span> flag = <span class="built_in">Array</span>.isArray(arr) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h4 id="from-lei-shu-zu-zhuan-hua-wei-shu-zu"><a href="#from-（类数组转化为数组）" class="headerlink" title="from （类数组转化为数组）"></a>from （类数组转化为数组）</h4><p>参数：arrayLike 类数组，mapFn 遍历函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.from(<span class="string">'foo'</span>) <span class="comment">// ['f', 'o', '0']</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> s = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>])</span><br><span class="line"><span class="built_in">Array</span>.from(s) <span class="comment">// [2, 4, 6]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> m = <span class="keyword">new</span> <span class="built_in">Map</span>([[<span class="string">'name'</span>, <span class="string">'wzp'</span>], [<span class="string">'age'</span>, <span class="number">25</span>]])</span><br><span class="line"><span class="built_in">Array</span>.from(m) <span class="comment">// [['name', 'wzp'], ['age', 25]]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.from([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], x =&gt; x + x) <span class="comment">// [2, 4, 6]</span></span><br></pre></td></tr></table></figure>
+<h4 id="of-chuang-jian-shu-zu"><a href="#of-创建数组" class="headerlink" title="of (创建数组)"></a>of (创建数组)</h4><p>参数：数组的值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.of(<span class="number">7</span>) <span class="comment">// [7]</span></span><br><span class="line"><span class="built_in">Array</span>.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>) <span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<h4 id="copywithin-target-start-end-shu-zu-nei-qian-fu-zhi-yuan-su"><a href="#copyWithin-target-start-end-（数组内浅复制元素）" class="headerlink" title="*copyWithin(target, start, end)（数组内浅复制元素）"></a>*copyWithin(target, start, end)（数组内浅复制元素）</h4><p>参数：target 替换目标索引，start 开始复制索引，end 结束复制索引（不包含该位置）</p>
+<p>复制后原数组被修改，数组长度维持不变</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">arr.copyWithin(<span class="number">0</span>, <span class="number">3</span>, <span class="number">4</span>) <span class="comment">// [4, 2, 3, 4, 5]</span></span><br><span class="line">arr.copyWithin(<span class="number">0</span>, <span class="number">3</span>) <span class="comment">// [4, 5, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
+<h4 id="fill-yong-yi-ge-gu-ding-de-zhi-tian-chong-shu-zu"><a href="#fill-（用一个固定的值填充数组）" class="headerlink" title="*fill （用一个固定的值填充数组）"></a>*fill （用一个固定的值填充数组）</h4><p>参数：value 填充的值，start 起始索引， end 终止索引（不包含该位置）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>]</span><br><span class="line">arr.fill(<span class="number">9</span>) <span class="comment">// arr: [9, 9, 9, 9]</span></span><br><span class="line">arr.fill(<span class="number">9</span>, <span class="number">1</span>, <span class="number">2</span>) <span class="comment">// arr: [1, 9, 4, 2]</span></span><br></pre></td></tr></table></figure>
+<h4 id="entries-fan-hui-ke-die-dai-dui-xiang"><a href="#entries（返回可迭代对象）" class="headerlink" title="entries（返回可迭代对象）"></a>entries（返回可迭代对象）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br><span class="line"><span class="keyword">var</span> iterator = arr.entries()</span><br><span class="line">iterator.next() <span class="comment">// &#123; value: [0, 'a'], done: false &#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="keys-fan-hui-bao-han-mei-ge-suo-yin-de-ke-die-dai-dui-xiang"><a href="#keys（返回包含每个索引的可迭代对象）" class="headerlink" title="keys（返回包含每个索引的可迭代对象）"></a>keys（返回包含每个索引的可迭代对象）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br><span class="line"><span class="keyword">var</span> keysIterator = arr.keys()</span><br><span class="line">keysIterator.next() <span class="comment">// &#123; value: 0, done: false &#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="values-fan-hui-bao-han-mei-ge-zhi-de-ke-die-dai-dui-xiang"><a href="#values（返回包含每个值的可迭代对象）" class="headerlink" title="values（返回包含每个值的可迭代对象）"></a>values（返回包含每个值的可迭代对象）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br><span class="line"><span class="keyword">var</span> valuesIterator = arr.values()</span><br><span class="line">valuesIterator.next() <span class="comment">// &#123; value: 'a', done: false &#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="iterator-iterator-fang-fa"><a href="#iterator-（iterator-方法）" class="headerlink" title="[@@iterator]() （iterator 方法）"></a><code>[@@iterator]()</code> （<strong>iterator</strong> 方法）</h4><p>返回值与 <code>values</code> 方法一样</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br><span class="line"><span class="keyword">var</span> iterator = arr[<span class="built_in">Symbol</span>.iterator]()</span><br><span class="line">iterator.next() <span class="comment">// &#123; value: 'a', done: false &#125;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Maywzp
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://maywzp.github.io/2016/11/24/JS 数组/" title="JS 数组">https://maywzp.github.io/2016/11/24/JS 数组/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript操作手册/" rel="tag"># javascript操作手册</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/20/vuex2使用/" rel="next" title="vuex2使用">
+                <i class="fa fa-chevron-left"></i> vuex2使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/29/JS 字符串/" rel="prev" title="JS 字符串">
+                JS 字符串 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Maywzp" />
+            
+              <p class="site-author-name" itemprop="name">Maywzp</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#concat-lian-jie-shu-zu"><span class="nav-number">1.</span> <span class="nav-text">concat（连接数组）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#join-shu-zu-zhuan-wei-zi-fu-chuan"><span class="nav-number">2.</span> <span class="nav-text">join（数组转为字符串）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pop-shan-chu-zui-hou-yi-ge-yuan-su"><span class="nav-number">3.</span> <span class="nav-text">*pop（删除最后一个元素）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#shift-shan-chu-di-yi-ge-yuan-su"><span class="nav-number">4.</span> <span class="nav-text">*shift（删除第一个元素）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#push-mo-wei-tian-jia-yuan-su"><span class="nav-number">5.</span> <span class="nav-text">*push（末尾添加元素）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#unshift-shou-bu-tian-jia-yuan-su"><span class="nav-number">6.</span> <span class="nav-text">*unshift（首部添加元素）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reverse-shu-zu-yuan-su-dian-dao"><span class="nav-number">7.</span> <span class="nav-text">*reverse（数组元素颠倒）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#slice-start-end-qian-kao-bei-yuan-su"><span class="nav-number">8.</span> <span class="nav-text">slice(start, end) （浅拷贝元素）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#splice-ti-huan-shan-chu-yuan-su"><span class="nav-number">9.</span> <span class="nav-text">*splice （替换、删除元素）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sort-pai-xu"><span class="nav-number">10.</span> <span class="nav-text">*sort（排序）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#foreach-bian-li"><span class="nav-number">11.</span> <span class="nav-text">*forEach（遍历）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#map-ying-she"><span class="nav-number">12.</span> <span class="nav-text">map（映射）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#filter-guo-lu"><span class="nav-number">13.</span> <span class="nav-text">filter（过滤）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#some-shi-fou-bao-han"><span class="nav-number">14.</span> <span class="nav-text">some（是否包含）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#every-quan-bu-tong-guo"><span class="nav-number">15.</span> <span class="nav-text">every（全部通过）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#find-fan-hui-di-yi-ge-pi-pei-yuan-su"><span class="nav-number">16.</span> <span class="nav-text">find（返回第一个匹配元素）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#findindex-fan-hui-di-yi-ge-pi-pei-yuan-su-de-suo-yin"><span class="nav-number">17.</span> <span class="nav-text">findIndex（返回第一个匹配元素的索引）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#indexof-str-start-cong-kai-tou-cha-zhao-yuan-su"><span class="nav-number">18.</span> <span class="nav-text">indexOf(‘str’, start)（从开头查找元素）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lastindexof-str-start-cong-mo-wei-cha-zhao-yuan-su"><span class="nav-number">19.</span> <span class="nav-text">lastIndexOf(‘str’, start) （从末尾查找元素）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#includes-shi-fou-bao-han-yuan-su"><span class="nav-number">20.</span> <span class="nav-text">includes（是否包含元素）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reduce-lei-jia-qi"><span class="nav-number">21.</span> <span class="nav-text">reduce（累加器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reduceright-lei-jia-qi-cong-you-dao-zuo"><span class="nav-number">22.</span> <span class="nav-text">reduceRight (累加器，从右到左)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#isarray-shi-fou-shi-shu-zu"><span class="nav-number">23.</span> <span class="nav-text">isArray（是否是数组）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#from-lei-shu-zu-zhuan-hua-wei-shu-zu"><span class="nav-number">24.</span> <span class="nav-text">from （类数组转化为数组）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#of-chuang-jian-shu-zu"><span class="nav-number">25.</span> <span class="nav-text">of (创建数组)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#copywithin-target-start-end-shu-zu-nei-qian-fu-zhi-yuan-su"><span class="nav-number">26.</span> <span class="nav-text">*copyWithin(target, start, end)（数组内浅复制元素）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fill-yong-yi-ge-gu-ding-de-zhi-tian-chong-shu-zu"><span class="nav-number">27.</span> <span class="nav-text">*fill （用一个固定的值填充数组）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#entries-fan-hui-ke-die-dai-dui-xiang"><span class="nav-number">28.</span> <span class="nav-text">entries（返回可迭代对象）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#keys-fan-hui-bao-han-mei-ge-suo-yin-de-ke-die-dai-dui-xiang"><span class="nav-number">29.</span> <span class="nav-text">keys（返回包含每个索引的可迭代对象）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#values-fan-hui-bao-han-mei-ge-zhi-de-ke-die-dai-dui-xiang"><span class="nav-number">30.</span> <span class="nav-text">values（返回包含每个值的可迭代对象）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iterator-iterator-fang-fa"><span class="nav-number">31.</span> <span class="nav-text">[@@iterator]() （iterator 方法）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maywzp</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.3"></script>
+
+
+  
+
+
+</body>
+</html>

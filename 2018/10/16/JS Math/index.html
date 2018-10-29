@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javascript操作手册," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Javascript Math对象操作总结">
+<meta name="keywords" content="javascript操作手册">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS Math">
+<meta property="og:url" content="https://maywzp.github.io/2018/10/16/JS Math/index.html">
+<meta property="og:site_name" content="MayWzp">
+<meta property="og:description" content="Javascript Math对象操作总结">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://oizt3fjv8.bkt.clouddn.com/2018-10-15-145507.png">
+<meta property="og:updated_time" content="2018-10-16T02:21:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS Math">
+<meta name="twitter:description" content="Javascript Math对象操作总结">
+<meta name="twitter:image" content="http://oizt3fjv8.bkt.clouddn.com/2018-10-15-145507.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://maywzp.github.io/2018/10/16/JS Math/"/>
+
+
+
+
+
+  <title>JS Math | MayWzp</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MayWzp</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://maywzp.github.io/2018/10/16/JS Math/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Maywzp">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MayWzp">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JS Math</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-16T10:21:00+08:00">
+                2018-10-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-16T10:21:00+08:00">
+                2018-10-16
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  Javascript Math对象操作总结
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>注：math 的所有函数都能传 数字字符串</p>
+<h4 id="math-abs-jue-dui-zhi"><a href="#Math-abs（绝对值）" class="headerlink" title="Math.abs（绝对值）"></a>Math.abs（绝对值）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.abs(<span class="string">'1.2'</span>) <span class="comment">// 1.2</span></span><br><span class="line"><span class="built_in">Math</span>.abs(<span class="number">-1.2</span>)  <span class="comment">// 1.2</span></span><br><span class="line"><span class="built_in">Math</span>.abs(<span class="string">'a'</span>)   <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<h4 id="math-ceil-xiang-shang-qu-zheng"><a href="#Math-ceil（向上取整）" class="headerlink" title="Math.ceil（向上取整）"></a>Math.ceil（向上取整）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.ceil(<span class="string">'1.25'</span>) <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">Math</span>.ceil(<span class="number">1.25</span>)   <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">Math</span>.ceil(<span class="number">-1.25</span>)  <span class="comment">// -1</span></span><br><span class="line"><span class="built_in">Math</span>.ceil(<span class="string">'a'</span>)    <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<h4 id="math-floor-xiang-xia-qu-zheng"><a href="#Math-floor（向下取整）" class="headerlink" title="Math.floor（向下取整）"></a>Math.floor（向下取整）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.floor(<span class="string">'1.25'</span>) <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">Math</span>.floor(<span class="number">1.25</span>)   <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">Math</span>.floor(<span class="number">-1.25</span>)  <span class="comment">// -2</span></span><br><span class="line"><span class="built_in">Math</span>.floor(<span class="string">'a'</span>)    <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<h4 id="math-trunc-zhi-fan-hui-zheng-shu-bu-fen-qu-chu-xiao-shu"><a href="#Math-trunc（只返回整数部分，去除小数）" class="headerlink" title="Math.trunc（只返回整数部分，去除小数）"></a>Math.trunc（只返回整数部分，去除小数）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.trunc(<span class="string">'2.52'</span>) <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">Math</span>.trunc(<span class="number">-2.13</span>)  <span class="comment">// -2</span></span><br><span class="line"><span class="built_in">Math</span>.trunc(<span class="number">0.2</span>)    <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">Math</span>.trunc(<span class="string">'a'</span>)    <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<h4 id="math-max-zui-da-zhi"><a href="#Math-max（最大值）" class="headerlink" title="Math.max（最大值）"></a>Math.max（最大值）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.max(<span class="number">-3</span>, <span class="number">-1</span>, <span class="number">0</span>, <span class="number">3</span>) 	 <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">Math</span>.max(<span class="string">'-3'</span>, <span class="string">'-1'</span>, <span class="string">'0'</span>, <span class="string">'3'</span>) <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">Math</span>.max(<span class="number">-3</span>, <span class="number">-1</span>, <span class="number">0</span>, <span class="string">'a'</span>) <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<h4 id="math-min-zui-xiao-zhi"><a href="#Math-min（最小值）" class="headerlink" title="Math.min（最小值）"></a>Math.min（最小值）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.min(<span class="number">-3</span>, <span class="number">-1</span>, <span class="number">0</span>, <span class="number">3</span>)   <span class="comment">// -3</span></span><br><span class="line"><span class="built_in">Math</span>.min(<span class="string">'-3'</span>, <span class="string">'-1'</span>, <span class="string">'0'</span>, <span class="string">'3'</span>) <span class="comment">// -3</span></span><br><span class="line"><span class="built_in">Math</span>.min(<span class="number">-3</span>, <span class="number">-1</span>, <span class="number">0</span>, <span class="string">'a'</span>) <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<h4 id="math-random-fan-hui-0-1-zhi-jian-de-sui-ji-shu"><a href="#Math-random（返回0-1之间的随机数）" class="headerlink" title="Math.random（返回0~1之间的随机数）"></a>Math.random（返回0~1之间的随机数）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.random() <span class="comment">// 0.7930965120699416</span></span><br></pre></td></tr></table></figure>
+<h4 id="math-round-si-she-wu-ru-hou-de-zheng-shu"><a href="#Math-round（四舍五入后的整数）" class="headerlink" title="Math.round（四舍五入后的整数）"></a>Math.round（四舍五入后的整数）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.round(<span class="number">1.5</span>) 	<span class="comment">// 2</span></span><br><span class="line"><span class="built_in">Math</span>.round(<span class="number">-1.5</span>)  	<span class="comment">// -1</span></span><br><span class="line"><span class="built_in">Math</span>.round(<span class="number">-1.51</span>)  	<span class="comment">// -2</span></span><br><span class="line"><span class="built_in">Math</span>.round(<span class="string">'a'</span>)		<span class="comment">// NaN</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回指定精度的数字</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">round</span>(<span class="params">number, precision</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.round(+number + <span class="string">'e'</span> + precision) / <span class="built_in">Math</span>.pow(<span class="number">10</span>, precision)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">round(<span class="number">1.089</span>, <span class="number">2</span>) <span class="comment">// 1.09</span></span><br></pre></td></tr></table></figure>
+<h4 id="math-sign-pan-duan-shu-zhi-zheng-fu"><a href="#Math-sign（判断数值正负）" class="headerlink" title="Math.sign（判断数值正负）"></a>Math.sign（判断数值正负）</h4><p>返回值：1 整数、0 零、-1 负数 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.sign(<span class="number">4.2</span>)  <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">Math</span>.sign(<span class="number">0</span>)  	<span class="comment">// 0</span></span><br><span class="line"><span class="built_in">Math</span>.sign(<span class="number">-4.2</span>) <span class="comment">// -1</span></span><br><span class="line"><span class="built_in">Math</span>.sign(<span class="string">'a'</span>)  <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<h4 id="math-pow-x-y-x-de-y-mi-fang"><a href="#Math-pow-x-y-（x的y幂方）" class="headerlink" title="Math.pow(x, y) （x的y幂方）"></a>Math.pow(x, y) （x的y幂方）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">3</span>) <span class="comment">// 8</span></span><br><span class="line"><span class="built_in">Math</span>.pow(<span class="number">10</span>, <span class="number">2</span>) <span class="comment">// 100</span></span><br><span class="line"><span class="built_in">Math</span>.pow(<span class="string">'2'</span>, <span class="string">'3'</span>) <span class="comment">// 8</span></span><br><span class="line"><span class="built_in">Math</span>.pow(<span class="string">'2'</span>, <span class="string">'a'</span>) <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<h4 id="math-sqrt-ping-fang-gen"><a href="#Math-sqrt（平方根）" class="headerlink" title="Math.sqrt（平方根）"></a>Math.sqrt（平方根）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.sqrt(<span class="number">25</span>)  <span class="comment">// 5</span></span><br><span class="line"><span class="built_in">Math</span>.sqrt(<span class="string">'6'</span>) <span class="comment">// 2.449489742783178</span></span><br><span class="line"><span class="built_in">Math</span>.sqrt(<span class="number">0</span>)   <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">Math</span>.sqrt(<span class="number">-4</span>)  <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<h4 id="math-cbrt-li-fang-gen"><a href="#Math-cbrt（立方根）" class="headerlink" title="Math.cbrt（立方根）"></a>Math.cbrt（立方根）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.cbrt(<span class="number">8</span>)  <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">Math</span>.cbrt(<span class="number">0</span>)  <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">Math</span>.cbrt(<span class="number">-8</span>) <span class="comment">// -2</span></span><br></pre></td></tr></table></figure>
+<h4 id="math-log10-yi-10-wei-di-de-dui-shu"><a href="#Math-log10（以-10-为底的对数）" class="headerlink" title="Math.log10（以 10 为底的对数）"></a>Math.log10（以 10 为底的对数）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.log10(<span class="number">100</span>) <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">Math</span>.log10(<span class="number">1</span>) 	<span class="comment">// 0</span></span><br><span class="line"><span class="built_in">Math</span>.log10(<span class="number">0</span>)   <span class="comment">// -Infinity</span></span><br><span class="line"><span class="built_in">Math</span>.log(<span class="number">-100</span>)  <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<h4 id="math-log2-yi-2-wei-di-de-dui-shu"><a href="#Math-log2（以-2-为底的对数）" class="headerlink" title="Math.log2（以 2 为底的对数）"></a>Math.log2（以 2 为底的对数）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.log2(<span class="number">4</span>)  <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">Math</span>.log2(<span class="number">-4</span>) <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">Math</span>.log2(<span class="number">0</span>)  <span class="comment">// -Infinity</span></span><br></pre></td></tr></table></figure>
+<h4 id="math-log-yi-ge-shu-de-zi-ran-dui-shu"><a href="#Math-log（一个数的自然对数）" class="headerlink" title="Math.log（一个数的自然对数）"></a>Math.log（一个数的自然对数）</h4><p>自然对数以常数e为底数的对数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.log(<span class="number">2</span>) <span class="comment">// 0.6931471805599453</span></span><br><span class="line"><span class="built_in">Math</span>.log(<span class="number">-2</span>) <span class="comment">// NaN</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 以 x 为底 y 的对数（即logx y）</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getBaseLog</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.log(y) / <span class="built_in">Math</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getBaseLog(<span class="number">2</span>, <span class="number">8</span>) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<h4 id="math-pi"><a href="#Math-PI" class="headerlink" title="Math.PI"></a>Math.PI</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.PI <span class="comment">// 3.141592653589793</span></span><br></pre></td></tr></table></figure>
+<h4 id="math-sin-zheng-xian"><a href="#Math-sin（正弦）" class="headerlink" title="Math.sin（正弦）"></a>Math.sin（正弦）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.sin(<span class="built_in">Math</span>.PI / <span class="number">6</span>) <span class="comment">// 0.49999999999999994</span></span><br></pre></td></tr></table></figure>
+<h4 id="math-cos-yu-xian"><a href="#Math-cos（余弦）" class="headerlink" title="Math.cos（余弦）"></a>Math.cos（余弦）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.cos(<span class="built_in">Math</span>.PI / <span class="number">3</span>) <span class="comment">// 0.5000000000000001</span></span><br></pre></td></tr></table></figure>
+<h4 id="math-tan-zheng-qie"><a href="#Math-tan（正切）" class="headerlink" title="Math.tan（正切）"></a>Math.tan（正切）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.tan(<span class="built_in">Math</span>.PI / <span class="number">4</span>) <span class="comment">// 0.9999999999999999</span></span><br></pre></td></tr></table></figure>
+<h4 id="san-jiao-han-shu-te-shu-zhi"><a href="#三角函数特数值" class="headerlink" title="三角函数特数值"></a>三角函数特数值</h4><p><img src="http://oizt3fjv8.bkt.clouddn.com/2018-10-15-145507.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Maywzp
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://maywzp.github.io/2018/10/16/JS Math/" title="JS Math">https://maywzp.github.io/2018/10/16/JS Math/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript操作手册/" rel="tag"># javascript操作手册</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/13/JS Number/" rel="next" title="JS Number">
+                <i class="fa fa-chevron-left"></i> JS Number
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/16/JS Date/" rel="prev" title="JS Date">
+                JS Date <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Maywzp" />
+            
+              <p class="site-author-name" itemprop="name">Maywzp</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#math-abs-jue-dui-zhi"><span class="nav-number">1.</span> <span class="nav-text">Math.abs（绝对值）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#math-ceil-xiang-shang-qu-zheng"><span class="nav-number">2.</span> <span class="nav-text">Math.ceil（向上取整）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#math-floor-xiang-xia-qu-zheng"><span class="nav-number">3.</span> <span class="nav-text">Math.floor（向下取整）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#math-trunc-zhi-fan-hui-zheng-shu-bu-fen-qu-chu-xiao-shu"><span class="nav-number">4.</span> <span class="nav-text">Math.trunc（只返回整数部分，去除小数）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#math-max-zui-da-zhi"><span class="nav-number">5.</span> <span class="nav-text">Math.max（最大值）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#math-min-zui-xiao-zhi"><span class="nav-number">6.</span> <span class="nav-text">Math.min（最小值）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#math-random-fan-hui-0-1-zhi-jian-de-sui-ji-shu"><span class="nav-number">7.</span> <span class="nav-text">Math.random（返回0~1之间的随机数）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#math-round-si-she-wu-ru-hou-de-zheng-shu"><span class="nav-number">8.</span> <span class="nav-text">Math.round（四舍五入后的整数）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#math-sign-pan-duan-shu-zhi-zheng-fu"><span class="nav-number">9.</span> <span class="nav-text">Math.sign（判断数值正负）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#math-pow-x-y-x-de-y-mi-fang"><span class="nav-number">10.</span> <span class="nav-text">Math.pow(x, y) （x的y幂方）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#math-sqrt-ping-fang-gen"><span class="nav-number">11.</span> <span class="nav-text">Math.sqrt（平方根）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#math-cbrt-li-fang-gen"><span class="nav-number">12.</span> <span class="nav-text">Math.cbrt（立方根）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#math-log10-yi-10-wei-di-de-dui-shu"><span class="nav-number">13.</span> <span class="nav-text">Math.log10（以 10 为底的对数）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#math-log2-yi-2-wei-di-de-dui-shu"><span class="nav-number">14.</span> <span class="nav-text">Math.log2（以 2 为底的对数）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#math-log-yi-ge-shu-de-zi-ran-dui-shu"><span class="nav-number">15.</span> <span class="nav-text">Math.log（一个数的自然对数）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#math-pi"><span class="nav-number">16.</span> <span class="nav-text">Math.PI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#math-sin-zheng-xian"><span class="nav-number">17.</span> <span class="nav-text">Math.sin（正弦）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#math-cos-yu-xian"><span class="nav-number">18.</span> <span class="nav-text">Math.cos（余弦）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#math-tan-zheng-qie"><span class="nav-number">19.</span> <span class="nav-text">Math.tan（正切）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#san-jiao-han-shu-te-shu-zhi"><span class="nav-number">20.</span> <span class="nav-text">三角函数特数值</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maywzp</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.3"></script>
+
+
+  
+
+
+</body>
+</html>
