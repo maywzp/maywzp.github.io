@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="知识点," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概念，通过 class 关键字，可以定义类。实际上 class 只是一个语法糖，在 ES6 之前就可以做到的，新的语法只是让结构更加清晰。ES6 之前类的实现方法，可参考 javascript 继承的实现 实例属性实例对象上的属性，可通过 new 一个对象使用，也可在类内部使用。 静态属性Class 自身的属性，通过 Class.p">
+<meta name="keywords" content="知识点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS Class">
+<meta property="og:url" content="https://maywzp.github.io/2018/10/29/JS-Class/index.html">
+<meta property="og:site_name" content="MayWzp">
+<meta property="og:description" content="ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概念，通过 class 关键字，可以定义类。实际上 class 只是一个语法糖，在 ES6 之前就可以做到的，新的语法只是让结构更加清晰。ES6 之前类的实现方法，可参考 javascript 继承的实现 实例属性实例对象上的属性，可通过 new 一个对象使用，也可在类内部使用。 静态属性Class 自身的属性，通过 Class.p">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-29T03:17:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS Class">
+<meta name="twitter:description" content="ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概念，通过 class 关键字，可以定义类。实际上 class 只是一个语法糖，在 ES6 之前就可以做到的，新的语法只是让结构更加清晰。ES6 之前类的实现方法，可参考 javascript 继承的实现 实例属性实例对象上的属性，可通过 new 一个对象使用，也可在类内部使用。 静态属性Class 自身的属性，通过 Class.p">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://maywzp.github.io/2018/10/29/JS-Class/"/>
+
+
+
+
+
+  <title>JS Class | MayWzp</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MayWzp</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://maywzp.github.io/2018/10/29/JS-Class/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Maywzp">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MayWzp">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JS Class</h2>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+            
+            <time title="更新于" itemprop="dateCreated datePublished" datetime="2018-10-29T11:17:21+08:00">
+              2018-10-29
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概念，通过 class 关键字，可以定义类。<br>实际上 <code>class</code> 只是一个语法糖，在 ES6 之前就可以做到的，新的语法只是让结构更加清晰。<br>ES6 之前类的实现方法，可参考 <a href="https://maywzp.github.io/2018/10/25/javascript-%E7%BB%A7%E6%89%BF/">javascript 继承的实现</a></p>
+<h3 id="shi-li-shu-xing"><a href="#实例属性" class="headerlink" title="实例属性"></a>实例属性</h3><p>实例对象上的属性，可通过 <code>new</code> 一个对象使用，也可在类内部使用。</p>
+<h3 id="jing-tai-shu-xing"><a href="#静态属性" class="headerlink" title="静态属性"></a>静态属性</h3><p>Class 自身的属性，通过 <code>Class.propName</code> 读写。</p>
+<h3 id="si-you-fang-fa"><a href="#私有方法" class="headerlink" title="私有方法"></a>私有方法</h3><p>在 Class 内部使用的方法，不能再外部使用。<br>实现方法：</p>
+<ol>
+<li>命名增加下划线，如：_bar()，但这种方法只是命名上识别出它是私有方法，其实外部还是可以调用。</li>
+<li>将私有方法移除类，在内部要调用时使用。</li>
+<li>使用 Symbol 类型，为私有方法命名一个 Symbol 值，如：<code>const bar = Symbol(&#39;bar&#39;); [bar]()</code>。</li>
+</ol>
+<h3 id="jing-tai-fang-fa"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h3><p>使用 static 关键字定义，不会被实例继承，可被子类继承，通过类直接调用。<br>静态方法的 this 指的是类，不是实例。</p>
+<h3 id="get-set-lan-jie-shu-xing-cun-qu-xing-wei"><a href="#get-set-拦截属性存取行为" class="headerlink" title="get/set 拦截属性存取行为"></a>get/set 拦截属性存取行为</h3><p>Class 可以对某个属性设置 get 和 set，拦截该属性的存取行为。</p>
+<h3 id="new-target"><a href="#new-target" class="headerlink" title="new.target"></a>new.target</h3><p>一般用于构造函数之中，返回当前被调用的 Class</p>
+<h3 id="super"><a href="#super" class="headerlink" title="super"></a>super</h3><p>super关键字用于访问和调用一个对象的父对象上的函数。<br>子类公有方法 调用 super 公有方法，静态方法 调用 super 静态方法</p>
+<h3 id="dai-ma-shi-li"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bar = <span class="built_in">Symbol</span>(<span class="string">'bar'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="comment">// species = '动物'  注：实例属性也可这样定义</span></span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="comment">// new.target 判断当前被调用的 Class</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">new</span>.target === Animal) &#123;</span><br><span class="line">      <span class="keyword">this</span>.target = <span class="string">'Animal'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">new</span>.target === Cat) &#123;</span><br><span class="line">      <span class="keyword">this</span>.target = <span class="string">'Cat'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.target = <span class="string">''</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.species = <span class="string">'动物'</span> <span class="comment">// 实例属性</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 静态方法</span></span><br><span class="line">  <span class="keyword">static</span> getSpecies() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`static species: animal`</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 公有方法</span></span><br><span class="line">  getSelfSpecies() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`species: <span class="subst">$&#123;<span class="keyword">this</span>.species&#125;</span>`</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 私有方法</span></span><br><span class="line">  [bar]() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Animal.environment = <span class="string">'非洲'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123; <span class="comment">// 继承</span></span><br><span class="line">  <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">    <span class="keyword">super</span>() <span class="comment">// 父类，可传参</span></span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 拦截已定义属性</span></span><br><span class="line">  get name() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`get name value`</span></span><br><span class="line">  &#125;</span><br><span class="line">  set name(val) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`set cat name: <span class="subst">$&#123;val&#125;</span>`</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 拦截一个新属性</span></span><br><span class="line">  get getName() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`get cat name: <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 静态方法 调用 super 静态方法</span></span><br><span class="line">  <span class="keyword">static</span> getSuperSpecies() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.getSpecies()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 公有方法 调用 super 公有方法</span></span><br><span class="line">  getParentSpecies() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.getSelfSpecies() + <span class="string">' too'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Cat.category = <span class="string">'猫科动物'</span> <span class="comment">// 静态属性</span></span><br><span class="line"></span><br><span class="line">cat = <span class="keyword">new</span> Cat() <span class="comment">// set cat name: undefined</span></span><br><span class="line">cat.name = <span class="string">'大毛'</span> <span class="comment">// set cat name: 大毛</span></span><br><span class="line">cat.name <span class="comment">// get name value</span></span><br><span class="line">cat.getName <span class="comment">// get cat name: 大毛</span></span><br><span class="line"></span><br><span class="line">Cat.category <span class="comment">// 猫科动物</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Maywzp
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://maywzp.github.io/2018/10/29/JS-Class/" title="JS Class">https://maywzp.github.io/2018/10/29/JS-Class/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/知识点/" rel="tag"># 知识点</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/25/javascript-继承/" rel="next" title="javascript 继承的实现">
+                <i class="fa fa-chevron-left"></i> javascript 继承的实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Maywzp" />
+            
+              <p class="site-author-name" itemprop="name">Maywzp</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#shi-li-shu-xing"><span class="nav-number">1.</span> <span class="nav-text">实例属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jing-tai-shu-xing"><span class="nav-number">2.</span> <span class="nav-text">静态属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#si-you-fang-fa"><span class="nav-number">3.</span> <span class="nav-text">私有方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jing-tai-fang-fa"><span class="nav-number">4.</span> <span class="nav-text">静态方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#get-set-lan-jie-shu-xing-cun-qu-xing-wei"><span class="nav-number">5.</span> <span class="nav-text">get/set 拦截属性存取行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new-target"><span class="nav-number">6.</span> <span class="nav-text">new.target</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#super"><span class="nav-number">7.</span> <span class="nav-text">super</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dai-ma-shi-li"><span class="nav-number">8.</span> <span class="nav-text">代码示例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maywzp</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.3"></script>
+
+
+  
+
+
+</body>
+</html>
