@@ -130,20 +130,18 @@
 
 
 
-<meta name="description" content="cooking 是一个基于 webpack 但是提供更简单的配置项，同时内置了许多常用配置的构建工具。">
+<meta name="description" content="cooking 是一个基于 webpack 但是提供更简单的配置项，同时内置了许多常用配置的构建工具。 安装Webpack 配置较繁琐，实际项目中使用 cooking npm 来搭建项目环境参考手册：http://cookingjs.github.io/zh-cn/intro.html安装：npm i cooking-cli -g创建 vue 项目：npm init vue执行项目：cooking">
 <meta name="keywords" content="配置,自动化工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cooking配置">
 <meta property="og:url" content="https://maywzp.github.io/2016/12/25/cooking配置/index.html">
 <meta property="og:site_name" content="MayWzp">
-<meta property="og:description" content="cooking 是一个基于 webpack 但是提供更简单的配置项，同时内置了许多常用配置的构建工具。">
+<meta property="og:description" content="cooking 是一个基于 webpack 但是提供更简单的配置项，同时内置了许多常用配置的构建工具。 安装Webpack 配置较繁琐，实际项目中使用 cooking npm 来搭建项目环境参考手册：http://cookingjs.github.io/zh-cn/intro.html安装：npm i cooking-cli -g创建 vue 项目：npm init vue执行项目：cooking">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://oizt3fjv8.bkt.clouddn.com/cooking_no1.jpg">
 <meta property="og:updated_time" content="2016-12-24T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cooking配置">
-<meta name="twitter:description" content="cooking 是一个基于 webpack 但是提供更简单的配置项，同时内置了许多常用配置的构建工具。">
-<meta name="twitter:image" content="http://oizt3fjv8.bkt.clouddn.com/cooking_no1.jpg">
+<meta name="twitter:description" content="cooking 是一个基于 webpack 但是提供更简单的配置项，同时内置了许多常用配置的构建工具。 安装Webpack 配置较繁琐，实际项目中使用 cooking npm 来搭建项目环境参考手册：http://cookingjs.github.io/zh-cn/intro.html安装：npm i cooking-cli -g创建 vue 项目：npm init vue执行项目：cooking">
 
 
 
@@ -349,10 +347,6 @@
           
 
           
-              <div class="post-description">
-                  cooking 是一个基于 webpack 但是提供更简单的配置项，同时内置了许多常用配置的构建工具。
-              </div>
-          
 
         </div>
       </header>
@@ -366,30 +360,15 @@
 
       
       
-        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-          
-          
-            <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox"
-                 href="http://oizt3fjv8.bkt.clouddn.com/cooking_no1.jpg" rel="gallery_cjntx34di0019s0xt082uf8lh"
-                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="http://oizt3fjv8.bkt.clouddn.com/cooking_no1.jpg" itemprop="contentUrl"/>
-              </a>
-            
-          
-
-          
-          </div>
-        </div>
-      
 
       
-        <h2 id="an-zhuang"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>Webpack配置较繁琐，实际项目中使用cooking npm来搭建项目环境<br>参考手册：<a href="http://cookingjs.github.io/zh-cn/intro.html" target="_blank" rel="noopener">http://cookingjs.github.io/zh-cn/intro.html</a><br>安装：<code>npm i cooking-cli -g</code><br>创建vue项目：<code>npm init vue</code><br>执行项目：<code>cooking watch</code><br>生产环境代码构建：<code>cooking build</code></p>
-<h2 id="cooking-config-js-wen-jian-pei-zhi"><a href="#cooking-config-js文件配置" class="headerlink" title="cooking.config.js文件配置"></a>cooking.config.js文件配置</h2><h3 id="pei-zhi-duo-wen-jian-ru-kou"><a href="#配置多文件入口" class="headerlink" title="配置多文件入口"></a>配置多文件入口</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">entry: &#123;</span><br><span class="line">    index: <span class="string">'./src/index.js'</span>,</span><br><span class="line">    search: <span class="string">'./src/search.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">template: [&#123;</span><br><span class="line">  filename: <span class="string">'index.html'</span>,</span><br><span class="line">  template: <span class="string">'src/index.tpl'</span>,</span><br><span class="line">  chunks: [<span class="string">'index'</span>, <span class="string">'vendor'</span>, <span class="string">'manifest'</span>]</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  filename: <span class="string">'search.html'</span>,</span><br><span class="line">  template: <span class="string">'src/search.tpl'</span>,</span><br><span class="line">  chunks: [<span class="string">'search'</span>, <span class="string">'vendor'</span>, <span class="string">'manifest'</span>]</span><br><span class="line">&#125;],</span><br></pre></td></tr></table></figure>
-<h3 id="pei-zhi-host"><a href="#配置host" class="headerlink" title="配置host"></a>配置host</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">   hostname: <span class="string">'192.168.1.155'</span>, （换为本地IP）</span><br><span class="line">   port: <span class="number">2001</span>,</span><br><span class="line">   protocol: <span class="string">'http:'</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="pei-zhi-postcss-less-lint"><a href="#配置postcss、less、lint" class="headerlink" title="配置postcss、less、lint"></a>配置postcss、less、lint</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">postcss: [</span><br><span class="line">   <span class="built_in">require</span>(<span class="string">'autoprefixer'</span>)</span><br><span class="line"> ],</span><br><span class="line">extends: [<span class="string">'vue'</span>, <span class="string">'lint'</span>, <span class="string">'less'</span>, <span class="string">'autoprefixer'</span>]</span><br></pre></td></tr></table></figure>
-<h3 id="quan-ju-jquery"><a href="#全局jQuery" class="headerlink" title="全局jQuery"></a>全局jQuery</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cooking.add(<span class="string">'plugins.Provide'</span>, <span class="keyword">new</span> webpack.ProvidePlugin(&#123;</span><br><span class="line">    $: <span class="string">'jquery'</span>,</span><br><span class="line">    <span class="string">'window.jQuery'</span>: <span class="string">'jquery'</span></span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure>
-<h3 id="tian-jia-loader"><a href="#添加loader" class="headerlink" title="添加loader"></a>添加loader</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cooking.add(<span class="string">'loader.file'</span>, &#123;</span><br><span class="line">    test: <span class="regexp">/\.swf$/</span>,</span><br><span class="line">    loaders: [<span class="string">'file?name=[path][name].[ext]'</span>]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+        <p>cooking 是一个基于 webpack 但是提供更简单的配置项，同时内置了许多常用配置的构建工具。</p>
+<h2 id="an-zhuang"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>Webpack 配置较繁琐，实际项目中使用 cooking npm 来搭建项目环境<br>参考手册：<a href="http://cookingjs.github.io/zh-cn/intro.html" target="_blank" rel="noopener">http://cookingjs.github.io/zh-cn/intro.html</a><br>安装：<code>npm i cooking-cli -g</code><br>创建 vue 项目：<code>npm init vue</code><br>执行项目：<code>cooking watch</code><br>生产环境代码构建：<code>cooking build</code></p>
+<h2 id="cooking-config-js-wen-jian-pei-zhi"><a href="#cooking-config-js-文件配置" class="headerlink" title="cooking.config.js 文件配置"></a>cooking.config.js 文件配置</h2><h3 id="pei-zhi-duo-wen-jian-ru-kou"><a href="#配置多文件入口" class="headerlink" title="配置多文件入口"></a>配置多文件入口</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">entry: &#123;</span><br><span class="line">    index: <span class="string">'./src/index.js'</span>,</span><br><span class="line">    search: <span class="string">'./src/search.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">template: [&#123;</span><br><span class="line">  filename: <span class="string">'index.html'</span>,</span><br><span class="line">  template: <span class="string">'src/index.tpl'</span>,</span><br><span class="line">  chunks: [<span class="string">'index'</span>, <span class="string">'vendor'</span>, <span class="string">'manifest'</span>]</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  filename: <span class="string">'search.html'</span>,</span><br><span class="line">  template: <span class="string">'src/search.tpl'</span>,</span><br><span class="line">  chunks: [<span class="string">'search'</span>, <span class="string">'vendor'</span>, <span class="string">'manifest'</span>]</span><br><span class="line">&#125;],</span><br></pre></td></tr></table></figure>
+<h3 id="pei-zhi-host"><a href="#配置-host" class="headerlink" title="配置 host"></a>配置 host</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">   hostname: <span class="string">'192.168.1.155'</span>, （换为本地IP）</span><br><span class="line">   port: <span class="number">2001</span>,</span><br><span class="line">   protocol: <span class="string">'http:'</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="pei-zhi-postcss-less-lint"><a href="#配置-postcss、less、lint" class="headerlink" title="配置 postcss、less、lint"></a>配置 postcss、less、lint</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">postcss: [</span><br><span class="line">   <span class="built_in">require</span>(<span class="string">'autoprefixer'</span>)</span><br><span class="line"> ],</span><br><span class="line">extends: [<span class="string">'vue'</span>, <span class="string">'lint'</span>, <span class="string">'less'</span>, <span class="string">'autoprefixer'</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="quan-ju-jquery"><a href="#全局-jQuery" class="headerlink" title="全局 jQuery"></a>全局 jQuery</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cooking.add(</span><br><span class="line">  <span class="string">'plugins.Provide'</span>,</span><br><span class="line">  <span class="keyword">new</span> webpack.ProvidePlugin(&#123;</span><br><span class="line">    $: <span class="string">'jquery'</span>,</span><br><span class="line">    <span class="string">'window.jQuery'</span>: <span class="string">'jquery'</span></span><br><span class="line">  &#125;)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="tian-jia-loader"><a href="#添加-loader" class="headerlink" title="添加 loader"></a>添加 loader</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cooking.add(<span class="string">'loader.file'</span>, &#123;</span><br><span class="line">  test: <span class="regexp">/\.swf$/</span>,</span><br><span class="line">  loaders: [<span class="string">'file?name=[path][name].[ext]'</span>]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -441,8 +420,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/22/JS 对象/" rel="next" title="JS 对象">
-                <i class="fa fa-chevron-left"></i> JS 对象
+              <a href="/2016/12/22/JS 对象/" rel="next" title="JS Object">
+                <i class="fa fa-chevron-left"></i> JS Object
               </a>
             
           </div>
@@ -536,7 +515,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -549,7 +528,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -584,7 +563,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#an-zhuang"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cooking-config-js-wen-jian-pei-zhi"><span class="nav-number">2.</span> <span class="nav-text">cooking.config.js文件配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pei-zhi-duo-wen-jian-ru-kou"><span class="nav-number">2.1.</span> <span class="nav-text">配置多文件入口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pei-zhi-host"><span class="nav-number">2.2.</span> <span class="nav-text">配置host</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pei-zhi-postcss-less-lint"><span class="nav-number">2.3.</span> <span class="nav-text">配置postcss、less、lint</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#quan-ju-jquery"><span class="nav-number">2.4.</span> <span class="nav-text">全局jQuery</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tian-jia-loader"><span class="nav-number">2.5.</span> <span class="nav-text">添加loader</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#an-zhuang"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cooking-config-js-wen-jian-pei-zhi"><span class="nav-number">2.</span> <span class="nav-text">cooking.config.js 文件配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pei-zhi-duo-wen-jian-ru-kou"><span class="nav-number">2.1.</span> <span class="nav-text">配置多文件入口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pei-zhi-host"><span class="nav-number">2.2.</span> <span class="nav-text">配置 host</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pei-zhi-postcss-less-lint"><span class="nav-number">2.3.</span> <span class="nav-text">配置 postcss、less、lint</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#quan-ju-jquery"><span class="nav-number">2.4.</span> <span class="nav-text">全局 jQuery</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tian-jia-loader"><span class="nav-number">2.5.</span> <span class="nav-text">添加 loader</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -665,12 +644,11 @@
   
 
 
-
-
-
-
   
-  
+
+
+
+
 
 
 
@@ -710,12 +688,7 @@
 
   
   
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 

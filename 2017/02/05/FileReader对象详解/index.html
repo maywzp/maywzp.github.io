@@ -130,20 +130,18 @@
 
 
 
-<meta name="description" content="用来把文件读入内存，并且读取文件中的数据。FileReader接口提供了一个异步API，使用该API可以在浏览器主线程中异步访问文件系统，读取文件中的数据。到目前为止，只有FF3.6+和Chrome6.0+实现了FileReader接口。">
+<meta name="description" content="FileReader 允许Web应用程序异步访问文件系统，读取文件中的数据。 方法   方法名 参数 描述     readAsBinaryString file 将文件读取为二进制编码   readAsText file,[encoding] 将文件读取为文本   readAsDataURL file 将文件读取为 DataURL   abort (none) 终端读取操作    事件   事件">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FileReader对象详解">
+<meta property="og:title" content="FileReader 对象">
 <meta property="og:url" content="https://maywzp.github.io/2017/02/05/FileReader对象详解/index.html">
 <meta property="og:site_name" content="MayWzp">
-<meta property="og:description" content="用来把文件读入内存，并且读取文件中的数据。FileReader接口提供了一个异步API，使用该API可以在浏览器主线程中异步访问文件系统，读取文件中的数据。到目前为止，只有FF3.6+和Chrome6.0+实现了FileReader接口。">
+<meta property="og:description" content="FileReader 允许Web应用程序异步访问文件系统，读取文件中的数据。 方法   方法名 参数 描述     readAsBinaryString file 将文件读取为二进制编码   readAsText file,[encoding] 将文件读取为文本   readAsDataURL file 将文件读取为 DataURL   abort (none) 终端读取操作    事件   事件">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://oizt3fjv8.bkt.clouddn.com/filereader_no1.png">
 <meta property="og:updated_time" content="2017-02-05T05:47:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FileReader对象详解">
-<meta name="twitter:description" content="用来把文件读入内存，并且读取文件中的数据。FileReader接口提供了一个异步API，使用该API可以在浏览器主线程中异步访问文件系统，读取文件中的数据。到目前为止，只有FF3.6+和Chrome6.0+实现了FileReader接口。">
-<meta name="twitter:image" content="http://oizt3fjv8.bkt.clouddn.com/filereader_no1.png">
+<meta name="twitter:title" content="FileReader 对象">
+<meta name="twitter:description" content="FileReader 允许Web应用程序异步访问文件系统，读取文件中的数据。 方法   方法名 参数 描述     readAsBinaryString file 将文件读取为二进制编码   readAsText file,[encoding] 将文件读取为文本   readAsDataURL file 将文件读取为 DataURL   abort (none) 终端读取操作    事件   事件">
 
 
 
@@ -179,7 +177,7 @@
 
 
 
-  <title>FileReader对象详解 | MayWzp</title>
+  <title>FileReader 对象 | MayWzp</title>
   
 
 
@@ -323,7 +321,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">FileReader对象详解</h2>
+          <h2 class="post-title" itemprop="name headline">FileReader 对象</h2>
         
 
         <div class="post-meta">
@@ -349,10 +347,6 @@
           
 
           
-              <div class="post-description">
-                  用来把文件读入内存，并且读取文件中的数据。FileReader接口提供了一个异步API，使用该API可以在浏览器主线程中异步访问文件系统，读取文件中的数据。到目前为止，只有FF3.6+和Chrome6.0+实现了FileReader接口。
-              </div>
-          
 
         </div>
       </header>
@@ -366,25 +360,10 @@
 
       
       
-        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-          
-          
-            <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox"
-                 href="http://oizt3fjv8.bkt.clouddn.com/filereader_no1.png" rel="gallery_cjntx348d0007s0xt17orslqk"
-                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="http://oizt3fjv8.bkt.clouddn.com/filereader_no1.png" itemprop="contentUrl"/>
-              </a>
-            
-          
-
-          
-          </div>
-        </div>
-      
 
       
-        <h2 id="fang-fa"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><table>
+        <p>FileReader 允许Web应用程序异步访问文件系统，读取文件中的数据。</p>
+<h2 id="fang-fa"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><table>
 <thead>
 <tr>
 <th>方法名</th>
@@ -449,7 +428,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="shi-yong"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>请选择一个文件：<span class="tag">&lt;/<span class="name">label</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">id</span>=<span class="string">"file"</span> /&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"读取图像"</span> <span class="attr">onclick</span>=<span class="string">"readAsDataURL()"</span> /&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"读取二进制数据"</span> <span class="attr">onclick</span>=<span class="string">"readAsBinaryString()"</span> /&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"读取文本文件"</span> <span class="attr">onclick</span>=<span class="string">"readAsText()"</span> /&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"result"</span> <span class="attr">name</span>=<span class="string">"result"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="shi-yong"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span>&gt;</span>请选择一个文件：<span class="tag">&lt;/<span class="name">label</span>&gt;</span> <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">id</span>=<span class="string">"file"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"读取图像"</span> <span class="attr">onclick</span>=<span class="string">"readAsDataURL()"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"读取二进制数据"</span> <span class="attr">onclick</span>=<span class="string">"readAsBinaryString()"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"读取文本文件"</span> <span class="attr">onclick</span>=<span class="string">"readAsText()"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"result"</span> <span class="attr">name</span>=<span class="string">"result"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = <span class="built_in">document</span>.getElementById(<span class="string">'result'</span>)</span><br><span class="line"><span class="keyword">var</span> file = <span class="built_in">document</span>.getElementById(<span class="string">'file'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断浏览器是否支持FileReader接口</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> FileReader == <span class="string">'undefined'</span>) &#123;</span><br><span class="line">  result.InnerHTML = <span class="string">'&lt;p&gt;你的浏览器不支持FileReader接口！&lt;/p&gt;'</span></span><br><span class="line">  <span class="comment">//使选择控件不可操作</span></span><br><span class="line">  file.setAttribute(<span class="string">'disabled'</span>, <span class="string">'disabled'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">readAsDataURL</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//检验是否为图像文件</span></span><br><span class="line">  <span class="keyword">var</span> file = <span class="built_in">document</span>.getElementById(<span class="string">'file'</span>).files[<span class="number">0</span>]</span><br><span class="line">  <span class="keyword">if</span> (!<span class="regexp">/image\/\w+/</span>.test(file.type)) &#123;</span><br><span class="line">    alert(<span class="string">'看清楚，这个需要图片！'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader()</span><br><span class="line">  <span class="comment">//将文件以Data URL形式读入页面</span></span><br><span class="line">  reader.readAsDataURL(file)</span><br><span class="line">  reader.onload = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = <span class="built_in">document</span>.getElementById(<span class="string">'result'</span>)</span><br><span class="line">    <span class="comment">//显示文件</span></span><br><span class="line">    result.innerHTML = <span class="string">'&lt;img src="'</span> + <span class="keyword">this</span>.result + <span class="string">'" alt="" /&gt;'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">readAsBinaryString</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> file = <span class="built_in">document</span>.getElementById(<span class="string">'file'</span>).files[<span class="number">0</span>]</span><br><span class="line">  <span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader()</span><br><span class="line">  <span class="comment">//将文件以二进制形式读入页面</span></span><br><span class="line">  reader.readAsBinaryString(file)</span><br><span class="line">  reader.onload = <span class="function"><span class="keyword">function</span>(<span class="params">f</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = <span class="built_in">document</span>.getElementById(<span class="string">'result'</span>)</span><br><span class="line">    <span class="comment">//显示文件</span></span><br><span class="line">    result.innerHTML = <span class="keyword">this</span>.result</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">readAsText</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> file = <span class="built_in">document</span>.getElementById(<span class="string">'file'</span>).files[<span class="number">0</span>]</span><br><span class="line">  <span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader()</span><br><span class="line">  <span class="comment">//将文件以文本形式读入页面</span></span><br><span class="line">  reader.readAsText(file)</span><br><span class="line">  reader.onload = <span class="function"><span class="keyword">function</span>(<span class="params">f</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = <span class="built_in">document</span>.getElementById(<span class="string">'result'</span>)</span><br><span class="line">    <span class="comment">//显示文件</span></span><br><span class="line">    result.innerHTML = <span class="keyword">this</span>.result</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -472,7 +451,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://maywzp.github.io/2017/02/05/FileReader对象详解/" title="FileReader对象详解">https://maywzp.github.io/2017/02/05/FileReader对象详解/</a>
+    <a href="https://maywzp.github.io/2017/02/05/FileReader对象详解/" title="FileReader 对象">https://maywzp.github.io/2017/02/05/FileReader对象详解/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -595,7 +574,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -608,7 +587,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -724,12 +703,11 @@
   
 
 
-
-
-
-
   
-  
+
+
+
+
 
 
 
@@ -769,12 +747,7 @@
 
   
   
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 

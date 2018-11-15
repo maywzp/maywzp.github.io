@@ -371,7 +371,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://oizt3fjv8.bkt.clouddn.com/vue_no1.jpg" rel="gallery_cjntx34je002hs0xtrms7mxb8"
+                 href="http://oizt3fjv8.bkt.clouddn.com/vue_no1.jpg" rel="gallery_cjodqll3p002o3pxte2hsuowd"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://oizt3fjv8.bkt.clouddn.com/vue_no1.jpg" itemprop="contentUrl"/>
               </a>
@@ -384,19 +384,23 @@
       
 
       
-        <h2 id="vue-sheng-ming-zhou-qi"><a href="#vue生命周期" class="headerlink" title="vue生命周期"></a>vue生命周期</h2><p><img src="http://oizt3fjv8.bkt.clouddn.com/vue_kill.png" alt=""></p>
-<h2 id="shu-ju-xiang-ying"><a href="#数据响应" class="headerlink" title="数据响应"></a>数据响应</h2><h3 id="dui-xiang"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p>vue是通过递归遍历初始数据中的所有属性，并用object.defineProperty把它们转化为getter和setter来实现数据观察的。<br>如果有一个属性不存在初始数据中，那么就无法观测这个属性；<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对象添加和删除属性</span></span><br><span class="line">obj.$add(key, value)</span><br><span class="line">obj.$set(key, value)</span><br><span class="line">obj.$<span class="keyword">delete</span>(key)</span><br></pre></td></tr></table></figure></p>
-<h3 id="shu-zu"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>变异方法（对下面这些方法进行了拦截，调用这些方法会数组会响应）：<br><code>push、pop、shift、unshift、splice、sort、reverse方法</code><br>非变异方法：<br><code>filter、concat、slice</code><br>上述方法返回的数组是一个不同的实例，所以要用新数组代替旧数组：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr = arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">index</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> arr[index].match(<span class="regexp">/hello/</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>通过索引修改数组数据，vue无法侦测到这类操作<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//扩展方法</span></span><br><span class="line">arr.$set(index, value)</span><br><span class="line">arr.$remove(index | value)</span><br></pre></td></tr></table></figure></p>
-<h2 id="shu-ju-jian-shi"><a href="#数据监视" class="headerlink" title="数据监视"></a>数据监视</h2><h3 id="computed-yu-methods"><a href="#computed与methods" class="headerlink" title="computed与methods"></a>computed与methods</h3> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> computed: &#123;</span><br><span class="line">    reversedMessage: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.message.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>)</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> methods: &#123;</span><br><span class="line">  reverseMessage: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.message.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上述代码实现相同的功能<br>区别：computed基于它的依赖缓存，依赖不变不会重新取值<br>methods 每当重新渲染都会执行函数</p>
-<h3 id="computed-yu-watch"><a href="#computed与watch" class="headerlink" title="computed与watch"></a>computed与watch</h3><p>区别：computed属性用于数据的计算，返回计算后的数据<br>watch用于响应数据的变化，执行一些操作，改变数据值，可以无返回值</p>
-<p>watch监视数据的变化，第一个参数为当前数据的值<br>用于一个数据会根据其他数据变化而变化，多数情况下可以使用computed属性代替<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  name: <span class="string">'wzp'</span>,</span><br><span class="line">  realName: <span class="string">''</span></span><br><span class="line">&#125;</span><br><span class="line">watch: &#123;</span><br><span class="line">  <span class="comment">//监视name属性，当name改变时realName 变化</span></span><br><span class="line">  name: <span class="function"><span class="keyword">function</span>(<span class="params">val</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.realName = val + <span class="string">'no1'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <h2 id="vue-sheng-ming-zhou-qi"><a href="#vue-生命周期" class="headerlink" title="vue 生命周期"></a>vue 生命周期</h2><p><img src="http://oizt3fjv8.bkt.clouddn.com/vue_kill.png" alt=""></p>
+<h2 id="shu-ju-xiang-ying"><a href="#数据响应" class="headerlink" title="数据响应"></a>数据响应</h2><h3 id="dui-xiang"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p>vue 是通过递归遍历初始数据中的所有属性，并用 object.defineProperty 把它们转化为 getter 和 setter 来实现数据观察的。<br>如果有一个属性不存在初始数据中，那么就无法观测这个属性；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对象添加和删除属性</span></span><br><span class="line">obj.$add(key, value)</span><br><span class="line">obj.$set(key, value)</span><br><span class="line">obj.$<span class="keyword">delete</span>(key)</span><br></pre></td></tr></table></figure>
+<h3 id="shu-zu"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>变异方法（对下面这些方法进行了拦截，调用这些方法数组会响应）：<br><code>push、pop、shift、unshift、splice、sort、reverse方法</code><br>非变异方法：<br><code>filter、concat、slice</code><br>上述方法返回的数组是一个不同的实例，所以要用新数组代替旧数组：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr = arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">index</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> arr[index].match(<span class="regexp">/hello/</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>通过索引修改数组数据，vue 无法侦测到这类操作</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//扩展方法</span></span><br><span class="line">arr.$set(index, value)</span><br><span class="line">arr.$remove(index | value)</span><br></pre></td></tr></table></figure>
+<h2 id="shu-ju-jian-shi"><a href="#数据监视" class="headerlink" title="数据监视"></a>数据监视</h2><h3 id="computed-yu-methods"><a href="#computed-与-methods" class="headerlink" title="computed 与 methods"></a>computed 与 methods</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">   reversedMessage: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">this</span>.message.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">methods: &#123;</span><br><span class="line"> reverseMessage: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">this</span>.message.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>)</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码实现相同的功能<br>区别：computed 基于它的依赖缓存，依赖不变不会重新取值<br>methods 每当重新渲染都会执行函数</p>
+<h3 id="computed-yu-watch"><a href="#computed-与-watch" class="headerlink" title="computed 与 watch"></a>computed 与 watch</h3><p>区别：computed 属性用于数据的计算，返回计算后的数据<br>watch 用于响应数据的变化，执行一些操作，改变数据值，可以无返回值</p>
+<p>watch 监视数据的变化，第一个参数为当前数据的值<br>用于一个数据会根据其他数据变化而变化，多数情况下可以使用 computed 属性代替</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  name: <span class="string">'wzp'</span>,</span><br><span class="line">  realName: <span class="string">''</span></span><br><span class="line">&#125;</span><br><span class="line">watch: &#123;</span><br><span class="line">  <span class="comment">//监视name属性，当name改变时 realName 变化</span></span><br><span class="line">  name: <span class="function"><span class="keyword">function</span>(<span class="params">val</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.realName = val + <span class="string">'no1'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="zhu-yi-shi-xiang"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
-<li>vue实例直接代理data属性：data.a == vm.a == this.a</li>
-<li>vue暴露的其他属性方法要加前缀 $,与data属性区分</li>
-<li>v-html 插入的dom数据绑定会被忽略</li>
-<li>Mustache风格不能再HTML属性中使用,要换为v-bind指令</li>
+<li>vue 实例直接代理 data 属性：data.a == vm.a == this.a</li>
+<li>vue 暴露的其他属性方法要加前缀 \$,与 data 属性区分</li>
+<li>v-html 插入的 dom 数据绑定会被忽略</li>
+<li>Mustache 风格不能再 HTML 属性中使用,要换为 v-bind 指令</li>
 <li><div :id="'box' + product.id"></div></li>
 <li><button :disabled="is"></button></li>
 <li>注意在 JavaScript 中对象和数组是引用类型，指向同一个内存空间，如果 prop 是一个对象或数组，在子组件内部改变它会影响父组件的状态。</li>
@@ -545,7 +549,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -558,7 +562,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -593,7 +597,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-sheng-ming-zhou-qi"><span class="nav-number">1.</span> <span class="nav-text">vue生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shu-ju-xiang-ying"><span class="nav-number">2.</span> <span class="nav-text">数据响应</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dui-xiang"><span class="nav-number">2.1.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shu-zu"><span class="nav-number">2.2.</span> <span class="nav-text">数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shu-ju-jian-shi"><span class="nav-number">3.</span> <span class="nav-text">数据监视</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#computed-yu-methods"><span class="nav-number">3.1.</span> <span class="nav-text">computed与methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#computed-yu-watch"><span class="nav-number">3.2.</span> <span class="nav-text">computed与watch</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zhu-yi-shi-xiang"><span class="nav-number">4.</span> <span class="nav-text">注意事项</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-sheng-ming-zhou-qi"><span class="nav-number">1.</span> <span class="nav-text">vue 生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shu-ju-xiang-ying"><span class="nav-number">2.</span> <span class="nav-text">数据响应</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dui-xiang"><span class="nav-number">2.1.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shu-zu"><span class="nav-number">2.2.</span> <span class="nav-text">数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shu-ju-jian-shi"><span class="nav-number">3.</span> <span class="nav-text">数据监视</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#computed-yu-methods"><span class="nav-number">3.1.</span> <span class="nav-text">computed 与 methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#computed-yu-watch"><span class="nav-number">3.2.</span> <span class="nav-text">computed 与 watch</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zhu-yi-shi-xiang"><span class="nav-number">4.</span> <span class="nav-text">注意事项</span></a></li></ol></div>
             
 
           </div>
@@ -674,12 +678,11 @@
   
 
 
-
-
-
-
   
-  
+
+
+
+
 
 
 
@@ -719,12 +722,7 @@
 
   
   
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 

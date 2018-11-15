@@ -130,20 +130,18 @@
 
 
 
-<meta name="description" content="Web Workers 为 Web 前端网页上的脚本提供了一种能在后台进程中运行的方法。一旦它被创建，Web Workers 就可以通过 postMessage 向任务池发送任务请求，执行完之后再通过 postMessage 返回消息给创建者指定的事件处理程序 ( 通过 onmessage 进行捕获 )。">
+<meta name="description" content="Web Workers 为 Web 前端网页上的脚本提供了一种能在后台进程中运行的方法。一旦它被创建，Web Workers 就可以通过 postMessage 向任务池发送任务请求，执行完之后再通过 postMessage 返回消息给创建者指定的事件处理程序 ( 通过 onmessage 进行捕获 )。 使用12345678910111213141516171819202122232425262">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Message API">
 <meta property="og:url" content="https://maywzp.github.io/2017/05/26/message api/index.html">
 <meta property="og:site_name" content="MayWzp">
-<meta property="og:description" content="Web Workers 为 Web 前端网页上的脚本提供了一种能在后台进程中运行的方法。一旦它被创建，Web Workers 就可以通过 postMessage 向任务池发送任务请求，执行完之后再通过 postMessage 返回消息给创建者指定的事件处理程序 ( 通过 onmessage 进行捕获 )。">
+<meta property="og:description" content="Web Workers 为 Web 前端网页上的脚本提供了一种能在后台进程中运行的方法。一旦它被创建，Web Workers 就可以通过 postMessage 向任务池发送任务请求，执行完之后再通过 postMessage 返回消息给创建者指定的事件处理程序 ( 通过 onmessage 进行捕获 )。 使用12345678910111213141516171819202122232425262">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://oizt3fjv8.bkt.clouddn.com/message_api.jpg">
 <meta property="og:updated_time" content="2017-05-26T02:47:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Message API">
-<meta name="twitter:description" content="Web Workers 为 Web 前端网页上的脚本提供了一种能在后台进程中运行的方法。一旦它被创建，Web Workers 就可以通过 postMessage 向任务池发送任务请求，执行完之后再通过 postMessage 返回消息给创建者指定的事件处理程序 ( 通过 onmessage 进行捕获 )。">
-<meta name="twitter:image" content="http://oizt3fjv8.bkt.clouddn.com/message_api.jpg">
+<meta name="twitter:description" content="Web Workers 为 Web 前端网页上的脚本提供了一种能在后台进程中运行的方法。一旦它被创建，Web Workers 就可以通过 postMessage 向任务池发送任务请求，执行完之后再通过 postMessage 返回消息给创建者指定的事件处理程序 ( 通过 onmessage 进行捕获 )。 使用12345678910111213141516171819202122232425262">
 
 
 
@@ -349,10 +347,6 @@
           
 
           
-              <div class="post-description">
-                  Web Workers 为 Web 前端网页上的脚本提供了一种能在后台进程中运行的方法。一旦它被创建，Web Workers 就可以通过 postMessage 向任务池发送任务请求，执行完之后再通过 postMessage 返回消息给创建者指定的事件处理程序 ( 通过 onmessage 进行捕获 )。
-              </div>
-          
 
         </div>
       </header>
@@ -366,25 +360,11 @@
 
       
       
-        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-          
-          
-            <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox"
-                 href="http://oizt3fjv8.bkt.clouddn.com/message_api.jpg" rel="gallery_cjntx34i90026s0xt9p0i0zlp"
-                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="http://oizt3fjv8.bkt.clouddn.com/message_api.jpg" itemprop="contentUrl"/>
-              </a>
-            
-          
-
-          
-          </div>
-        </div>
-      
 
       
-        <h2 id="shi-yong"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sourceDomain = <span class="string">'http://a.cn'</span></span><br><span class="line"><span class="keyword">const</span> targetDomain = <span class="string">'http://b.cn'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// a.cn</span></span><br><span class="line"><span class="keyword">const</span> poper = <span class="built_in">window</span>.open(targetDomain)</span><br><span class="line"></span><br><span class="line"><span class="comment">// TODO 周期性的发送消息</span></span><br><span class="line">setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  poper.postMessage(&#123; <span class="attr">message</span>: <span class="string">'I am a'</span> &#125;, targetDomain)</span><br><span class="line">&#125;, <span class="number">6000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// TODO 监听消息反馈</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(event.origin !== targetDomain) <span class="keyword">return</span></span><br><span class="line">  <span class="keyword">const</span> mes = event.data</span><br><span class="line">  <span class="keyword">return</span> mes</span><br><span class="line">&#125;, <span class="literal">false</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// b.cn</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(event.origin !== sourceDomain) <span class="keyword">return</span></span><br><span class="line">  <span class="keyword">const</span> mes = event.data</span><br><span class="line">  event.source.postMessage(&#123; <span class="attr">message</span>: <span class="string">'I am b'</span> &#125;, event.origin)</span><br><span class="line">  <span class="keyword">return</span> mes</span><br><span class="line">&#125;,<span class="literal">false</span>)</span><br></pre></td></tr></table></figure>
+        <p>Web Workers 为 Web 前端网页上的脚本提供了一种能在后台进程中运行的方法。一旦它被创建，Web Workers 就可以通过 postMessage 向任务池发送任务请求，执行完之后再通过 postMessage 返回消息给创建者指定的事件处理程序 ( 通过 onmessage 进行捕获 )。</p>
+<h2 id="shi-yong"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sourceDomain = <span class="string">'http://a.cn'</span></span><br><span class="line"><span class="keyword">const</span> targetDomain = <span class="string">'http://b.cn'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// a.cn</span></span><br><span class="line"><span class="keyword">const</span> poper = <span class="built_in">window</span>.open(targetDomain)</span><br><span class="line"></span><br><span class="line"><span class="comment">// TODO 周期性的发送消息</span></span><br><span class="line">setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  poper.postMessage(&#123; <span class="attr">message</span>: <span class="string">'I am A'</span> &#125;, targetDomain)</span><br><span class="line">&#125;, <span class="number">6000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// TODO 监听消息反馈</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(</span><br><span class="line">  <span class="string">'message'</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (event.origin !== targetDomain) <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">const</span> mes = event.data</span><br><span class="line">    <span class="keyword">return</span> mes</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">false</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// b.cn</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(</span><br><span class="line">  <span class="string">'message'</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (event.origin !== sourceDomain) <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">const</span> mes = event.data</span><br><span class="line">    event.source.postMessage(&#123; <span class="attr">message</span>: <span class="string">'I am B'</span> &#125;, event.origin)</span><br><span class="line">    <span class="keyword">return</span> mes</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">false</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -528,7 +508,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -541,7 +521,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -657,12 +637,11 @@
   
 
 
-
-
-
-
   
-  
+
+
+
+
 
 
 
@@ -702,12 +681,7 @@
 
   
   
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 

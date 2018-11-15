@@ -371,7 +371,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://oizt3fjv8.bkt.clouddn.com/vuex.jpg" rel="gallery_cjntx34jo002ls0xtpvokdzai"
+                 href="http://oizt3fjv8.bkt.clouddn.com/vuex.jpg" rel="gallery_cjodqll3s002q3pxt1cbq0ob7"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://oizt3fjv8.bkt.clouddn.com/vuex.jpg" itemprop="contentUrl"/>
               </a>
@@ -385,9 +385,9 @@
 
       
         <h1 id="si-da-yao-su"><a href="#四大要素" class="headerlink" title="四大要素"></a>四大要素</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">State（定义数据）</span><br><span class="line">Mutations（同步操作，改变state数据）</span><br><span class="line">Actions（异步操作，触发mutation）</span><br><span class="line">Getters（数据格式处理，返回所需数据）</span><br></pre></td></tr></table></figure>
-<h1 id="yin-ru-vuex"><a href="#引入vuex" class="headerlink" title="引入vuex"></a>引入vuex</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> getters <span class="keyword">from</span> <span class="string">'./getters'</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> actions <span class="keyword">from</span> <span class="string">'./actions'</span></span><br><span class="line">Vue.use(Vuex)</span><br></pre></td></tr></table></figure>
-<h1 id="shi-yong-vuex"><a href="#使用vuex" class="headerlink" title="使用vuex"></a>使用vuex</h1><p>Computed计算属性里引入getters中的数据 Methods中引入actions中的方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; mapGetters, mapActions &#125; <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line">mounted()&#123;</span><br><span class="line">   <span class="keyword">this</span>.fetchBooks()</span><br><span class="line">   <span class="keyword">let</span> books = <span class="keyword">this</span>.books</span><br><span class="line">&#125;,</span><br><span class="line">computed: &#123;</span><br><span class="line">    ...mapGetters([</span><br><span class="line">        <span class="string">'books'</span>,</span><br><span class="line">    ])</span><br><span class="line">&#125;,</span><br><span class="line"> methods: &#123;</span><br><span class="line">    ...mapActions([</span><br><span class="line">      <span class="string">'fetchBooks'</span>,</span><br><span class="line">    ]),</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="yin-ru-vuex"><a href="#引入-vuex" class="headerlink" title="引入 vuex"></a>引入 vuex</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> getters <span class="keyword">from</span> <span class="string">'./getters'</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> actions <span class="keyword">from</span> <span class="string">'./actions'</span></span><br><span class="line">Vue.use(Vuex)</span><br></pre></td></tr></table></figure>
+<h1 id="shi-yong-vuex"><a href="#使用-vuex" class="headerlink" title="使用 vuex"></a>使用 vuex</h1><p>Computed 计算属性里引入 getters 中的数据 Methods 中引入 actions 中的方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; mapGetters, mapActions &#125; <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line">mounted()&#123;</span><br><span class="line">  <span class="keyword">this</span>.fetchBooks()</span><br><span class="line">  <span class="keyword">let</span> books = <span class="keyword">this</span>.books</span><br><span class="line">&#125;,</span><br><span class="line">computed: &#123;</span><br><span class="line">  ...mapGetters([</span><br><span class="line">    <span class="string">'books'</span>,</span><br><span class="line">  ])</span><br><span class="line">&#125;,</span><br><span class="line"> methods: &#123;</span><br><span class="line">  ...mapActions([</span><br><span class="line">    <span class="string">'fetchBooks'</span>,</span><br><span class="line">  ]),</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -447,8 +447,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/11/24/JS 数组/" rel="prev" title="JS 数组">
-                JS 数组 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/11/24/JS 数组/" rel="prev" title="JS Array">
+                JS Array <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -532,7 +532,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -545,7 +545,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -580,7 +580,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#si-da-yao-su"><span class="nav-number">1.</span> <span class="nav-text">四大要素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yin-ru-vuex"><span class="nav-number">2.</span> <span class="nav-text">引入vuex</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#shi-yong-vuex"><span class="nav-number">3.</span> <span class="nav-text">使用vuex</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#si-da-yao-su"><span class="nav-number">1.</span> <span class="nav-text">四大要素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yin-ru-vuex"><span class="nav-number">2.</span> <span class="nav-text">引入 vuex</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#shi-yong-vuex"><span class="nav-number">3.</span> <span class="nav-text">使用 vuex</span></a></li></ol></div>
             
 
           </div>
@@ -661,12 +661,11 @@
   
 
 
-
-
-
-
   
-  
+
+
+
+
 
 
 
@@ -706,12 +705,7 @@
 
   
   
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 

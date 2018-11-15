@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="知识点," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="多进程的浏览器浏览器的进程包括： Browser 进程浏览器的主进程（负责协调、主控），只有一个。作用有:  负责浏览器界面显示，与用户交互。如前进，后退等 负责各个页面的管理，创建和销毁其他进程 将 Renderer 进程得到的内存中的 Bitmap，绘制到用户界面上 网络资源的管理，下载等  第三方插件进程每种类型的插件对应一个进程，仅当使用该插件时才创建 GPU 进程最多一个，用于 3D 绘">
+<meta name="keywords" content="知识点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 运行机制">
+<meta property="og:url" content="https://maywzp.github.io/2018/11/12/JS-运行机制/index.html">
+<meta property="og:site_name" content="MayWzp">
+<meta property="og:description" content="多进程的浏览器浏览器的进程包括： Browser 进程浏览器的主进程（负责协调、主控），只有一个。作用有:  负责浏览器界面显示，与用户交互。如前进，后退等 负责各个页面的管理，创建和销毁其他进程 将 Renderer 进程得到的内存中的 Bitmap，绘制到用户界面上 网络资源的管理，下载等  第三方插件进程每种类型的插件对应一个进程，仅当使用该插件时才创建 GPU 进程最多一个，用于 3D 绘">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fx5dl9dvdej307z0g1mxo.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fx5cqbhme7j30gy0hpdgl.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwgy1fx6an3z4kzj30ho0ee0tl.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fx69iodg1sj30p009smxu.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fx6g5efm4zj30m80cb762.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwgy1fx6g7aw301j30g608bt9m.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fx6g87s37xj30m80adabj.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fx6g9oa4z6j30m80640tv.jpg">
+<meta property="og:updated_time" content="2018-11-13T07:03:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS 运行机制">
+<meta name="twitter:description" content="多进程的浏览器浏览器的进程包括： Browser 进程浏览器的主进程（负责协调、主控），只有一个。作用有:  负责浏览器界面显示，与用户交互。如前进，后退等 负责各个页面的管理，创建和销毁其他进程 将 Renderer 进程得到的内存中的 Bitmap，绘制到用户界面上 网络资源的管理，下载等  第三方插件进程每种类型的插件对应一个进程，仅当使用该插件时才创建 GPU 进程最多一个，用于 3D 绘">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fx5dl9dvdej307z0g1mxo.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://maywzp.github.io/2018/11/12/JS-运行机制/"/>
+
+
+
+
+
+  <title>JS 运行机制 | MayWzp</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MayWzp</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://maywzp.github.io/2018/11/12/JS-运行机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Maywzp">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MayWzp">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JS 运行机制</h2>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+            
+            <time title="更新于" itemprop="dateCreated datePublished" datetime="2018-11-13T15:03:30+08:00">
+              2018-11-13
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="duo-jin-cheng-de-liu-lan-qi"><a href="#多进程的浏览器" class="headerlink" title="多进程的浏览器"></a>多进程的浏览器</h3><p>浏览器的进程包括：</p>
+<h4 id="browser-jin-cheng"><a href="#Browser-进程" class="headerlink" title="Browser 进程"></a>Browser 进程</h4><p>浏览器的主进程（负责协调、主控），只有一个。作用有:</p>
+<ul>
+<li>负责浏览器界面显示，与用户交互。如前进，后退等</li>
+<li>负责各个页面的管理，创建和销毁其他进程</li>
+<li>将 Renderer 进程得到的内存中的 Bitmap，绘制到用户界面上</li>
+<li>网络资源的管理，下载等</li>
+</ul>
+<h4 id="di-san-fang-cha-jian-jin-cheng"><a href="#第三方插件进程" class="headerlink" title="第三方插件进程"></a>第三方插件进程</h4><p>每种类型的插件对应一个进程，仅当使用该插件时才创建</p>
+<h4 id="gpu-jin-cheng"><a href="#GPU-进程" class="headerlink" title="GPU 进程"></a>GPU 进程</h4><p>最多一个，用于 3D 绘制等</p>
+<h4 id="liu-lan-qi-xuan-ran-jin-cheng-liu-lan-qi-nei-he-renderer-jin-cheng"><a href="#浏览器渲染进程（浏览器内核，Renderer-进程）" class="headerlink" title="浏览器渲染进程（浏览器内核，Renderer 进程）"></a>浏览器渲染进程（浏览器内核，Renderer 进程）</h4><p>默认每个 Tab 页面一个进程，互不影响。主要作用为:</p>
+<ul>
+<li>页面渲染，脚本执行，事件处理等</li>
+</ul>
+<h3 id="duo-xian-cheng-de-liu-lan-qi-nei-he"><a href="#多线程的浏览器内核" class="headerlink" title="多线程的浏览器内核"></a>多线程的浏览器内核</h3><p>对于普通的前端操作来说，主要用到的是渲染进程。<br>渲染进程常驻线程包括：</p>
+<h4 id="gui-xuan-ran-xian-cheng"><a href="#GUI-渲染线程" class="headerlink" title="GUI 渲染线程"></a>GUI 渲染线程</h4><p>负责渲染浏览器界面，解析 HTML，CSS，构建 DOM 树和 RenderObject 树，布局和绘制等。</p>
+<p>当界面需要重绘（Repaint）或由于某种操作引发回流(reflow)时，该线程就会执行</p>
+<p>注意，GUI 渲染线程与 JS 引擎线程是互斥的，当 JS 引擎执行时 GUI 线程会被挂起（相当于被冻结了），GUI 更新会被保存在一个队列中等到 JS 引擎空闲时立即被执行。</p>
+<h4 id="js-yin-qing-xian-cheng"><a href="#JS-引擎线程" class="headerlink" title="JS 引擎线程"></a>JS 引擎线程</h4><p>也称为 JS 内核，负责处理 Javascript 脚本程序。（例如 V8 引擎）</p>
+<p>JS 引擎线程负责解析 Javascript 脚本，运行代码。</p>
+<p>JS 引擎一直等待着任务队列中任务的到来，然后加以处理，一个 Tab 页（renderer 进程）中无论什么时候都只有一个 JS 线程在运行 JS 程序</p>
+<p>同样注意，GUI 渲染线程与 JS 引擎线程是互斥的，所以如果 JS 执行的时间过长，这样就会造成页面的渲染不连贯，导致页面渲染加载阻塞。</p>
+<h4 id="shi-jian-hong-fa-xian-cheng"><a href="#事件触发线程" class="headerlink" title="事件触发线程"></a>事件触发线程</h4><p>归属于浏览器而不是 JS 引擎，用来控制事件循环（可以理解，JS 引擎自己都忙不过来，需要浏览器另开线程协助）</p>
+<p>当 JS 引擎执行代码块如 setTimeOut 时（也可来自浏览器内核的其他线程,如鼠标点击、AJAX 异步请求等），会将对应任务添加到事件线程中</p>
+<p>当对应的事件符合触发条件被触发时，该线程会把事件添加到待处理队列的队尾，等待 JS 引擎的处理</p>
+<p>注意，由于 JS 的单线程关系，所以这些待处理队列中的事件都得排队等待 JS 引擎处理（当 JS 引擎空闲时才会去执行）</p>
+<h4 id="ding-shi-hong-fa-qi-xian-cheng"><a href="#定时触发器线程" class="headerlink" title="定时触发器线程"></a>定时触发器线程</h4><p>传说中的 setInterval 与 setTimeout 所在线程</p>
+<p>浏览器定时计数器并不是由 JavaScript 引擎计数的,（因为 JavaScript 引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确）</p>
+<p>因此通过单独线程来计时并触发定时（计时完毕后，添加到事件队列中，等待 JS 引擎空闲后执行）</p>
+<p>注意，W3C 在 HTML 标准中规定，规定要求 setTimeout 中低于 4ms 的时间间隔算为 4ms。</p>
+<h4 id="yi-bu-http-qing-qiu-xian-cheng"><a href="#异步-http-请求线程" class="headerlink" title="异步 http 请求线程"></a>异步 http 请求线程</h4><p>在 XMLHttpRequest 在连接后是通过浏览器新开一个线程请求</p>
+<p>将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件，将这个回调再放入事件队列中。再由 JavaScript 引擎执行。</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fx5dl9dvdej307z0g1mxo.jpg" alt=""></p>
+<h3 id="event-loop"><a href="#Event-Loop" class="headerlink" title="Event Loop"></a>Event Loop</h3><ol>
+<li>所有同步任务都在主线程上执行，形成一个<code>执行栈（execution context stack）</code></li>
+<li>主线程之外，事件触发线程管理一个<code>任务队列（task queue）</code>。</li>
+<li>当<code>执行栈</code>中所有的同步任务执行完成，系统就会读取<code>任务队列</code>，将可运行的异步任务添加到<code>执行栈</code>中，开始执行</li>
+</ol>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fx5cqbhme7j30gy0hpdgl.jpg" alt=""></p>
+<ul>
+<li>主线程运行时会产生执行栈，栈中的代码调用某些 api 时，它们会在事件队列中添加各种事件</li>
+<li>而栈中的代码执行完毕，就会读取事件队列中的事件，去执行那些回调</li>
+<li>如此循环</li>
+</ul>
+<p>这个循环的过程称为“Event Loop”<br><strong> 注意，总是要等待执行栈中的代码执行完毕后才会去读取事件队列中的事件 </strong></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fx6an3z4kzj30ho0ee0tl.jpg" alt=""></p>
+<h3 id="liu-lan-qi-xuan-ran-liu-cheng"><a href="#浏览器渲染流程" class="headerlink" title="浏览器渲染流程"></a>浏览器渲染流程</h3><h4 id="can-kao-zi-liao"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p><a href="http://www.ruanyifeng.com/blog/2015/09/web-page-performance-in-depth.html" target="_blank" rel="noopener">阮一峰-网页性能管理详解</a><br><a href="https://segmentfault.com/a/1190000013662126#articleHeader34" target="_blank" rel="noopener">从输入 URL 到页面加载的过程？如何由一道题完善自己的前端知识体系！</a></p>
+<h4 id="ye-mian-de-sheng-cheng-guo-cheng"><a href="#页面的生成过程" class="headerlink" title="页面的生成过程"></a>页面的生成过程</h4><ol>
+<li>解析 HTML，构建 DOM 树</li>
+<li>解析 CSS，生成 CSS 规则树</li>
+<li>结合 DOM 树 和 CSS 规则 生成渲染树（Render Tree）</li>
+<li>布局 Render Tree（layout/reflow），负责各元素尺寸、位置的计算</li>
+<li>绘制 Render Tree（paint），绘制页面像素信息</li>
+<li>浏览器会将各层的信息发送给 GPU，GPU 会将各层合成（composite），显示在屏幕上</li>
+</ol>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fx69iodg1sj30p009smxu.jpg" alt=""></p>
+<p><strong> 第一步：解析 HTML，构建 DOM 树 </strong><br>过程：<code>Bytes → characters → tokens → nodes → DOM</code><br><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fx6g5efm4zj30m80cb762.jpg" alt=""></p>
+<p><strong> 第二步：解析 CSS，生成 CSS 规则树 </strong><br>过程：<code>Bytes → characters → tokens → nodes → CSSOM</code><br><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fx6g7aw301j30g608bt9m.jpg" alt=""></p>
+<p><strong> 第三步：生成渲染树 </strong><br>有一些不可见的 DOM 元素不会插入到渲染树中，如 head 这种不可见的标签或者 display: none 等。<br><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fx6g87s37xj30m80adabj.jpg" alt=""></p>
+<p><strong> 第四部：渲染 </strong><br>图中的线与箭头代表通过 js 动态修改了 DOM 或 CSS，导致了重新布局（Layout）或渲染（Repaint）。<br><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fx6g9oa4z6j30m80640tv.jpg" alt=""></p>
+<h4 id="domcontentloaded-he-load"><a href="#DOMContentLoaded-和-load" class="headerlink" title="DOMContentLoaded 和 load"></a>DOMContentLoaded 和 load</h4><p>DOMContentLoaded 在 DOM 加载完之后触发<br>load 事件在 DOM、CSS、JS、图片都加载完之后才触发</p>
+<p>DOMContentLoaded 先于 load 触发</p>
+<h4 id="chong-pai-he-chong-hui"><a href="#重排和重绘" class="headerlink" title="重排和重绘"></a>重排和重绘</h4><p>重排/回流（reflow）：重新生成布局<br>重绘（repaint）：重新绘制<br>“重绘”不一定需要“重排”，“重排”必然导致“重绘”。</p>
+<p>触发 reflow 的属性：</p>
+<ul>
+<li>盒模型相关的属性: width，height，margin，display，border</li>
+<li>定位属性及浮动相关的属性: top，position，float</li>
+<li>改变节点内部文字结构也会触发回流: text-align, overflow, font-size, line-height, vertical-align</li>
+</ul>
+<p>此外以下情况也会触发 reflow：</p>
+<ul>
+<li>调整窗口大小</li>
+<li>样式表变动</li>
+<li>元素内容变化，尤其是输入控件</li>
+<li>dom 操作</li>
+<li>css 伪类激活</li>
+<li>计算元素的 offsetWidth、offsetHeight、clientWidth、clientHeight、width、height、scrollTop、scrollHeight</li>
+</ul>
+<p>触发 repaint 情况：</p>
+<ul>
+<li>更新样式风格相关的属性，如 background，color，cursor，visibility</li>
+</ul>
+<p>CSS 样式引起重绘和重排对照表：<a href="https://csstriggers.com" target="_blank" rel="noopener">https://csstriggers.com</a></p>
+<h4 id="fu-he-ceng"><a href="#复合层" class="headerlink" title="复合层"></a>复合层</h4><p><a href="https://segmentfault.com/a/1190000008015671" target="_blank" rel="noopener">一篇文章说清浏览器解析和 CSS（GPU）动画优化</a></p>
+<h4 id="ti-gao-xing-neng-de-jiu-ge-ji-qiao"><a href="#提高性能的九个技巧" class="headerlink" title="提高性能的九个技巧"></a>提高性能的九个技巧</h4><ol>
+<li>DOM 的多个读操作（或多个写操作），应该放在一起。不要两个读操作之间，加入一个写操作。</li>
+<li>如果某个样式是通过重排得到的，那么最好缓存结果。避免下一次用到的时候，浏览器又要重排。</li>
+<li>不要一条条地改变样式，而要通过改变 class，或者 csstext 属性，一次性地改变样式。</li>
+<li>尽量使用离线 DOM，而不是真实的网面 DOM，来改变元素样式。比如，操作 Document Fragment 对象，完成后再把这个对象加入 DOM。再比如，使用 cloneNode() 方法，在克隆的节点上进行操作，然后再用克隆的节点替换原始节点。</li>
+<li>先将元素设为 <code>display: none</code>（需要 1 次重排和重绘），然后对这个节点进行 100 次操作，最后再恢复显示（需要 1 次重排和重绘）。这样一来，你就用两次重新渲染，取代了可能高达 100 次的重新渲染。</li>
+<li>position 属性为<code>absolute</code>或<code>fixed</code>的元素，重排的开销会比较小，因为不用考虑它对其他元素的影响。</li>
+<li>只在必要的时候，才将元素的 display 属性为可见，因为不可见的元素不影响重排和重绘。另外，<code>visibility : hidden</code>的元素只对重绘有影响，不影响重排。</li>
+<li>使用虚拟 DOM 的脚本库，比如 React 等。</li>
+<li>使用 window.requestAnimationFrame()、window.requestIdleCallback() 这两个方法调节重新渲染。</li>
+</ol>
+<h4 id="window-requestanimationframe"><a href="#window-requestAnimationFrame" class="headerlink" title="window.requestAnimationFrame()"></a><code>window.requestAnimationFrame()</code></h4><p>将某些代码放到下一次重新渲染时执行，提高网页性能。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 让读操作和写操作分离，把所有的写操作放到下一次重新渲染</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doubleHeight</span>(<span class="params">element</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> currentHeight = element.clientHeight</span><br><span class="line">  <span class="built_in">window</span>.requestAnimationFrame(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    element.style.height = currentHeight * <span class="number">2</span> + <span class="string">'px'</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">elements.forEach(doubleHeight)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Maywzp
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://maywzp.github.io/2018/11/12/JS-运行机制/" title="JS 运行机制">https://maywzp.github.io/2018/11/12/JS-运行机制/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/知识点/" rel="tag"># 知识点</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/12/原型链/" rel="next" title="原型对象及原型链">
+                <i class="fa fa-chevron-left"></i> 原型对象及原型链
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/14/七牛云存储/" rel="prev" title="七牛云存储">
+                七牛云存储 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Maywzp" />
+            
+              <p class="site-author-name" itemprop="name">Maywzp</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#duo-jin-cheng-de-liu-lan-qi"><span class="nav-number">1.</span> <span class="nav-text">多进程的浏览器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#browser-jin-cheng"><span class="nav-number">1.1.</span> <span class="nav-text">Browser 进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#di-san-fang-cha-jian-jin-cheng"><span class="nav-number">1.2.</span> <span class="nav-text">第三方插件进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gpu-jin-cheng"><span class="nav-number">1.3.</span> <span class="nav-text">GPU 进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#liu-lan-qi-xuan-ran-jin-cheng-liu-lan-qi-nei-he-renderer-jin-cheng"><span class="nav-number">1.4.</span> <span class="nav-text">浏览器渲染进程（浏览器内核，Renderer 进程）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#duo-xian-cheng-de-liu-lan-qi-nei-he"><span class="nav-number">2.</span> <span class="nav-text">多线程的浏览器内核</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#gui-xuan-ran-xian-cheng"><span class="nav-number">2.1.</span> <span class="nav-text">GUI 渲染线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#js-yin-qing-xian-cheng"><span class="nav-number">2.2.</span> <span class="nav-text">JS 引擎线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#shi-jian-hong-fa-xian-cheng"><span class="nav-number">2.3.</span> <span class="nav-text">事件触发线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ding-shi-hong-fa-qi-xian-cheng"><span class="nav-number">2.4.</span> <span class="nav-text">定时触发器线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#yi-bu-http-qing-qiu-xian-cheng"><span class="nav-number">2.5.</span> <span class="nav-text">异步 http 请求线程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#event-loop"><span class="nav-number">3.</span> <span class="nav-text">Event Loop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#liu-lan-qi-xuan-ran-liu-cheng"><span class="nav-number">4.</span> <span class="nav-text">浏览器渲染流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#can-kao-zi-liao"><span class="nav-number">4.1.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ye-mian-de-sheng-cheng-guo-cheng"><span class="nav-number">4.2.</span> <span class="nav-text">页面的生成过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#domcontentloaded-he-load"><span class="nav-number">4.3.</span> <span class="nav-text">DOMContentLoaded 和 load</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#chong-pai-he-chong-hui"><span class="nav-number">4.4.</span> <span class="nav-text">重排和重绘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fu-he-ceng"><span class="nav-number">4.5.</span> <span class="nav-text">复合层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ti-gao-xing-neng-de-jiu-ge-ji-qiao"><span class="nav-number">4.6.</span> <span class="nav-text">提高性能的九个技巧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#window-requestanimationframe"><span class="nav-number">4.7.</span> <span class="nav-text">window.requestAnimationFrame()</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Maywzp</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.3"></script>
+
+
+  
+
+
+</body>
+</html>
